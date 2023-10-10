@@ -25,7 +25,31 @@ const LogoPosition = styled.div`
     height:8vh;
 `; 
 
+const TextPosition = styled.div`
+    width: 80vw;
+    height: 2vw;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1vw;
+    line-height: 1.4vw;
+    display:flex;
+    justify-content:right;
+    color: #FCFDF2;
+`; 
 
+const TextPosition1 = styled.div`
+    width: 5vw;
+    height: 2vw;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1vw;
+    line-height: 1.4vw;
+    display:flex;
+    justify-content:right;
+    color: #FCFDF2;
+`; 
 
 export const Header = () => {
     const location = useLocation();
@@ -43,6 +67,9 @@ export const Header = () => {
         <>
             <HeaderContainer>
             <LogoPosition color={color}>GRAPE<br/>&nbsp;&nbsp;PLATE</LogoPosition>
+            <TextPosition>Hot list</TextPosition>
+            <TextPosition1>Story</TextPosition1>
+            <TextPosition1>Image</TextPosition1>
             </HeaderContainer>
         </>
     );
