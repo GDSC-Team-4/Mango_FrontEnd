@@ -20,7 +20,7 @@ const HeaderContainer = styled.header`
  `;
  
 const ImageBox = styled.div`
-    width: 30vw;
+    width: 35vw;
     height: 41.5vh;
     display: flex;
     justify-content: right;
@@ -47,7 +47,7 @@ const TitleText = styled.h1`
     font-weight: 800;
     font-size: 2em; 
     height:2.5em;
-    line-height: 2.8em;
+    line-height:2.8em;
     color: #FCFDF2;
 `;
 
@@ -81,7 +81,7 @@ const SearchBar = styled.input`
    border-bottom: 0.1rem solid #777777; 
    display:flex;
    float: center;
-   width: 30vw; 
+   width: 25vw; 
    height:3.5vh;
    background: transparent; 
    text-indent: 1.7vw;
