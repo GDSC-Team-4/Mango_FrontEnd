@@ -74,11 +74,13 @@ export const Header = () => {
     switch(location.pathname) {
         case '/SearchPage':
             color = '#3B3486';
+           // background-color = '#F5EBFF';
             break;
          default:
             color = '#FCFDF2'; 
+           // background-color: '#25252D';
       }
-
+  
     return (
         <>
             <HeaderContainer>

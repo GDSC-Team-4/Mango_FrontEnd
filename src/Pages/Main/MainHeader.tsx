@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Rectangle3  from '../../img/Rectangle3.png';
 import {AiOutlineSearch} from "react-icons/ai";
+import { useNavigate } from 'react-router-dom';
 const HeaderContainer = styled.header`
     margin-top:-10rem;
     padding-top:10rem;
@@ -25,7 +26,6 @@ const ImageBox = styled.div`
     display: flex;
     justify-content: right;
     align-items: right;
-    
 `;
 
 const Box = styled.div`
@@ -85,6 +85,7 @@ const SearchBar = styled.input`
    height:3.5vh;
    background: transparent; 
    text-indent: 1.7vw;
+   color: #777777;
 `;
 
 const SearchButton = styled.button`
@@ -103,7 +104,11 @@ const SearchButton = styled.button`
 
 
 export const MainHeader = () => {
-    
+    const navigation = useNavigate();
+    const onClick = () => {
+        navigation('/SearchPage');
+    }
+
     return (
         <HeaderContainer>
             <Box>
@@ -114,7 +119,7 @@ export const MainHeader = () => {
                 <SearchContainer>
                     <SearchIcon/>
                     <SearchBar type="text" placeholder="지역, 식당 또는 음식" />
-                    <SearchButton type="submit">검색</SearchButton>
+                    <SearchButton type="submit" onClick={onClick}>검색</SearchButton>
                 </SearchContainer>
             </Box>
             <ImageBox><img src={Rectangle3} /></ImageBox> 
