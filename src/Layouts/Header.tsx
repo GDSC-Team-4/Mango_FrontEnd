@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
+import {BsPersonCircle} from 'react-icons/bs';
 
 const HeaderContainer = styled.header`
     width: 100%;
@@ -26,35 +27,50 @@ const LogoPosition = styled.div`
 `; 
 
 const TextPosition = styled.div`
-    width: 80vw;
+    width: 75vw;
     height: 2vw;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
-    font-size: 1vw;
+    font-size: 1.2vw;
     line-height: 1.4vw;
     display:flex;
     justify-content:right;
-    color: #FCFDF2;
+    color: ${props => props.color};
 `; 
 
 const TextPosition1 = styled.div`
-    width: 5vw;
+    width: 8vw;
     height: 2vw;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
-    font-size: 1vw;
+    font-size: 1.2vw;
     line-height: 1.4vw;
     display:flex;
     justify-content:right;
-    color: #FCFDF2;
+    color: ${props => props.color};
 `; 
 
+const ClickIcon = styled(BsPersonCircle)`
+  color: #FCFDF2;
+  width: 8vw;
+  height: 2vw;
+  display:flex;
+  justify-content:right;
+  margin-right:-1vw;
+  margin-left:2vw;
+  margin-bottom:0.3vw;
+`;
 export const Header = () => {
+    const navigation = useNavigate();
     const location = useLocation();
     let color;
 
+    const onClick = () =>{
+        navigation('/RegisterPage');
+    }
+    
     switch(location.pathname) {
         case '/SearchPage':
             color = '#3B3486';
@@ -67,9 +83,9 @@ export const Header = () => {
         <>
             <HeaderContainer>
             <LogoPosition color={color}>GRAPE<br/>&nbsp;&nbsp;PLATE</LogoPosition>
-            <TextPosition>Hot list</TextPosition>
-            <TextPosition1>Story</TextPosition1>
-            <TextPosition1>Image</TextPosition1>
+            <TextPosition color={color}>Hot list</TextPosition>
+            <TextPosition1 color={color}>Story</TextPosition1>
+            <ClickIcon/>
             </HeaderContainer>
         </>
     );
