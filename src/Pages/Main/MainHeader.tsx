@@ -7,7 +7,7 @@ const HeaderContainer = styled.header`
     margin-top:-10rem;
     padding-top:10rem;
     width: 100%;
-    height: 75vh;
+    height: 85vh;
     background-image: url(${require('../../img/Rectangle.png')});
     background-size: cover; 
     background-position:center;
@@ -16,7 +16,7 @@ const HeaderContainer = styled.header`
     align-items:center;
 
     @media (max-width: 768px) {
-        height: 50vh; 
+        height: 86vh; 
         padding-top:5rem; 
  `;
  
