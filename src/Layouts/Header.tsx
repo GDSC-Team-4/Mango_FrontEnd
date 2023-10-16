@@ -4,27 +4,33 @@ import { useNavigate,useLocation } from 'react-router-dom';
 import {BsPersonCircle} from 'react-icons/bs';
 import  HeaderProps  from '../Interface/Header';
 
+
 const HeaderContainer = styled.header<HeaderProps>`
     width: 100%;
-    height: 10vh;
+    height: 12vh;
     background-color: ${props => props.backgroundColor};
-    oparity: 0.4;
+    opacity: ${props => props.opacity};
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed; 
+	top: 0; 
+	left: 0; 
  `;
 
 const LogoPosition = styled.div`
     font-family: 'Inter';
     font-style: normal;
     font-weight: 800;
-    font-size:1.5rem;
+    font-size:1.8rem;
+    line-height:2.2rem;
     color: ${props => props.color};
     position :fixed ;
     top :1rem ;
-    left :1rem ;
+    left :2rem ;
     width:15vh;
     height:8vh;
+    cursor:pointer;
 `; 
 
 const TextPosition = styled.div`
@@ -38,6 +44,7 @@ const TextPosition = styled.div`
     display:flex;
     justify-content:right;
     color: ${props => props.color};
+    cursor:pointer;
 `; 
 
 const TextPosition1 = styled.div`
@@ -51,10 +58,11 @@ const TextPosition1 = styled.div`
     display:flex;
     justify-content:right;
     color: ${props => props.color};
+    cursor:pointer;
 `; 
 
 const ClickIcon = styled(BsPersonCircle)`
-  color: #FCFDF2;
+  color: ${props => props.color};
   width: 8vw;
   height: 2vw;
   display:flex;
@@ -62,35 +70,43 @@ const ClickIcon = styled(BsPersonCircle)`
   margin-right:-1vw;
   margin-left:2vw;
   margin-bottom:0.3vw;
+  cursor:pointer;
 `;
+
 export const Header = () => {
     const navigation = useNavigate();
     const location = useLocation();
     let color;
     let backgroundColor;
-
+    let opacity;
     const onRegister = () =>{
         navigation('/RegisterPage');
-    }
+    } // 나중에 로그인 여부 확인해서 mypage로 보내줄 지 회원가입 , 로그인 페이지로 보내줄 지 판단하는 코드 넣을 것임
 
     const onMain = () => {
         navigation('/');
     }
-    
+
+    if (location.pathname === '/RegisterPage' || location.pathname === '/LoginPage') {
+		return null
+    }
+
     switch(location.pathname) {
         case '/SearchPage':
             color = '#3B3486';
             backgroundColor = '#F5EBFF';
-            break;
-         default:
+            opacity= 1;
+            break;  
+        default:
             color = '#FCFDF2'; 
             backgroundColor = '#25252D';
+            opacity= 0.4;
       }
   
     return (
         <>
-            <HeaderContainer backgroundColor={backgroundColor}>
-            <LogoPosition onClick={onMain} color={color}>GRAPE<br/>&nbsp;&nbsp;PLATE</LogoPosition>
+            <HeaderContainer backgroundColor={backgroundColor} opacity={opacity}>
+            <LogoPosition onClick={onMain} color={color}>GRAPE<br/>&nbsp;PLATE</LogoPosition>
             <TextPosition color={color}>Hot list</TextPosition>
             <TextPosition1 color={color}>Story</TextPosition1>
             <ClickIcon onClick={onRegister}/>
