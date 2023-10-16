@@ -1,12 +1,37 @@
 import styled from "styled-components";
+import img from "../grape_background.png";
+import logo from "../logo.png";
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ image: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(245, 235, 255, 0.4);
   padding: 10%;
+  flex-direction: row;
+  background-image: linear-gradient(
+      rgba(37, 37, 45, 0.9),
+      rgba(37, 37, 45, 0.9)
+    ),
+    url(${(props) => props.image});
+  background-size: cover;
+  background-repeat: no-repeat;
+  gap: 10vw;
 `;
+
+const LogoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  span {
+    color: rgba(252, 253, 242, 0.7);
+    font-size: 50px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    margin-top: -100px;
+  }
+`;
+
+const Logo = styled.img``;
 
 const Container = styled.div`
   display: flex;
@@ -66,7 +91,11 @@ const Submit = styled.input`
 
 export const RegisterPage = () => {
   return (
-    <Wrapper>
+    <Wrapper image={img}>
+      <LogoContainer>
+        <Logo src={logo} />
+        <span>포도 플레이트</span>
+      </LogoContainer>
       <Container>
         <Title>
           <span>회원가입</span>
