@@ -3,11 +3,10 @@ import styled from 'styled-components';
 import Rectangle3  from '../../img/Rectangle3.png';
 import {AiOutlineSearch} from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
-const HeaderContainer = styled.header`
-    margin-top:-10rem;
-    padding-top:10rem;
+
+const MainContainer = styled.header`
     width: 100%;
-    height: 85vh;
+    height: 95vh;
     background-image: url(${require('../../img/Rectangle.png')});
     background-size: cover; 
     background-position:center;
@@ -16,38 +15,41 @@ const HeaderContainer = styled.header`
     align-items:center;
 
     @media (max-width: 768px) {
-        height: 86vh; 
-        padding-top:5rem; 
+        height: 85vh; 
+        padding-top:15rem; 
+    }
  `;
  
 const ImageBox = styled.div`
-    width: 35vw;
-    height: 41.5vh;
+    width: 45vw;
+    height: 54.5vh;
     display: flex;
     justify-content: right;
     align-items: right;
+    margin-top:1.5vw;
+    margin-left:-15vw;
 `;
 
 const Box = styled.div`
     display: block;
-    
+    margin-left:5vw;
+    margin-top:7vw;
 `;
 
 const TextBox = styled.span`
-    height: 25vh;
+    height: 30vh;
     display: flex;
     flex-direction: column;
     align-items: left;
-    margin-top:3vw;
 `;
 
 const TitleText = styled.h1`
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 800;
-    font-size: 2em; 
+    font-size: 3em; 
     height:2.5em;
-    line-height:2.8em;
+    line-height:3em;
     color: #FCFDF2;
 `;
 
@@ -55,8 +57,8 @@ const SubText = styled.p`
    font-family : 'Inter', sans-serif ;
    font-style : normal ;
    font-weight :400 ;
-   font-size :1.2em ;
-   line-height :1.4em;
+   font-size :1.3em ;
+   line-height :1.2em;
    color : #FCFDF2 ;
 `;
 
@@ -64,34 +66,35 @@ const SearchContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top:3vw;
 `;
 
 const SearchIcon = styled(AiOutlineSearch)`
   color: #969696;
-  width:2vw;
-  height:3vh;
-  margin-right:-1.7vw;
+  width:3vw;
+  height:5vh;
+  margin-right:-2.7vw;
 `;
 
 const SearchBar = styled.input`
-   padding: 0.5vh; 
+   padding: 1vh; 
    margin-right:-0.1vw;
-   font-size: 1.2rem;
+   font-size: 1.4rem;
    border: none; 
    border-bottom: 0.1rem solid #777777; 
    display:flex;
    float: center;
-   width: 25vw; 
+   width: 30vw; 
    height:3.5vh;
    background: transparent; 
-   text-indent: 1.7vw;
+   text-indent: 2.2vw;
    color: #777777;
 `;
 
 const SearchButton = styled.button`
     float:left;
-    width:8vw;
-    height:5vh;
+    width:9vw;
+    height:6vh;
     background:#767676; 
     color:white; 
     font-size:1.3em; 
@@ -110,7 +113,7 @@ export const MainHeader = () => {
     }
 
     return (
-        <HeaderContainer>
+        <MainContainer>
             <Box>
                 <TextBox>
                     <TitleText>포도플레이트</TitleText>
@@ -123,7 +126,7 @@ export const MainHeader = () => {
                 </SearchContainer>
             </Box>
             <ImageBox><img src={Rectangle3} /></ImageBox> 
-        </HeaderContainer>
+        </MainContainer>
     );
 }
 
