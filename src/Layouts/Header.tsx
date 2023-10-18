@@ -9,13 +9,15 @@ const HeaderContainer = styled.header<HeaderProps>`
     width: 100%;
     height: 12vh;
     background-color: ${props => props.backgroundColor};
-    opacity: ${props => props.opacity};
+    border-bottom: ${props => props.border || 'none'};
+    box-shadow: ${props => props.boxShadow || 'none'};
     display: flex;
     justify-content: center;
     align-items: center;
     position: fixed; 
 	top: 0; 
 	left: 0; 
+    z-index:1000;
  `;
 
 const LogoPosition = styled.div`
@@ -78,7 +80,9 @@ export const Header = () => {
     const location = useLocation();
     let color;
     let backgroundColor;
-    let opacity;
+    let border;
+    let boxShadow;
+
     const onRegister = () =>{
         navigation('/RegisterPage');
     } // 나중에 로그인 여부 확인해서 mypage로 보내줄 지 회원가입 , 로그인 페이지로 보내줄 지 판단하는 코드 넣을 것임
@@ -91,25 +95,27 @@ export const Header = () => {
 		return null
     }
 
+
     switch(location.pathname) {
         case '/SearchPage':
             color = '#3B3486';
-            backgroundColor = '#F5EBFF';
-            opacity= 1;
-            break;  
-        default:
+            backgroundColor = 'rgba(245,235,255,0.4)';
+            border = '2px solid rgba(59, 52, 134, 0.7)'; 
+			boxShadow = '0px 2px 5px rgba(0, 0, 0, 0.25)'; 
+
+            break; 
+         default:
             color = '#FCFDF2'; 
-            backgroundColor = '#25252D';
-            opacity= 0.4;
-      }
+            backgroundColor = 'rgba(37,37,45,0.4)';     
+    }
   
     return (
         <>
-            <HeaderContainer backgroundColor={backgroundColor} opacity={opacity}>
+            <HeaderContainer backgroundColor={backgroundColor} border={border} boxShadow={boxShadow}>
             <LogoPosition onClick={onMain} color={color}>GRAPE<br/>&nbsp;PLATE</LogoPosition>
             <TextPosition color={color}>Hot list</TextPosition>
             <TextPosition1 color={color}>Story</TextPosition1>
-            <ClickIcon onClick={onRegister}/>
+            <ClickIcon color={color} onClick={onRegister}/>
             </HeaderContainer>
         </>
     );

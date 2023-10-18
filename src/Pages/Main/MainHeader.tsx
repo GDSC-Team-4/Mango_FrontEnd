@@ -70,10 +70,10 @@ const SearchContainer = styled.div`
 `;
 
 const SearchIcon = styled(AiOutlineSearch)`
-  color: #969696;
-  width:3vw;
-  height:5vh;
-  margin-right:-2.7vw;
+    color: #969696;
+    width:3vw;
+    height:5vh;
+    margin-right:-2.7vw;
 `;
 
 const SearchBar = styled.input`
@@ -89,6 +89,9 @@ const SearchBar = styled.input`
    background: transparent; 
    text-indent: 2.2vw;
    color: #777777;
+   &:focus {
+    outline:none;
+}
 `;
 
 const SearchButton = styled.button`
