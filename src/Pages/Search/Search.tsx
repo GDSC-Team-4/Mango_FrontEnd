@@ -13,7 +13,7 @@ const SearchContainer = styled.div`
     align-items:center;
 
     @media (max-width: 768px) {
-        height: 85vh; 
+        height: 100%; 
         padding-top:15rem; 
     }
 `;
@@ -22,6 +22,10 @@ const Box = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
+    @media (min-height: 768px) {
+        margin-top:8vw;
+    }
 `;
 
 const TextBox = styled.p`
@@ -47,6 +51,7 @@ const SearchBox = styled.div`
     box-shadow: 0 0.4vw 4.2vh rgba(0, 0, 0, 0.25);
     border-radius: 8vw;
     cursor: pointer;
+    
 `;
 
 const SearchIcon = styled(AiOutlineSearch)`
@@ -78,6 +83,14 @@ const SearchButton = styled(HiArrowRightCircle)`
     width:5vw;
     height:8.5vh;
     color:#3B3486;
+    
+`;
+
+const SubBox = styled.div`
+    background-color: #F5EBFF;
+    margin-top: 8vw;
+    padding-left:16vw;
+    padding-right:16vw;
 `;
 
 const SubTitle = styled.p`
@@ -88,20 +101,22 @@ const SubTitle = styled.p`
     font-weight: 500;
     font-size: 1.663em;
     line-height: 1.875em;
-    margin-top: 8vw;
 `;
 
 const RactangleBox = styled.div`
     display:flex;
     justify-content: space-between;
     width: 68vw;
-    
+`;
+
+const ColumnBox = styled.div`
+    display:block;
 `;
 
 const RandomRactangle = styled.div<SearchProps>`
     width: ${props => props.width}vw;
     height: ${props => props.height}vh;
-    background-image: url('https://picsum.photos/300/400');
+    background-image: url(${props => props.imageURL});
     margin:0.5vw;
     border-radius: 4.2vh;
     filter: drop-shadow(0vw 0.3vw 0.65vw rgba(0, 0, 0, 0.1));
@@ -126,31 +141,47 @@ export const SearchPage = () => {
         <>
             <SearchContainer>
                 <Box>
-                    <TextBox>
-                    지역, 식당 또는 음식으로 검색해 나만의 맛집을 찾아보세요!
-                    </TextBox>
+                    <TextBox>지역, 식당 또는 음식으로 검색해 나만의 맛집을 찾아보세요!</TextBox>
                     <SearchBox onClick={handleSearchClick}>
                         <SearchIcon/>
                         <SearchBar type="text" placeholder="지역, 식당 또는 음식" ref={searchRef}/>
                         <SearchButton onClick={searchButtonClick}>검색</SearchButton>
                     </SearchBox>
-                    <SubTitle>
-                        "합정역 맛집"
-                    </SubTitle>
+                <SubBox>
+                    <SubTitle>"합정역 맛집"</SubTitle>
                     <RactangleBox>
-                    <RandomRactangle width={Math.floor(Math.random() * (40 - 30 + 1) + 30)} 
-                                         height={Math.floor(Math.random() * (40 - 30 + 1) + 50)}/>
-                    <RandomRactangle width={Math.floor(Math.random() * (40 - 30 + 1) + 30)} 
-                                         height={Math.floor(Math.random() * (40 - 30 + 1) + 40)} />
-                    <RandomRactangle width={Math.floor(Math.random() * (40 - 30 + 1) + 30)} 
-                                         height={Math.floor(Math.random() * (40 - 30 + 1) + 40)}/>
+                        <RandomRactangle width={24} 
+                                         height={45} imageURL='https://picsum.photos/350/400'/>
+                        <ColumnBox>
+                            <RandomRactangle width={21} 
+                                            height={29} imageURL='https://picsum.photos/300/240'/>
+                            <RandomRactangle width={21} 
+                                            height={15} imageURL='https://picsum.photos/300/150'/>
+                        </ColumnBox>
+                        <ColumnBox>
+                            <RandomRactangle width={24} 
+                                            height={13} imageURL='https://picsum.photos/350/180'/>
+                            <RandomRactangle width={24} 
+                                            height={32} imageURL='https://picsum.photos/350/300'/>
+                        </ColumnBox>
                     </RactangleBox>
                     <RactangleBox>
-                    <RandomRactangle width={Math.floor(Math.random() * (40 - 30 + 1) + 30)} 
-                                         height={Math.floor(Math.random() * (40 - 30 + 1) + 40)} />                    
-                    <RandomRactangle width={Math.floor(Math.random() * (40 - 30 + 1) + 30)} 
-                                         height={Math.floor(Math.random() * (40 - 30 + 1) + 40)}/>
-                </RactangleBox>
+                        <ColumnBox>
+                            <RandomRactangle width={17} 
+                                            height={29} imageURL='https://picsum.photos/280/360'/>
+                            <RandomRactangle width={17} 
+                                            height={15} imageURL='https://picsum.photos/320/180'/>
+                        </ColumnBox>
+                        <ColumnBox>
+                            <RandomRactangle width={27} 
+                                            height={13} imageURL='https://picsum.photos/380/230'/>
+                            <RandomRactangle width={27} 
+                                            height={32} imageURL='https://picsum.photos/320/390'/>
+                        </ColumnBox>
+                        <RandomRactangle width={24} 
+                                         height={45} imageURL='https://picsum.photos/300/400'/>
+                    </RactangleBox>
+                </SubBox>
                 </Box>
             </SearchContainer>
         </>
