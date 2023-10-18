@@ -34,7 +34,7 @@ const LogoPosition = styled.div`
 `; 
 
 const TextPosition = styled.div`
-    width: 75vw;
+    width: 5vw;
     height: 2vw;
     font-family: 'Inter';
     font-style: normal;
@@ -42,35 +42,37 @@ const TextPosition = styled.div`
     font-size: 1.2vw;
     line-height: 1.4vw;
     display:flex;
-    justify-content:right;
+    justify-content:center;
     color: ${props => props.color};
     cursor:pointer;
+    margin-left:75vw;
 `; 
 
 const TextPosition1 = styled.div`
-    width: 8vw;
+    width: 5vw;
     height: 2vw;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-size: 1.2vw;
     line-height: 1.4vw;
-    display:flex;
-    justify-content:right;
+    display: flex;
+    justify-content:center;
     color: ${props => props.color};
     cursor:pointer;
+    margin-left:3vw;
 `; 
 
 const ClickIcon = styled(BsPersonCircle)`
   color: ${props => props.color};
-  width: 8vw;
+  width: 5vw;
   height: 2vw;
   display:flex;
-  justify-content:right;
+  justify-content:center;
   margin-right:-1vw;
-  margin-left:2vw;
   margin-bottom:0.3vw;
   cursor:pointer;
+  margin-left:3vw;
 `;
 
 export const Header = () => {
@@ -95,7 +97,7 @@ export const Header = () => {
         case '/SearchPage':
             color = '#3B3486';
             backgroundColor = '#F5EBFF';
-            opacity= 1;
+            opacity= 0.7;
             break;  
         default:
             color = '#FCFDF2'; 
@@ -109,7 +111,7 @@ export const Header = () => {
             <LogoPosition onClick={onMain} color={color}>GRAPE<br/>&nbsp;PLATE</LogoPosition>
             <TextPosition color={color}>Hot list</TextPosition>
             <TextPosition1 color={color}>Story</TextPosition1>
-            <ClickIcon onClick={onRegister}/>
+            <ClickIcon color={color} onClick={onRegister}/>
             </HeaderContainer>
         </>
     );
