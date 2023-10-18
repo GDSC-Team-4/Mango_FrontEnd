@@ -9,8 +9,8 @@ const Wrapper = styled.div<{ image: string }>`
   padding: 10%;
   flex-direction: row;
   background-image: linear-gradient(
-      rgba(37, 37, 45, 0.9),
-      rgba(37, 37, 45, 0.9)
+      rgba(37, 37, 45, 0.85),
+      rgba(37, 37, 45, 0.85)
     ),
     url(${(props) => props.image});
   background-size: cover;
@@ -36,43 +36,74 @@ const Logo = styled.img``;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: rgba(245, 235, 255, 0.4);
   width: 30vw;
-  max-width: 320px;
-  border-radius: 15px;
+  max-width: 600px;
+  max-height: 650px;
+  border-radius: 20px;
+  background: rgba(217, 217, 217, 0.2);
   padding: 5%;
   border: none;
-  box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
-    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
 `;
 
 const Title = styled.div`
   display: flex;
-  color: #3b3486;
-  margin-bottom: 10%;
-  font-size: 30px;
-  font-weight: 700;
+  justify-content: center;
+  color: #fcfdf2;
+  margin-bottom: 50px;
+  font-size: 40px;
+  font-weight: 600;
   width: 100%;
   span {
-    text-align: left;
   }
 `;
 
-const Label = styled.label`
-  color: #3b3486;
+const Form = styled.form``;
+
+const LabelContainer = styled.div`
   display: flex;
-  height: 100%;
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 10px;
+  flex-direction: column;
+  border-radius: 10px;
+  background: rgba(217, 217, 217, 0.4);
+  box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.1);
+  width: 400px;
+  height: 70px;
+  margin-bottom: 20px;
 `;
 
-const Input = styled.input`
-  border: 1px solid #d3d3d3;
-  border-radius: 5px;
+const UserContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+`;
+
+const UserLabel = styled(LabelContainer)`
+  width: 190px;
+  height: 70px;
+`;
+
+const Label = styled.label`
+  color: rgba(252, 253, 242, 0.8);
+  display: flex;
+  height: 100%;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-left: 10px;
+`;
+
+const Input = styled.input.attrs({ type: "text" })`
   width: 100%;
   height: 3vh;
-  margin-bottom: 10%;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  &::placeholder {
+    color: #fff;
+  }
 `;
 
 const Submit = styled.input`
@@ -80,13 +111,13 @@ const Submit = styled.input`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 5vh;
-  border: 3px solid #3b3486;
-  border-radius: 5px;
-  background-color: #fff;
-  color: #3b3486;
-  font-size: 15px;
-  font-weight: 600;
+  height: 50px;
+  border: none;
+  border-radius: 100px;
+  background: rgba(37, 37, 45, 0.7);
+  color: #fff;
+  font-size: 20px;
+  margin-top: 50px;
 `;
 
 export const RegisterPage = () => {
@@ -98,19 +129,33 @@ export const RegisterPage = () => {
       </LogoContainer>
       <Container>
         <Title>
-          <span>회원가입</span>
+          <span>Create new Account</span>
         </Title>
-        <form>
-          <Label>아이디</Label>
-          <Input />
-          <Label>비밀번호</Label>
-          <Input />
-          <Label>닉네임</Label>
-          <Input />
-          <Label>이메일</Label>
-          <Input />
-          <Submit type="submit" value="가입하기" />
-        </form>
+        <Form>
+          <UserContainer>
+            <UserLabel>
+              <Label>User ID</Label>
+              <Input placeholder="User ID" />
+            </UserLabel>
+            <UserLabel>
+              <Label>Nickname</Label>
+              <Input placeholder="Nickname" />
+            </UserLabel>
+          </UserContainer>
+          <LabelContainer>
+            <Label>Password</Label>
+            <Input placeholder="User Password" />
+          </LabelContainer>
+          <LabelContainer>
+            <Label>Check Password</Label>
+            <Input placeholder="Check Password" />
+          </LabelContainer>
+          <LabelContainer>
+            <Label>Email</Label>
+            <Input placeholder="Email" />
+          </LabelContainer>
+          <Submit type="submit" value="Create New Account" />
+        </Form>
       </Container>
     </Wrapper>
   );
