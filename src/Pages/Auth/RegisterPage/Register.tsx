@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import img from "../grape_background.png";
-import logo from "../logo.png";
+import img from "../../../img/grape_background.png";
+import logo from "../../../img/logo.png";
 
 const Wrapper = styled.div<{ image: string }>`
   display: flex;
