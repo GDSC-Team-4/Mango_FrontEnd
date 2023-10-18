@@ -36,7 +36,7 @@ const LogoPosition = styled.div`
 `; 
 
 const TextPosition = styled.div`
-    width: 75vw;
+    width: 5vw;
     height: 2vw;
     font-family: 'Inter';
     font-style: normal;
@@ -44,35 +44,37 @@ const TextPosition = styled.div`
     font-size: 1.2vw;
     line-height: 1.4vw;
     display:flex;
-    justify-content:right;
+    justify-content:center;
     color: ${props => props.color};
     cursor:pointer;
+    margin-left:75vw;
 `; 
 
 const TextPosition1 = styled.div`
-    width: 8vw;
+    width: 5vw;
     height: 2vw;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-size: 1.2vw;
     line-height: 1.4vw;
-    display:flex;
-    justify-content:right;
+    display: flex;
+    justify-content:center;
     color: ${props => props.color};
     cursor:pointer;
+    margin-left:3vw;
 `; 
 
 const ClickIcon = styled(BsPersonCircle)`
   color: ${props => props.color};
-  width: 8vw;
+  width: 5vw;
   height: 2vw;
   display:flex;
-  justify-content:right;
+  justify-content:center;
   margin-right:-1vw;
-  margin-left:2vw;
   margin-bottom:0.3vw;
   cursor:pointer;
+  margin-left:3vw;
 `;
 
 export const Header = () => {
@@ -102,7 +104,6 @@ export const Header = () => {
             backgroundColor = 'rgba(245,235,255,0.4)';
             border = '2px solid rgba(59, 52, 134, 0.7)'; 
 			boxShadow = '0px 2px 5px rgba(0, 0, 0, 0.25)'; 
-
             break; 
          default:
             color = '#FCFDF2'; 
