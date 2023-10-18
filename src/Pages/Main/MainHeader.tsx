@@ -70,25 +70,29 @@ const SearchContainer = styled.div`
 `;
 
 const SearchIcon = styled(AiOutlineSearch)`
-  color: #969696;
-  width: 3vw;
-  height: 5vh;
-  margin-right: -2.7vw;
+<<<<<<< HEAD
+    color: #969696;
+    width:3vw;
+    height:5vh;
+    margin-right:-2.7vw;
 `;
 
 const SearchBar = styled.input`
-  padding: 1vh;
-  margin-right: -0.1vw;
-  font-size: 1.4rem;
-  border: none;
-  border-bottom: 0.1rem solid #777777;
-  display: flex;
-  float: center;
-  width: 30vw;
-  height: 3.5vh;
-  background: transparent;
-  text-indent: 2.2vw;
-  color: #777777;
+   padding: 1vh; 
+   margin-right:-0.1vw;
+   font-size: 1.4rem;
+   border: none; 
+   border-bottom: 0.1rem solid #777777; 
+   display:flex;
+   float: center;
+   width: 30vw; 
+   height:3.5vh;
+   background: transparent; 
+   text-indent: 2.2vw;
+   color: #777777;
+   &:focus {
+    outline:none;
+}
 `;
 
 const SearchButton = styled.button`
