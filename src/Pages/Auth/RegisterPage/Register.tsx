@@ -2,7 +2,7 @@ import styled from "styled-components";
 import img from "../../../img/grape_background.png";
 import logo from "../../../img/logo.png";
 
-const Wrapper = styled.div<{ image: string }>`
+export const Wrapper = styled.div<{ image: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +18,7 @@ const Wrapper = styled.div<{ image: string }>`
   gap: 10vw;
 `;
 
-const LogoContainer = styled.div`
+export const LogoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,9 +31,9 @@ const LogoContainer = styled.div`
   }
 `;
 
-const Logo = styled.img``;
+export const Logo = styled.img``;
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,16 +42,16 @@ const Container = styled.div`
   max-width: 600px;
   max-height: 650px;
   border-radius: 20px;
-  background: rgba(217, 217, 217, 0.2);
-  padding: 5%;
+  background: rgba(217, 217, 217, 0.1);
+  padding: 6% 2%;
   border: none;
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
   display: flex;
+  margin-bottom: 50px;
   justify-content: center;
   color: #fcfdf2;
-  margin-bottom: 50px;
   font-size: 40px;
   font-weight: 600;
   width: 100%;
@@ -59,9 +59,9 @@ const Title = styled.div`
   }
 `;
 
-const Form = styled.form``;
+export const Form = styled.form``;
 
-const LabelContainer = styled.div`
+export const LabelContainer = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -83,7 +83,7 @@ const UserLabel = styled(LabelContainer)`
   height: 70px;
 `;
 
-const Label = styled.label`
+export const Label = styled.label`
   color: rgba(252, 253, 242, 0.8);
   display: flex;
   height: 100%;
@@ -93,7 +93,7 @@ const Label = styled.label`
   margin-left: 10px;
 `;
 
-const Input = styled.input.attrs({ type: "text" })`
+export const Input = styled.input.attrs({ type: "text" })`
   width: 100%;
   height: 3vh;
   border: none;
@@ -106,7 +106,7 @@ const Input = styled.input.attrs({ type: "text" })`
   }
 `;
 
-const Submit = styled.input`
+export const Submit = styled.input`
   display: flex;
   justify-content: center;
   align-items: center;
