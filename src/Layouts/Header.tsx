@@ -33,6 +33,11 @@ const LogoPosition = styled.div`
     width:15vh;
     height:8vh;
     cursor:pointer;
+    @media (min-height: 1024px) {
+        font-size:2.5rem;
+        top :2rem ;
+        left :3rem ;
+    }
 `; 
 
 const TextPosition = styled.div`
