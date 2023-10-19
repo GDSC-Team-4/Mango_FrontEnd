@@ -5,3 +5,15 @@ interface SearchProps {
 }
 
 export default SearchProps
+
+export interface SearchDto {
+    id: number;
+    placeName: string; 
+    roadAddressName: string;
+    placeUrl: string;
+    reviewPoint: number;
+}
+
+export interface SearchData {
+    SearchPrams: string;
+}
