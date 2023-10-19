@@ -13,7 +13,7 @@ const SearchContainer = styled.div`
     align-items:center;
 
     @media (max-width: 768px) {
-        height: 100%; 
+        height: 85vh; 
         padding-top:15rem; 
     }
 `;
@@ -22,10 +22,6 @@ const Box = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    @media (min-height: 768px) {
-        margin-top:8vw;
-    }
 `;
 
 const TextBox = styled.p`
@@ -51,7 +47,6 @@ const SearchBox = styled.div`
     box-shadow: 0 0.4vw 4.2vh rgba(0, 0, 0, 0.25);
     border-radius: 8vw;
     cursor: pointer;
-    
 `;
 
 const SearchIcon = styled(AiOutlineSearch)`
@@ -83,14 +78,6 @@ const SearchButton = styled(HiArrowRightCircle)`
     width:5vw;
     height:8.5vh;
     color:#3B3486;
-    
-`;
-
-const SubBox = styled.div`
-    background-color: #F5EBFF;
-    margin-top: 8vw;
-    padding-left:16vw;
-    padding-right:16vw;
 `;
 
 const SubTitle = styled.p`
@@ -101,6 +88,7 @@ const SubTitle = styled.p`
     font-weight: 500;
     font-size: 1.663em;
     line-height: 1.875em;
+    margin-top: 8vw;
 `;
 
 const RactangleBox = styled.div`
@@ -141,14 +129,17 @@ export const SearchPage = () => {
         <>
             <SearchContainer>
                 <Box>
-                    <TextBox>지역, 식당 또는 음식으로 검색해 나만의 맛집을 찾아보세요!</TextBox>
+                    <TextBox>
+                    지역, 식당 또는 음식으로 검색해 나만의 맛집을 찾아보세요!
+                    </TextBox>
                     <SearchBox onClick={handleSearchClick}>
                         <SearchIcon/>
                         <SearchBar type="text" placeholder="지역, 식당 또는 음식" ref={searchRef}/>
                         <SearchButton onClick={searchButtonClick}>검색</SearchButton>
                     </SearchBox>
-                <SubBox>
-                    <SubTitle>"합정역 맛집"</SubTitle>
+                    <SubTitle>
+                        "합정역 맛집"
+                    </SubTitle>
                     <RactangleBox>
                         <RandomRactangle width={24} 
                                          height={45} imageURL='https://picsum.photos/350/400'/>
@@ -181,7 +172,6 @@ export const SearchPage = () => {
                         <RandomRactangle width={24} 
                                          height={45} imageURL='https://picsum.photos/300/400'/>
                     </RactangleBox>
-                </SubBox>
                 </Box>
             </SearchContainer>
         </>
