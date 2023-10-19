@@ -37,7 +37,7 @@ const Box = styled.div`
 `;
 
 const TextBox = styled.span`
-  height: 30vh;
+  height: 35vh;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -58,7 +58,7 @@ const SubText = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 1.3em;
-  line-height: 1.2em;
+  line-height: 1.5em;
   color: #fcfdf2;
 `;
 
@@ -66,11 +66,9 @@ const SearchContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 3vw;
 `;
 
 const SearchIcon = styled(AiOutlineSearch)`
-<<<<<<< HEAD
     color: #969696;
     width:3vw;
     height:5vh;
