@@ -41,6 +41,10 @@ const TextBox = styled.span`
   display: flex;
   flex-direction: column;
   align-items: left;
+  @media (min-height: 1024px) {
+    margin-bottom: -2vw;
+    margin-top:2.5vw;
+  }
 `;
 
 const TitleText = styled.h1`
@@ -60,6 +64,9 @@ const SubText = styled.p`
   font-size: 1.3em;
   line-height: 1.5em;
   color: #fcfdf2;
+  @media (min-height: 1024px) {
+    font-size: 1.6em;
+  }
 `;
 
 const SearchContainer = styled.div`
