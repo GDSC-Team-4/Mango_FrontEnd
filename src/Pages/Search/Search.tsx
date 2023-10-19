@@ -22,6 +22,10 @@ const Box = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @media (min-height: 768px) {
+        margin-top:8vw;
+    }
 `;
 
 const TextBox = styled.p`
@@ -60,7 +64,7 @@ const SearchIcon = styled(AiOutlineSearch)`
 const SearchBar = styled.input`
     border:none;
     background: #FFFFFF;
-    height:10vh;
+    height:9vh;
     width: 50vw;
     font-family: 'Inter';
     font-style: normal;
