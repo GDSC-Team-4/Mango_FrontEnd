@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
 import img from "../../../img/grape_background.png";
 import logo from "../../../img/logo.png";
 
@@ -72,17 +73,6 @@ export const LabelContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-const UserContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-`;
-
-const UserLabel = styled(LabelContainer)`
-  width: 190px;
-  height: 70px;
-`;
-
 export const Label = styled.label`
   color: rgba(252, 253, 242, 0.8);
   display: flex;
@@ -107,6 +97,8 @@ export const Input = styled.input.attrs({ type: "text" })`
   }
 `;
 
+export const PasswordInput = styled(Input).attrs({ type: "password" })``;
+
 export const Submit = styled.input`
   display: flex;
   justify-content: center;
@@ -121,7 +113,38 @@ export const Submit = styled.input`
   margin-top: 50px;
 `;
 
+export const ErrorMessage = styled.span`
+  color: #fff;
+  font-size: 12px;
+  margin-top: 5px;
+`;
+
+interface IForm {
+  username: string;
+  password: string;
+  checkpassword: string;
+  email: string;
+}
+
 export const RegisterPage = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm<IForm>();
+
+  const onValid = (data: IForm) => {
+    if (data.password !== data.checkpassword) {
+      setError(
+        "checkpassword",
+        { message: "비밀번호가 일치하지 않습니다." },
+        { shouldFocus: true }
+      );
+    }
+    console.log(data);
+  };
+
   return (
     <Wrapper image={img}>
       <LogoContainer>
@@ -132,22 +155,66 @@ export const RegisterPage = () => {
         <Title>
           <span>Create new Account</span>
         </Title>
-        <Form>
+        <Form onSubmit={handleSubmit(onValid)}>
           <LabelContainer>
             <Label>User ID</Label>
-            <Input placeholder="User ID" />
+            <Input
+              {...register("username", {
+                required: "User ID를 작성해주세요.",
+                minLength: {
+                  value: 3,
+                  message: "3 ~ 20 사이의 글자로 작성해주세요.",
+                },
+                maxLength: {
+                  value: 20,
+                  message: "3 ~ 20 사이의 글자로 작성해주세요.",
+                },
+              })}
+              placeholder="User ID"
+            />
+            <ErrorMessage>{errors?.username?.message}</ErrorMessage>
           </LabelContainer>
           <LabelContainer>
             <Label>Password</Label>
-            <Input placeholder="User Password" />
+            <PasswordInput
+              {...register("password", {
+                required: "Password를 작성해주세요.",
+                minLength: {
+                  value: 6,
+                  message: "6 ~ 40 사이의 글자로 작성해주세요.",
+                },
+                maxLength: {
+                  value: 40,
+                  message: "6 ~ 40 사이의 글자로 작성해주세요.",
+                },
+              })}
+              type="password"
+              placeholder="User Password"
+            />
+            <ErrorMessage>{errors?.password?.message}</ErrorMessage>
           </LabelContainer>
           <LabelContainer>
             <Label>Check Password</Label>
-            <Input placeholder="Check Password" />
+            <PasswordInput
+              {...register("checkpassword")}
+              placeholder="Check Password"
+              type="password"
+            />
+            <ErrorMessage>{errors?.checkpassword?.message}</ErrorMessage>
           </LabelContainer>
           <LabelContainer>
             <Label>Email</Label>
-            <Input placeholder="Email" />
+            <Input
+              {...register("email", {
+                required: "이메일을 입력해주세요.",
+                pattern: {
+                  value: /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                  message: "이메일 형식으로 입력해주세요.",
+                },
+              })}
+              placeholder="Email"
+            />
+            <ErrorMessage>{errors?.email?.message}</ErrorMessage>
           </LabelContainer>
           <Submit type="submit" value="Create New Account" />
         </Form>
