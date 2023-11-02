@@ -94,11 +94,12 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input.attrs({ type: "text" })`
-  width: 100%;
+  width: 80%;
   height: 3vh;
   border: none;
   background: transparent;
   font-size: 20px;
+  color: #fff;
   margin-bottom: 15px;
   margin-left: 10px;
   &::placeholder {
@@ -132,16 +133,10 @@ export const RegisterPage = () => {
           <span>Create new Account</span>
         </Title>
         <Form>
-          <UserContainer>
-            <UserLabel>
-              <Label>User ID</Label>
-              <Input placeholder="User ID" />
-            </UserLabel>
-            <UserLabel>
-              <Label>Nickname</Label>
-              <Input placeholder="Nickname" />
-            </UserLabel>
-          </UserContainer>
+          <LabelContainer>
+            <Label>User ID</Label>
+            <Input placeholder="User ID" />
+          </LabelContainer>
           <LabelContainer>
             <Label>Password</Label>
             <Input placeholder="User Password" />
