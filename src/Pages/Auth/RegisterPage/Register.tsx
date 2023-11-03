@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
-import img from "../../../img/grape_background.png";
-import logo from "../../../img/logo.png";
 import { useRef } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { IForm, ISubmit } from "../../../Interface/Register";
-import constant from "./ConstantRegister";
+import constant from "../ConstantAuth";
+import img from "../../../img/grape_background.png";
+import logo from "../../../img/logo.png";
+import axios from "axios";
 import {
   Container,
   ErrorMessage,
@@ -49,7 +49,7 @@ export const RegisterPage = () => {
       axios
         .post("http://localhost:8080/api/auth/signup", formData.current)
         .then((response) => {
-          alert(constant.SUCCESS);
+          alert(constant.SUCCESS.Register);
           navigate("/");
         })
         .catch(({ response }) => {

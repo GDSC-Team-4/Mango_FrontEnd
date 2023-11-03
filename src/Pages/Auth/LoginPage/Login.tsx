@@ -10,16 +10,17 @@ import {
   PasswordInput,
   ErrorMessage,
 } from "../RegisterPage/StyledRegister";
-import img from "../../../img/grape_background.png";
-import logo from "../../../img/logo.png";
+import { HomeBtn, LoginContainer, RegisterBtn } from "./StyledLogin";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { LoginState } from "../../../Atom/Login";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { ILogin } from "../../../Interface/Login";
-import { HomeBtn, LoginContainer, RegisterBtn } from "./StyledLogin";
+import axios from "axios";
+import constant from "../ConstantAuth";
+import img from "../../../img/grape_background.png";
+import logo from "../../../img/logo.png";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -45,12 +46,12 @@ export const LoginPage = () => {
         localStorage.setItem("accessToken", response.data.accessToken);
         localStorage.setItem("username", response.data.username);
         setIsLoggedIn(true);
-        alert("환영합니다!");
+        alert(constant.SUCCESS.Login);
         navigate("/");
       })
       .catch(({ response }) => {
         //console.log(response.data.error);
-        alert("아이디와 비밀번호를 확인해주세요.");
+        alert(constant.FAIL.Login);
       });
   };
   return (
@@ -66,7 +67,9 @@ export const LoginPage = () => {
             <LoginContainer>
               <Label>User ID</Label>
               <Input
-                {...register("username", { required: "User ID를 입력하세요." })}
+                {...register("username", {
+                  required: constant.USERNAME.REQUIRED_MESSAGE,
+                })}
                 placeholder="User ID"
               />
               <ErrorMessage>{errors?.username?.message}</ErrorMessage>
@@ -75,7 +78,7 @@ export const LoginPage = () => {
               <Label>Password</Label>
               <PasswordInput
                 {...register("password", {
-                  required: "Password를 입력하세요.",
+                  required: constant.PASSWORD.REQUIRED_MESSAGE,
                 })}
                 placeholder="Password"
               />
