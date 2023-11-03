@@ -9,7 +9,7 @@ import {
   Label,
   Input,
   Submit,
-} from "../RegisterPage/Register";
+} from "../RegisterPage/StyledRegister";
 import img from "../../../img/grape_background.png";
 import logo from "../../../img/logo.png";
 import styled from "styled-components";
