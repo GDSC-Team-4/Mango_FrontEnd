@@ -5,16 +5,13 @@ import {
   Container,
   Title,
   Form,
-  LabelContainer,
   Label,
   Input,
   PasswordInput,
-  Submit,
   ErrorMessage,
 } from "../RegisterPage/StyledRegister";
 import img from "../../../img/grape_background.png";
 import logo from "../../../img/logo.png";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { LoginState } from "../../../Atom/Login";
@@ -22,17 +19,7 @@ import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { ILogin } from "../../../Interface/Login";
-
-const LoginContainer = styled(LabelContainer)`
-  margin-bottom: 30px;
-`;
-
-const HomeBtn = styled(Submit)``;
-
-const RegisterBtn = styled(Submit)`
-  background: rgba(245, 235, 255, 0.3);
-  margin-top: 10px;
-`;
+import { HomeBtn, LoginContainer, RegisterBtn } from "./StyledLogin";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
