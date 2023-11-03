@@ -16,7 +16,7 @@ import img from "../../../img/grape_background.png";
 import logo from "../../../img/logo.png";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { LoginState } from "../../../Atom/Login";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -43,7 +43,7 @@ export const LoginPage = () => {
   const goRegisterPage = () => {
     navigate("/RegisterPage");
   };
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(LoginState);
+  const setIsLoggedIn = useSetRecoilState(LoginState);
   const formData = useRef<ILogin>();
   const {
     register,
