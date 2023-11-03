@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import img from "../../../img/grape_background.png";
 import logo from "../../../img/logo.png";
+import { useRef } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const Wrapper = styled.div<{ image: string }>`
   display: flex;
@@ -126,6 +129,13 @@ interface IForm {
   email: string;
 }
 
+interface ISubmit {
+  username: string;
+  email: string;
+  password: string;
+  role: string[];
+}
+
 export const RegisterPage = () => {
   const {
     register,
@@ -133,6 +143,8 @@ export const RegisterPage = () => {
     formState: { errors },
     setError,
   } = useForm<IForm>();
+  const formData = useRef<ISubmit>();
+  const navigate = useNavigate();
 
   const onValid = (data: IForm) => {
     if (data.password !== data.checkpassword) {
@@ -141,8 +153,24 @@ export const RegisterPage = () => {
         { message: "비밀번호가 일치하지 않습니다." },
         { shouldFocus: true }
       );
+    } else {
+      formData.current = {
+        username: data.username,
+        email: data.email,
+        password: data.password,
+        role: ["user"],
+      };
+
+      axios
+        .post("http://localhost:8080/api/auth/signup", formData.current)
+        .then((response) => {
+          alert("회원가입이 완료되었습니다.");
+          navigate("/");
+        })
+        .catch(({ response }) => {
+          alert(response.data.message);
+        });
     }
-    console.log(data);
   };
 
   return (
