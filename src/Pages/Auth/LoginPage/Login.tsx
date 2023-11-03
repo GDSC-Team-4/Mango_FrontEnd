@@ -14,6 +14,7 @@ import {
 import img from "../../../img/grape_background.png";
 import logo from "../../../img/logo.png";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const LoginContainer = styled(LabelContainer)`
   margin-bottom: 30px;
@@ -27,6 +28,10 @@ const RegisterBtn = styled(Submit)`
 `;
 
 export const LoginPage = () => {
+  const navigate = useNavigate();
+  const goRegisterPage = () => {
+    navigate("/RegisterPage");
+  };
   return (
     <>
       <Wrapper image={img}>
@@ -46,7 +51,11 @@ export const LoginPage = () => {
               <PasswordInput placeholder="Password" />
             </LoginContainer>
             <HomeBtn type="submit" value="G0 TO GRAPE PLATE" />
-            <RegisterBtn type="submit" value="Create New Account" />
+            <RegisterBtn
+              onClick={goRegisterPage}
+              type="submit"
+              value="Create New Account"
+            />
           </Form>
         </Container>
       </Wrapper>
