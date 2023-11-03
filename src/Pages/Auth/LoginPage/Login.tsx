@@ -8,6 +8,7 @@ import {
   LabelContainer,
   Label,
   Input,
+  PasswordInput,
   Submit,
 } from "../RegisterPage/StyledRegister";
 import img from "../../../img/grape_background.png";
@@ -42,7 +43,7 @@ export const LoginPage = () => {
             </LoginContainer>
             <LoginContainer>
               <Label>Password</Label>
-              <Input placeholder="Password" />
+              <PasswordInput placeholder="Password" />
             </LoginContainer>
             <HomeBtn type="submit" value="G0 TO GRAPE PLATE" />
             <RegisterBtn type="submit" value="Create New Account" />
