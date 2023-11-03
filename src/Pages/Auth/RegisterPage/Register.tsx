@@ -5,6 +5,7 @@ import { useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { IForm, ISubmit } from "../../../Interface/Register";
+import constant from "./ConstantRegister";
 import {
   Container,
   ErrorMessage,
@@ -34,7 +35,7 @@ export const RegisterPage = () => {
     if (data.password !== data.checkpassword) {
       setError(
         "checkpassword",
-        { message: "비밀번호가 일치하지 않습니다." },
+        { message: constant.PASSWORD.CHECK_MESSAGE },
         { shouldFocus: true }
       );
     } else {
@@ -48,7 +49,7 @@ export const RegisterPage = () => {
       axios
         .post("http://localhost:8080/api/auth/signup", formData.current)
         .then((response) => {
-          alert("회원가입이 완료되었습니다.");
+          alert(constant.SUCCESS);
           navigate("/");
         })
         .catch(({ response }) => {
@@ -65,21 +66,21 @@ export const RegisterPage = () => {
       </LogoContainer>
       <Container>
         <Title>
-          <span>Create new Account</span>
+          <span>Create New Account</span>
         </Title>
         <Form onSubmit={handleSubmit(onValid)}>
           <LabelContainer>
             <Label>User ID</Label>
             <Input
               {...register("username", {
-                required: "User ID를 작성해주세요.",
+                required: constant.USERNAME.REQUIRED_MESSAGE,
                 minLength: {
-                  value: 3,
-                  message: "3 ~ 20 사이의 글자로 작성해주세요.",
+                  value: constant.USERNAME.MIN_LENGTH,
+                  message: constant.USERNAME.LENGTH_MESSAGE,
                 },
                 maxLength: {
-                  value: 20,
-                  message: "3 ~ 20 사이의 글자로 작성해주세요.",
+                  value: constant.USERNAME.MAX_LENGTH,
+                  message: constant.USERNAME.LENGTH_MESSAGE,
                 },
               })}
               placeholder="User ID"
@@ -90,14 +91,14 @@ export const RegisterPage = () => {
             <Label>Password</Label>
             <PasswordInput
               {...register("password", {
-                required: "Password를 작성해주세요.",
+                required: constant.PASSWORD.REQUIRED_MESSAGE,
                 minLength: {
-                  value: 6,
-                  message: "6 ~ 40 사이의 글자로 작성해주세요.",
+                  value: constant.PASSWORD.MIN_LENGTH,
+                  message: constant.PASSWORD.LENGTH_MESSAGE,
                 },
                 maxLength: {
-                  value: 40,
-                  message: "6 ~ 40 사이의 글자로 작성해주세요.",
+                  value: constant.PASSWORD.MAX_LENGTH,
+                  message: constant.PASSWORD.LENGTH_MESSAGE,
                 },
               })}
               type="password"
@@ -118,10 +119,10 @@ export const RegisterPage = () => {
             <Label>Email</Label>
             <Input
               {...register("email", {
-                required: "이메일을 입력해주세요.",
+                required: constant.EMAIL.REQUIRED_MESSAGE,
                 pattern: {
-                  value: /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                  message: "이메일 형식으로 입력해주세요.",
+                  value: constant.EMAIL.PATTERN,
+                  message: constant.EMAIL.CHECK_MESSAGE,
                 },
               })}
               placeholder="Email"
