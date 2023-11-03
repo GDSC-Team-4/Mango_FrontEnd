@@ -5,6 +5,7 @@ import logo from "../../../img/logo.png";
 import { useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { IForm, ISubmit } from "../../../Interface/Register";
 
 export const Wrapper = styled.div<{ image: string }>`
   display: flex;
@@ -121,20 +122,6 @@ export const ErrorMessage = styled.span`
   font-size: 12px;
   margin-top: 5px;
 `;
-
-interface IForm {
-  username: string;
-  password: string;
-  checkpassword: string;
-  email: string;
-}
-
-interface ISubmit {
-  username: string;
-  email: string;
-  password: string;
-  role: string[];
-}
 
 export const RegisterPage = () => {
   const {
