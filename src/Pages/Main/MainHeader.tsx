@@ -1,8 +1,11 @@
-import React from "react";
+import {useState} from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import Rectangle3 from "../../img/Rectangle3.png";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../Api/axios";
+import { searchDataState } from "../../Atom/Search";
 
 const MainContainer = styled.header`
   width: 100%;
@@ -116,10 +119,22 @@ const SearchButton = styled.button`
 
 export const MainHeader = () => {
   const navigation = useNavigate();
+  const [searchInput,setSearchInput] = useRecoilState(searchDataState);
   const onClick = () => {
     navigation("/SearchPage");
   };
-
+  const handleInputChange = (event:any) => {
+    setSearchInput(event.target.value);
+  };
+  const handleSubmit = async (event:any) => {
+    event.preventDefault(); 
+    try {
+      const response = await axiosInstance.get(`/map/search?query=${searchInput}`); 
+      console.log(response.data.id); 
+    } catch (error) {
+      console.error('오류가 발생했습니다: ', error); 
+    }
+  };
   return (
     <MainContainer>
       <Box>
@@ -127,12 +142,12 @@ export const MainHeader = () => {
           <TitleText>포도플레이트</TitleText>
           <SubText>
             솔직한 리뷰, 믿을 수 있는 평점!
-            <br /> 포드플레이트에서 나만의 맛집을 찾아보세요.
+            <br /> 포도플레이트에서 나만의 맛집을 찾아보세요.
           </SubText>
         </TextBox>
-        <SearchContainer>
+        <SearchContainer onSubmit={handleSubmit}>
           <SearchIcon />
-          <SearchBar type="text" placeholder="지역, 식당 또는 음식" />
+          <SearchBar type="text" placeholder="지역, 식당 또는 음식" onChange={handleInputChange}/>
           <SearchButton type="submit" onClick={onClick}>
             검색
           </SearchButton>

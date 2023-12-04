@@ -8,6 +8,7 @@ import SearchProps from "../../Interface/Search";
 import { SearchDto } from "../../Interface/Search";
 import { SearchData } from "../../Interface/Search";
 import { searchDataState } from "../../Atom/Search";
+import axiosInstance from "../../Api/axios";
 
 const dummyPlaces: SearchDto[] = [
     {
@@ -199,17 +200,32 @@ export const SearchPage = () => {
     const searchRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
     const [search,setSearch] = useRecoilState(searchDataState);
-    
-    const searchButtonClick = (event: React.MouseEvent) => {
+        
+    const searchButtonClick = async (event: React.MouseEvent) => {
         event.stopPropagation();
-        navigate('/SearchPage');    
+        if(searchRef.current) {
+            const searchValue = searchRef.current.value;
+            if (!searchValue.trim()) {
+                alert('검색어를 입력해주세요.');
+                return;
+            }
+            try {
+                const response = await axiosInstance.get(`map/search?query=${searchValue}`);
+                console.log(response.data.id);
+                navigate('/SearchPage');  
+            } catch (error) {
+                console.error('오류가 발생했습니다: ', error); 
+            }
+        }   
     }
-
+    
     const handleSearchClick = () => {
         if(searchRef.current) {
             searchRef.current.focus();
         }     
     }
+
+    
 
     return (
         <>
