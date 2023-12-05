@@ -1,5 +1,5 @@
 import React,{useRef, useState} from "react";
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useRecoilState, useResetRecoilState,useRecoilValue } from "recoil";
 import styled from "styled-components";
 import {AiOutlineSearch,} from "react-icons/ai";
 import {HiArrowRightCircle} from "react-icons/hi2";
@@ -7,41 +7,41 @@ import { useNavigate } from "react-router-dom";
 import SearchProps from "../../Interface/Search";
 import { SearchDto } from "../../Interface/Search";
 import { SearchData } from "../../Interface/Search";
-import { searchDataState } from "../../Atom/Search";
+import { searchDataState,searchState  } from "../../Atom/Search";
 import axiosInstance from "../../Api/axios";
 
 const dummyPlaces: SearchDto[] = [
     {
         id: 1,
-        placeName: '미성옥',
+        place_name: '미성옥',
         roadAddressName: '서울특별시 마포구 합정동 123-45',
         placeUrl: 'https://place.map.kakao.com/1234567890',
         reviewPoint:4.6
       },
       {
         id: 2,
-        placeName: '육전식당',
+        place_name: '육전식당',
         roadAddressName: '서울특별시 마포구 합정동 67-89',
         placeUrl: 'https://place.map.kakao.com/2345678901',
         reviewPoint:4.6
       },
       {
           id:3,
-          placeName:'합정떡볶이', 
+          place_name:'합정떡볶이', 
           roadAddressName:'서울특별시 마포구 합정동 987-65', 
           placeUrl:'https://place.map.kakao.com/3456789012',
           reviewPoint:4.6
       },
       {
           id:4, 
-          placeName:'합정김밥천국', 
+          place_name:'합정김밥천국', 
           roadAddressName:'서울특별시 마포구 합정동 543-21', 
           placeUrl:'https://place.map.kakao.com/4567890123',
           reviewPoint:4.6
       },
       {
           id:5, 
-          placeName:'합정돈까스집', 
+          place_name:'합정돈까스집', 
           roadAddressName:'서울특별시 마포구 합정동 321-54', 
           placeUrl:'https://place.map.kakao.com/5678901234',
           reviewPoint:4.6
@@ -200,7 +200,8 @@ export const SearchPage = () => {
     const searchRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
     const [search,setSearch] = useRecoilState(searchDataState);
-        
+    const searchResults = useRecoilValue(searchState);
+       
     const searchButtonClick = async (event: React.MouseEvent) => {
         event.stopPropagation();
         if(searchRef.current) {
@@ -211,7 +212,7 @@ export const SearchPage = () => {
             }
             try {
                 const response = await axiosInstance.get(`map/search?query=${searchValue}`);
-                console.log(response.data.id);
+                console.log(response.data.place_name);
                 navigate('/SearchPage');  
             } catch (error) {
                 console.error('오류가 발생했습니다: ', error); 
@@ -245,20 +246,20 @@ export const SearchPage = () => {
                     <RactangleBox>
                         <RandomRactangle width={24} height={50} imageURL='https://picsum.photos/400/500'>
                             <SubRactangle width={0} height={7} imageURL="">
-                                <RactTitle>{dummyPlaces[0].placeName}</RactTitle>
+                                <RactTitle>{dummyPlaces[0].place_name}</RactTitle>
                                 <ReviewPoint>{dummyPlaces[0].reviewPoint}</ReviewPoint>
                             </SubRactangle>
                         </RandomRactangle>
                         <ColumnBox>
                             <RandomRactangle width={21} height={33} imageURL='https://picsum.photos/370/240'>
                                 <SubRactangle width={0} height={7} imageURL="">
-                                    <RactTitle>{dummyPlaces[1].placeName}</RactTitle>
+                                    <RactTitle>{dummyPlaces[1].place_name}</RactTitle>
                                     <ReviewPoint>{dummyPlaces[1].reviewPoint}</ReviewPoint>
                                 </SubRactangle>
                             </RandomRactangle>
                             <RandomRactangle width={21} height={17} imageURL='https://picsum.photos/370/150'>
                                 <SubRactangle width={0} height={7} imageURL="">
-                                    <RactTitle>{dummyPlaces[2].placeName}</RactTitle>
+                                    <RactTitle>{dummyPlaces[2].place_name}</RactTitle>
                                     <ReviewPoint>{dummyPlaces[2].reviewPoint}</ReviewPoint>
                                 </SubRactangle>
                             </RandomRactangle>
@@ -266,13 +267,13 @@ export const SearchPage = () => {
                         <ColumnBox>
                             <RandomRactangle width={24} height={16} imageURL='https://picsum.photos/400/180'>
                                 <SubRactangle width={0} height={7} imageURL="">
-                                    <RactTitle>{dummyPlaces[3].placeName}</RactTitle>
+                                    <RactTitle>{dummyPlaces[3].place_name}</RactTitle>
                                     <ReviewPoint>{dummyPlaces[3].reviewPoint}</ReviewPoint>
                                 </SubRactangle>
                             </RandomRactangle>
                             <RandomRactangle width={24} height={34} imageURL='https://picsum.photos/400/300'>
                                 <SubRactangle width={0} height={7} imageURL="">
-                                    <RactTitle>{dummyPlaces[4].placeName}</RactTitle>
+                                    <RactTitle>{dummyPlaces[4].place_name}</RactTitle>
                                     <ReviewPoint>{dummyPlaces[4].reviewPoint}</ReviewPoint>
                                 </SubRactangle>
                             </RandomRactangle>
@@ -282,7 +283,7 @@ export const SearchPage = () => {
                         <ColumnBox>
                             <RandomRactangle width={17} height={33} imageURL='https://picsum.photos/330/360'>
                                 <SubRactangle width={0} height={7} imageURL="">
-                                    <RactTitle>{dummyPlaces[4].placeName}</RactTitle>
+                                    <RactTitle>{dummyPlaces[4].place_name}</RactTitle>
                                     <ReviewPoint>{dummyPlaces[4].reviewPoint}</ReviewPoint>
                                 </SubRactangle>
                             </RandomRactangle>
