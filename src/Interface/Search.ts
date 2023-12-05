@@ -8,7 +8,7 @@ export default SearchProps
 
 export interface SearchDto {
     id: number;
-    placeName: string; 
+    place_name: string; 
     roadAddressName: string;
     placeUrl: string;
     reviewPoint: number;
