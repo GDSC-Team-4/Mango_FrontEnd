@@ -5,7 +5,8 @@ import Rectangle3 from "../../img/Rectangle3.png";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../Api/axios";
-import { searchDataState } from "../../Atom/Search";
+import { searchDataState, searchState } from "../../Atom/Search";
+import axios from "axios";
 
 const MainContainer = styled.header`
   width: 100%;
@@ -119,18 +120,22 @@ const SearchButton = styled.button`
 
 export const MainHeader = () => {
   const navigation = useNavigate();
-  const [searchInput,setSearchInput] = useRecoilState(searchDataState);
-  const onClick = () => {
-    navigation("/SearchPage");
+  const [searchResults, setSearchResults] = useRecoilState(searchState);
+  const [searchData, setSearchData] = useRecoilState(searchDataState);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchData({
+      ...searchData,
+      SearchPrams: event.target.value,
+    });
   };
-  const handleInputChange = (event:any) => {
-    setSearchInput(event.target.value);
-  };
-  const handleSubmit = async (event:any) => {
+
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault(); 
     try {
-      const response = await axiosInstance.get(`/map/search?query=${searchInput}`); 
-      console.log(response.data.id); 
+      const response = await axiosInstance.get(`/map/search?query=${searchData.SearchPrams}`); 
+      setSearchResults(response.data);
+      navigation("/SearchPage");
     } catch (error) {
       console.error('오류가 발생했습니다: ', error); 
     }
@@ -145,10 +150,10 @@ export const MainHeader = () => {
             <br /> 포도플레이트에서 나만의 맛집을 찾아보세요.
           </SubText>
         </TextBox>
-        <SearchContainer onSubmit={handleSubmit}>
+        <SearchContainer>
           <SearchIcon />
           <SearchBar type="text" placeholder="지역, 식당 또는 음식" onChange={handleInputChange}/>
-          <SearchButton type="submit" onClick={onClick}>
+          <SearchButton type="submit" onClick={handleSubmit}>
             검색
           </SearchButton>
         </SearchContainer>
