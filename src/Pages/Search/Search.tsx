@@ -1,232 +1,52 @@
 import React,{useRef, useState} from "react";
 import { useRecoilState, useResetRecoilState,useRecoilValue } from "recoil";
-import styled from "styled-components";
-import {AiOutlineSearch,} from "react-icons/ai";
-import {HiArrowRightCircle} from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
-import SearchProps from "../../Interface/Search";
-import { SearchDto } from "../../Interface/Search";
+import { dummyPlaces } from "./SearchDummy";
 import { SearchData } from "../../Interface/Search";
 import { searchDataState,searchState  } from "../../Atom/Search";
 import axiosInstance from "../../Api/axios";
-
-const dummyPlaces: SearchDto[] = [
-    {
-        id: 1,
-        place_name: '미성옥',
-        roadAddressName: '서울특별시 마포구 합정동 123-45',
-        placeUrl: 'https://place.map.kakao.com/1234567890',
-        reviewPoint:4.6
-      },
-      {
-        id: 2,
-        place_name: '육전식당',
-        roadAddressName: '서울특별시 마포구 합정동 67-89',
-        placeUrl: 'https://place.map.kakao.com/2345678901',
-        reviewPoint:4.6
-      },
-      {
-          id:3,
-          place_name:'합정떡볶이', 
-          roadAddressName:'서울특별시 마포구 합정동 987-65', 
-          placeUrl:'https://place.map.kakao.com/3456789012',
-          reviewPoint:4.6
-      },
-      {
-          id:4, 
-          place_name:'합정김밥천국', 
-          roadAddressName:'서울특별시 마포구 합정동 543-21', 
-          placeUrl:'https://place.map.kakao.com/4567890123',
-          reviewPoint:4.6
-      },
-      {
-          id:5, 
-          place_name:'합정돈까스집', 
-          roadAddressName:'서울특별시 마포구 합정동 321-54', 
-          placeUrl:'https://place.map.kakao.com/5678901234',
-          reviewPoint:4.6
-      },
-];
-  
-
-const SearchContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    @media (max-width: 768px) {
-        height: 85vh; 
-        padding-top:15rem; 
-    }
-`;
-const Box = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    @media (min-height: 768px) {
-        margin-top:8vw;
-    }
-`;
-
-const TextBox = styled.p`
-    width: 80vw;
-    height: 4vh;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 2.6rem;
-    line-height: 4vh;
-    text-align: center;
-    color: #000000;
-    letter-spacing: -0.15em;
-    margin-bottom:4vw;
-`;
-
-const SearchBox = styled.div`
-    display:flex;
-    align-items: center;
-    background: #FFFFFF;
-    width: 60vw;
-    height: 10vh;
-    box-shadow: 0 0.4vw 4.2vh rgba(0, 0, 0, 0.25);
-    border-radius: 8vw;
-    cursor: pointer;
-`;
-
-const SearchIcon = styled(AiOutlineSearch)`
-    color:#3B3486;
-    width:2.7vw;
-    height:9.9vh;
-    align-items: center;
-    margin-left:1.5vw;
-`;
-
-const SearchBar = styled.input`
-    border:none;
-    background: #FFFFFF;
-    height:9vh;
-    width: 50vw;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.3rem;
-    margin-left:3vw;
-    margin-right:-1.5vw;
-    cursor: pointer;
-    &:focus {
-        outline:none;
-    }
-`;
-
-const SearchButton = styled(HiArrowRightCircle)`
-    width:5vw;
-    height:8.5vh;
-    color:#3B3486;
-`;
-
-const SubTitle = styled.p`
-    width: 68vw;
-    height: 4.2vh;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 1.663em;
-    line-height: 1.875em;
-    margin-top: 8vw;
-`;
-
-const RactangleBox = styled.div`
-    display:flex;
-    justify-content: space-between;
-    width: 68vw;
-`;
-
-const ColumnBox = styled.div`
-    display:block;
-`;
-
-const RandomRactangle = styled.div<SearchProps>`
-    display: grid;
-    width: ${props => props.width}vw;
-    height: ${props => props.height}vh;
-    background-image: url(${props => props.imageURL});
-    margin:0.5vw;
-    border-radius: 4.2vh;
-    filter: drop-shadow(0vw 0.3vw 0.65vw rgba(0, 0, 0, 0.1));
-`;
-
-const SubRactangle = styled.div<SearchProps>`
-    display:flex;
-    
-    width: 90%;
-    height: ${props => props.height}vh;
-    align-self: end;
-    justify-self: center;
-    background: rgba(252, 253, 242, 0.7);
-    backdrop-filter: blur(1.5vh);
-    border-radius: 1.4vh;
-    margin-bottom:5%;
-`;
-
-const RactTitle = styled.p`
-    width: 60%;
-    height: 1.7vh;
-    font-family: 'Epilogue';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 1rem;
-    line-height: 0.625rem;
-    color: #000000;
-    margin-left:1vw;
-`;
-
-const ReviewPoint = styled.p`
-    width: 30%;
-    height: 1.8vh;
-    text-align:right;
-    font-family: 'Epilogue';
-    font-style: normal;
-    font-weight: 400;
-    color: #7743DB;
-    font-size:1.1rem;
-    line-height:0.325rem;
-`;
+import { SearchContainer, Box, TextBox,
+         SearchBox, SearchIcon, SearchBar,
+         SearchButton, SubTitle, RactangleBox,
+         ColumnBox, RandomRactangle, SubRactangle,
+         RactTitle, ReviewPoint} from "./SearchStyle";
 
 export const SearchPage = () => {
     const searchRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
-    const [search,setSearch] = useRecoilState(searchDataState);
-    const searchResults = useRecoilValue(searchState);
+    const [searchData, setSearchData] = useRecoilState(searchDataState);
+    const [searchResults, setSearchResults] = useRecoilState(searchState);
+    //const searchResults = useRecoilValue(searchState);
        
     const searchButtonClick = async (event: React.MouseEvent) => {
         event.stopPropagation();
         if(searchRef.current) {
-            const searchValue = searchRef.current.value;
-            if (!searchValue.trim()) {
-                alert('검색어를 입력해주세요.');
-                return;
-            }
-            try {
-                const response = await axiosInstance.get(`map/search?query=${searchValue}`);
-                console.log(response.data.place_name);
-                navigate('/SearchPage');  
-            } catch (error) {
-                console.error('오류가 발생했습니다: ', error); 
-            }
+          const searchValue = searchRef.current.value;
+          if (!searchValue.trim()) {
+            alert('검색어를 입력해주세요.');
+            return;
+          }
+          try {
+            setSearchData({
+              ...searchData,
+              SearchPrams: searchValue,
+            });
+            const response = await axiosInstance.get(`map/search?query=${searchValue}`);
+            setSearchResults(response.data);
+            console.log(response.data);
+            searchRef.current.value='';
+            navigate('/SearchPage');  
+          } catch (error) {
+            console.error('오류가 발생했습니다: ', error); 
+          }
         }   
-    }
-    
-    const handleSearchClick = () => {
+      }
+        
+      const handleSearchClick = () => {
         if(searchRef.current) {
-            searchRef.current.focus();
+          searchRef.current.focus();
         }     
-    }
-
-    
+      }
 
     return (
         <>
@@ -246,7 +66,7 @@ export const SearchPage = () => {
                     <RactangleBox>
                         <RandomRactangle width={24} height={50} imageURL='https://picsum.photos/400/500'>
                             <SubRactangle width={0} height={7} imageURL="">
-                                <RactTitle>{dummyPlaces[0].place_name}</RactTitle>
+                                <RactTitle>{searchResults[0]?.place_name}</RactTitle>
                                 <ReviewPoint>{dummyPlaces[0].reviewPoint}</ReviewPoint>
                             </SubRactangle>
                         </RandomRactangle>
