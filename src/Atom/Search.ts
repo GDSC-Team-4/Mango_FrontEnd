@@ -1,5 +1,5 @@
 import { atom, selector } from "recoil";
-import { SearchDto, SearchData } from "../Interface/Search";
+import { SearchDto, SearchData, SearchResult } from "../Interface/Search";
 
 export const searchState = atom<SearchDto[]>({
     key: "searchState",
@@ -11,4 +11,9 @@ export const searchDataState = atom<SearchData>({
     default: {
         SearchPrams: '',
     },    
-})
+    })
+
+    export const searchStateTest = atom<SearchResult[]>({
+    key: 'searchStateTest',
+    default: [],  // 초기 상태는 빈 배열
+  });
