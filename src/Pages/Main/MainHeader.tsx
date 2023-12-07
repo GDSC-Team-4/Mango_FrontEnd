@@ -25,8 +25,8 @@ export const MainHeader = () => {
     event.preventDefault(); 
     try {
       const response = await axiosInstance.get(`/map/search?query=${searchData.SearchPrams}`); 
-      setSearchResults(response.data);
-      console.log(response.data.data.documents[0].place_url)
+      setSearchResults(response.data.data.documents);
+      console.log(response.data.data.documents)
       navigation("/");
     } catch (error) {
       console.error('오류가 발생했습니다: ', error); 
