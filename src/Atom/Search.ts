@@ -13,7 +13,7 @@ export const searchDataState = atom<SearchData>({
     },    
     })
 
-    export const searchStateTest = atom<SearchResult[]>({
+export const searchStateTest = atom<SearchResult[]>({
     key: 'searchStateTest',
     default: [],  // 초기 상태는 빈 배열
   });
