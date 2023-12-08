@@ -37,3 +37,11 @@ export const dummyPlaces: SearchDto[] = [
           reviewPoint:4.6
       },
 ];
+
+export const dimensions = [
+    { width: 24, height: 50, imageURL: 'https://picsum.photos/400/500' },
+    { width: 21, height: 33, imageURL: 'https://picsum.photos/370/240' },
+    { width: 21, height: 17, imageURL: 'https://picsum.photos/370/150' },
+    { width: 24, height: 16, imageURL: 'https://picsum.photos/400/180' },
+    { width: 24, height: 34, imageURL: 'https://picsum.photos/400/300' },
+];
