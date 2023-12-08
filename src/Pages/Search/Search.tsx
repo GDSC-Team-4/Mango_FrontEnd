@@ -2,22 +2,22 @@ import React,{useRef, useState} from "react";
 import { useRecoilState, useResetRecoilState,useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { dummyPlaces } from "./SearchDummy";
-import { SearchData } from "../../Interface/Search";
-import { searchDataState,searchState  } from "../../Atom/Search";
+import { searchDataState,searchState,searchStateTest,searchValueState } from "../../Atom/Search";
 import axiosInstance from "../../Api/axios";
 import { SearchContainer, Box, TextBox,
          SearchBox, SearchIcon, SearchBar,
          SearchButton, SubTitle, RactangleBox,
          ColumnBox, RandomRactangle, SubRactangle,
          RactTitle, ReviewPoint} from "./SearchStyle";
+import { dimensions } from "./SearchDummy";
 
 export const SearchPage = () => {
     const searchRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
     const [searchData, setSearchData] = useRecoilState(searchDataState);
-    const [searchResults, setSearchResults] = useRecoilState(searchState);
-    //const searchResults = useRecoilValue(searchState);
-       
+    const [searchResults, setSearchResults] = useRecoilState(searchStateTest);
+    const [searchValue, setSearchValue] = useRecoilState(searchValueState);
+
     const searchButtonClick = async (event: React.MouseEvent) => {
         event.stopPropagation();
         if(searchRef.current) {
@@ -26,14 +26,15 @@ export const SearchPage = () => {
             alert('검색어를 입력해주세요.');
             return;
           }
+          setSearchValue(searchValue);
           try {
             setSearchData({
               ...searchData,
               SearchPrams: searchValue,
             });
             const response = await axiosInstance.get(`map/search?query=${searchValue}`);
-            setSearchResults(response.data);
-            console.log(response.data);
+            setSearchResults(response.data.data.documents);
+            console.log(response.data.data.documents);
             searchRef.current.value='';
             navigate('/SearchPage');  
           } catch (error) {
@@ -61,43 +62,35 @@ export const SearchPage = () => {
                         <SearchButton onClick={searchButtonClick}>검색</SearchButton>
                     </SearchBox>
                     <SubTitle>
-                        "합정역 맛집"
+                        "{searchValue}"
                     </SubTitle>
                     <RactangleBox>
-                        <RandomRactangle width={24} height={50} imageURL='https://picsum.photos/400/500'>
+                    <RandomRactangle width={dimensions[0].width} height={dimensions[0].height} imageURL={dimensions[0].imageURL}>
+                        <SubRactangle width={0} height={7} imageURL="">
+                        <RactTitle>{searchResults[0]?.place_name}</RactTitle>
+                        <ReviewPoint>{dummyPlaces[0].reviewPoint}</ReviewPoint>
+                        </SubRactangle>
+                    </RandomRactangle>
+                    <ColumnBox>
+                        {searchResults.slice(1, 3).map((result, index) => (
+                        <RandomRactangle key={index} width={dimensions[index + 1].width} height={dimensions[index + 1].height} imageURL={dimensions[index + 1].imageURL}>
                             <SubRactangle width={0} height={7} imageURL="">
-                                <RactTitle>{searchResults[0]?.place_name}</RactTitle>
-                                <ReviewPoint>{dummyPlaces[0].reviewPoint}</ReviewPoint>
+                            <RactTitle>{result.place_name}</RactTitle>
+                            <ReviewPoint>{dummyPlaces[1].reviewPoint}</ReviewPoint>
                             </SubRactangle>
                         </RandomRactangle>
-                        <ColumnBox>
-                            <RandomRactangle width={21} height={33} imageURL='https://picsum.photos/370/240'>
-                                <SubRactangle width={0} height={7} imageURL="">
-                                    <RactTitle>{dummyPlaces[1].place_name}</RactTitle>
-                                    <ReviewPoint>{dummyPlaces[1].reviewPoint}</ReviewPoint>
-                                </SubRactangle>
-                            </RandomRactangle>
-                            <RandomRactangle width={21} height={17} imageURL='https://picsum.photos/370/150'>
-                                <SubRactangle width={0} height={7} imageURL="">
-                                    <RactTitle>{dummyPlaces[2].place_name}</RactTitle>
-                                    <ReviewPoint>{dummyPlaces[2].reviewPoint}</ReviewPoint>
-                                </SubRactangle>
-                            </RandomRactangle>
-                        </ColumnBox>
-                        <ColumnBox>
-                            <RandomRactangle width={24} height={16} imageURL='https://picsum.photos/400/180'>
-                                <SubRactangle width={0} height={7} imageURL="">
-                                    <RactTitle>{dummyPlaces[3].place_name}</RactTitle>
-                                    <ReviewPoint>{dummyPlaces[3].reviewPoint}</ReviewPoint>
-                                </SubRactangle>
-                            </RandomRactangle>
-                            <RandomRactangle width={24} height={34} imageURL='https://picsum.photos/400/300'>
-                                <SubRactangle width={0} height={7} imageURL="">
-                                    <RactTitle>{dummyPlaces[4].place_name}</RactTitle>
-                                    <ReviewPoint>{dummyPlaces[4].reviewPoint}</ReviewPoint>
-                                </SubRactangle>
-                            </RandomRactangle>
-                        </ColumnBox>
+                        ))}
+                    </ColumnBox>
+                    <ColumnBox>
+                        {searchResults.slice(3, 5).map((result, index) => (
+                        <RandomRactangle key={index} width={dimensions[index + 3].width} height={dimensions[index + 3].height} imageURL={dimensions[index + 3].imageURL}>
+                            <SubRactangle width={0} height={7} imageURL="">
+                            <RactTitle>{result.place_name}</RactTitle>
+                            <ReviewPoint>{dummyPlaces[2].reviewPoint}</ReviewPoint>
+                            </SubRactangle>
+                        </RandomRactangle>
+                        ))}
+                    </ColumnBox>
                     </RactangleBox>
                     <RactangleBox>
                         <ColumnBox>
