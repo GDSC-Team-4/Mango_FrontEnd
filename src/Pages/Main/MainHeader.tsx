@@ -27,7 +27,7 @@ export const MainHeader = () => {
       const response = await axiosInstance.get(`/map/search?query=${searchData.SearchPrams}`); 
       setSearchResults(response.data.data.documents);
       console.log(response.data.data.documents)
-      navigation("/");
+      navigation("/SearchPage");
     } catch (error) {
       console.error('오류가 발생했습니다: ', error); 
     }
