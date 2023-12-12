@@ -74,7 +74,8 @@ export const SearchPage = () => {
                         </RandomRactangle>
                         <ColumnBox>
                             {searchResults.slice(1, 3).map((result, index) => (
-                            <RandomRactangle key={index} width={dimensions[index + 1].width} height={dimensions[index + 1].height} imageURL={dimensions[index + 1].imageURL}>
+                            <RandomRactangle key={index} width={dimensions[index + 1].width} height={dimensions[index + 1].height}
+                                 imageURL={dimensions[index + 1].imageURL} onClick={()=>navigate("/SearchDetailPage")}>
                                 <SubRactangle width={0} height={7} imageURL="">
                                 <RactTitle>{result.place_name}</RactTitle>
                                 <ReviewPoint>{dummyPlaces[1].reviewPoint}</ReviewPoint>
