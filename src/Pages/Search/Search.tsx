@@ -1,7 +1,8 @@
 import React,{useRef} from "react";
 import { useRecoilState} from "recoil";
 import { useNavigate } from "react-router-dom";
-import { dummyPlaces } from "./SearchDummy";
+import { dummyPlaces,dimensions } from "./SearchDummy";
+import { SearchResult } from "../../Interface/Search";
 import { searchDataState,searchStateTest,searchValueState } from "../../Atom/Search";
 import axiosInstance from "../../Api/axios";
 import { SearchContainer, Box, TextBox,
@@ -9,7 +10,6 @@ import { SearchContainer, Box, TextBox,
          SearchButton, SubTitle, RactangleBox,
          ColumnBox, RandomRactangle, SubRactangle,
          RactTitle, ReviewPoint} from "./SearchStyle";
-import { dimensions } from "./SearchDummy";
 
 export const SearchPage = () => {
     const searchRef = useRef<HTMLInputElement>(null);
@@ -32,17 +32,21 @@ export const SearchPage = () => {
               ...searchData,
               SearchPrams: searchValue,
             });
-            const response = await axiosInstance.get(`map/search?query=${searchValue}`);
+            let searchQuery = searchValue;
+            if (!searchQuery.includes('맛집')) {
+              searchQuery += ' 맛집';
+            }
+            const response = await axiosInstance.get(`map/search?query=${searchQuery}`);
+            //const restaurantResults = response.data.data.documents.filter((doc: SearchResult) => doc.category_group_name === '음식점');  
             setSearchResults(response.data.data.documents);
             console.log(response.data.data.documents);
             searchRef.current.value='';
-            //navigate('/SearchPage');  
           } catch (error) {
             console.error('오류가 발생했습니다: ', error); 
           }
         }   
       }
-        
+      
       const handleSearchClick = () => {
         if(searchRef.current) {
           searchRef.current.focus();
