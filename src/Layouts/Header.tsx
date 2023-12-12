@@ -111,6 +111,11 @@ export const Header = () => {
       border = "2px solid rgba(59, 52, 134, 0.7)";
       boxShadow = "0px 2px 5px rgba(0, 0, 0, 0.25)";
       break;
+    case "/SearchDetailPage":
+      color = "#FCFDF2";
+      border = "2px solid rgba(252, 253, 242, 0.7)";
+      boxShadow = "0px 2px 5px rgba(0, 0, 0, 0.25)";
+      break;
     default:
       color = "#FCFDF2";
       backgroundColor = "rgba(37,37,45,0.4)";
