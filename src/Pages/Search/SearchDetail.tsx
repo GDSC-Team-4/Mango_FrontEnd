@@ -5,7 +5,7 @@ import { dummyPlaces } from "./SearchDummy";
 import { selectedRestaurantState ,searchStateTest,searchValueState } from "../../Atom/Search";
 import axiosInstance from "../../Api/axios";
 import { DetailContainer,Box,DetailText,DetailTitle,DetailView,
-        SubText, DetailImage,ClickLinkText,ReviewView,DetailImages} from "./DetailStyle";
+        SubText, DetailImage,ClickLinkText,ReviewView,DetailImages,ImageBox} from "./DetailStyle";
 
 export const SearchDetailPage = () => {
     const selectedRestaurant = useRecoilValue(selectedRestaurantState);
@@ -46,8 +46,9 @@ export const SearchDetailPage = () => {
                     {parking}
                   </DetailText>
                   <ReviewView/>
-                  <DetailImages/>
-                  
+                  <ImageBox>
+                    <DetailImages/><DetailImages/><DetailImages/><DetailImages/>
+                  </ImageBox>
               </Box>
               <DetailImage/>
             </DetailContainer>
