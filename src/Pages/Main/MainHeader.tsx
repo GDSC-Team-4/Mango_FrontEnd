@@ -7,12 +7,13 @@ import { MainContainer,ImageBox, Box,
          SearchBar, SearchButton } from "./MainHeaderStyle";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../Api/axios";
-import { searchDataState, searchState, searchStateTest } from "../../Atom/Search";
+import { searchDataState, searchState ,searchValueState , searchStateTest } from "../../Atom/Search";
 
 export const MainHeader = () => {
   const navigation = useNavigate();
   const [searchResults, setSearchResults] = useRecoilState(searchStateTest);
   const [searchData, setSearchData] = useRecoilState(searchDataState);
+  const [searchValue, setSearchValue] = useRecoilState(searchValueState);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchData({
@@ -24,6 +25,7 @@ export const MainHeader = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault(); 
     try {
+      setSearchValue(searchData.SearchPrams);
       const response = await axiosInstance.get(`/map/search?query=${searchData.SearchPrams}`); 
       setSearchResults(response.data.data.documents);
       console.log(response.data.data.documents)
