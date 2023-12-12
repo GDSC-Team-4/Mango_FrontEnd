@@ -10,7 +10,7 @@ import { MainPage } from './Pages/Main/Main';
 import { LoginPage } from './Pages/Auth/LoginPage/Login';
 import { RegisterPage } from './Pages/Auth/RegisterPage/Register';
 import { SearchPage } from './Pages/Search/Search';
-
+import { SearchDetailPage } from './Pages/Search/SearchDetail';
 const App  = () => {
   return (
     <>
@@ -20,6 +20,7 @@ const App  = () => {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/SearchPage" element={<SearchPage/>} />
+            <Route path="/SearchDetailPage" element={<SearchDetailPage/>} />
             <Route path="/RegisterPage" element={<RegisterPage/>}/>
             <Route path="/LoginPage" element={<LoginPage/>}/>
           </Routes>
