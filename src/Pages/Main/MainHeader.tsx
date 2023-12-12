@@ -7,6 +7,7 @@ import { MainContainer,ImageBox, Box,
          SearchBar, SearchButton } from "./MainHeaderStyle";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../Api/axios";
+import { SearchResult } from "../../Interface/Search";
 import { searchDataState, searchState ,searchValueState , searchStateTest } from "../../Atom/Search";
 
 export const MainHeader = () => {
@@ -25,8 +26,13 @@ export const MainHeader = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault(); 
     try {
+      let searchQuery = searchData.SearchPrams;
+      if (!searchQuery.includes('맛집')) {
+        searchQuery += ' 맛집';
+      }
       setSearchValue(searchData.SearchPrams);
-      const response = await axiosInstance.get(`/map/search?query=${searchData.SearchPrams}`); 
+      const response = await axiosInstance.get(`/map/search?query=${searchQuery}`); 
+      //const restaurantResults = response.data.data.documents.filter((doc: SearchResult) => doc.category_group_name === '음식점');
       setSearchResults(response.data.data.documents);
       console.log(response.data.data.documents)
       navigation("/SearchPage");
