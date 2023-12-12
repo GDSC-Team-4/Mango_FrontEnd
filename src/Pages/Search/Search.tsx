@@ -1,9 +1,8 @@
 import React,{useRef} from "react";
-import { useRecoilState} from "recoil";
+import { useRecoilState,useSetRecoilState} from "recoil";
 import { useNavigate } from "react-router-dom";
 import { dummyPlaces,dimensions } from "./SearchDummy";
-import { SearchResult } from "../../Interface/Search";
-import { searchDataState,searchStateTest,searchValueState } from "../../Atom/Search";
+import { searchDataState,searchStateTest,searchValueState,selectedRestaurantState } from "../../Atom/Search";
 import axiosInstance from "../../Api/axios";
 import { SearchContainer, Box, TextBox,
          SearchBox, SearchIcon, SearchBar,
@@ -17,6 +16,8 @@ export const SearchPage = () => {
     const [searchData, setSearchData] = useRecoilState(searchDataState);
     const [searchResults, setSearchResults] = useRecoilState(searchStateTest);
     const [searchValue, setSearchValue] = useRecoilState(searchValueState);
+
+    const setSelectedRestaurant = useSetRecoilState(selectedRestaurantState);
 
     const searchButtonClick = async (event: React.MouseEvent) => {
         event.stopPropagation();
@@ -79,7 +80,10 @@ export const SearchPage = () => {
                         <ColumnBox>
                             {searchResults.slice(1, 3).map((result, index) => (
                             <RandomRactangle key={index} width={dimensions[index + 1].width} height={dimensions[index + 1].height}
-                                 imageURL={dimensions[index + 1].imageURL} onClick={()=>navigate("/SearchDetailPage")}>
+                                 imageURL={dimensions[index + 1].imageURL} 
+                                 onClick={()=>{
+                                    setSelectedRestaurant(result);
+                                    navigate("/SearchDetailPage")}}>
                                 <SubRactangle width={0} height={7} imageURL="">
                                 <RactTitle>{result.place_name}</RactTitle>
                                 <ReviewPoint>{dummyPlaces[1].reviewPoint}</ReviewPoint>
