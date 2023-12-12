@@ -22,8 +22,13 @@ export interface SearchResult {
     id: number;
     place_name: string;
     imageURL: string;
-    address_name: string;
-    place_url: string;
+    address_name: string; 
+    category_group_code: string; 
+    category_group_name: string; 
+    category_name: string;
+    phone: string; 
+    place_url: string; 
+    road_address_name: string;
     // 기타 필요한 속성...
   }
   
