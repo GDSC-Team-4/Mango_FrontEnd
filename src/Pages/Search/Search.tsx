@@ -36,7 +36,7 @@ export const SearchPage = () => {
             setSearchResults(response.data.data.documents);
             console.log(response.data.data.documents);
             searchRef.current.value='';
-            navigate('/SearchPage');  
+            //navigate('/SearchPage');  
           } catch (error) {
             console.error('오류가 발생했습니다: ', error); 
           }
@@ -65,7 +65,8 @@ export const SearchPage = () => {
                         "{searchValue}"
                     </SubTitle>
                     <RactangleBox>
-                        <RandomRactangle width={dimensions[0].width} height={dimensions[0].height} imageURL={dimensions[0].imageURL} onClick={() => window.open(searchResults[0]?.place_url, "_blank")}>
+                        <RandomRactangle width={dimensions[0].width} height={dimensions[0].height} 
+                                imageURL={dimensions[0].imageURL} onClick={() => window.open(searchResults[0]?.place_url, "_blank")}>
                             <SubRactangle width={0} height={7} imageURL="">
                             <RactTitle>{searchResults[0]?.place_name}</RactTitle>
                             <ReviewPoint>{dummyPlaces[0].reviewPoint}</ReviewPoint>
