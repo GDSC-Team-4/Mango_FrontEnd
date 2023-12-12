@@ -105,17 +105,20 @@ export const DetailImage = styled.div`
     height: 50.7vh;
     background-image: url(${require("../../img/Rectangle95.png")});
     background-size: cover;
-    margin-left:1vw;
+    margin-left:-42vw;
     margin-top:-20vw;
 `;
 
+export const ImageBox = styled.div`
+    display:flex
+`;
 export const DetailImages = styled.div`
     display: flex;
     width: 19.5vw;  
     height: 56vh;
     background-image: url(${require("../../img/Rectangle.png")});
     background-size: cover;
-    margin-left:1vw;
+    margin-left:1.5vw;
     margin-top:8vw;
 `;
 
