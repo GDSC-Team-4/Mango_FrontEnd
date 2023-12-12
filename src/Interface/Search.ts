@@ -23,7 +23,7 @@ export interface SearchResult {
     place_name: string;
     imageURL: string;
     address_name: string;
-
+    place_url: string;
     // 기타 필요한 속성...
   }
   

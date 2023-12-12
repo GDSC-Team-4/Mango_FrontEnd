@@ -44,4 +44,9 @@ export const dimensions = [
     { width: 21, height: 17, imageURL: 'https://picsum.photos/370/150' },
     { width: 24, height: 16, imageURL: 'https://picsum.photos/400/180' },
     { width: 24, height: 34, imageURL: 'https://picsum.photos/400/300' },
+    { width: 17, height: 33, imageURL: 'https://picsum.photos/330/360' },
+    { width: 17, height: 17, imageURL: 'https://picsum.photos/330/180' },
+    { width: 27, height: 16, imageURL: 'https://picsum.photos/500/230' },
+    { width: 27, height: 34, imageURL: 'https://picsum.photos/500/390' },
+    { width: 24, height: 50, imageURL: 'https://picsum.photos/410/430' },
 ];
