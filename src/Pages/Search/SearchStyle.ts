@@ -15,12 +15,13 @@ export const SearchContainer = styled.div`
         padding-top:15rem; 
     }
 `;
+
 export const Box = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    
     @media (min-height: 768px) {
         margin-top:8vw;
     }
