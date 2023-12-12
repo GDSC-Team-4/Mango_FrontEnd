@@ -1,4 +1,4 @@
-import React,{useRef} from "react";
+import React,{useRef, useEffect} from "react";
 import { useRecoilState,useRecoilValue} from "recoil";
 import { useNavigate } from "react-router-dom";
 import { dummyPlaces } from "./SearchDummy";
@@ -11,7 +11,9 @@ export const SearchDetailPage = () => {
     const selectedRestaurant = useRecoilValue(selectedRestaurantState);
     const parking = Math.random() < 0.5 ? '주차공간 없음' : '주차공간 있음';
     console.log(selectedRestaurant);
-    
+    useEffect(() => {
+      window.scrollTo(0, 0); 
+    }, []);
     return (
         <>
             <DetailContainer>

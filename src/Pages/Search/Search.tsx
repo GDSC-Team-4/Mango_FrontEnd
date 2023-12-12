@@ -1,4 +1,4 @@
-import React,{useRef} from "react";
+import React,{useRef,useEffect} from "react";
 import { useRecoilState,useSetRecoilState} from "recoil";
 import { useNavigate } from "react-router-dom";
 import { dummyPlaces,dimensions } from "./SearchDummy";
@@ -18,6 +18,10 @@ export const SearchPage = () => {
     const [searchValue, setSearchValue] = useRecoilState(searchValueState);
 
     const setSelectedRestaurant = useSetRecoilState(selectedRestaurantState);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);  // 페이지 상단으로 스크롤 이동
+      }, []);
 
     const searchButtonClick = async (event: React.MouseEvent) => {
         event.stopPropagation();
@@ -71,7 +75,10 @@ export const SearchPage = () => {
                     </SubTitle>
                     <RactangleBox>
                         <RandomRactangle width={dimensions[0].width} height={dimensions[0].height} 
-                                imageURL={dimensions[0].imageURL} onClick={() => window.open(searchResults[0]?.place_url, "_blank")}>
+                                imageURL={dimensions[0].imageURL} 
+                                onClick={()=>{
+                                    setSelectedRestaurant(searchResults[0]);
+                                    navigate("/SearchDetailPage")}}>
                             <SubRactangle width={0} height={7} imageURL="">
                             <RactTitle>{searchResults[0]?.place_name}</RactTitle>
                             <ReviewPoint>{dummyPlaces[0].reviewPoint}</ReviewPoint>
@@ -93,7 +100,11 @@ export const SearchPage = () => {
                         </ColumnBox>
                         <ColumnBox>
                             {searchResults.slice(3, 5).map((result, index) => (
-                            <RandomRactangle key={index} width={dimensions[index + 3].width} height={dimensions[index + 3].height} imageURL={dimensions[index + 3].imageURL}>
+                            <RandomRactangle key={index} width={dimensions[index + 3].width} height={dimensions[index + 3].height} 
+                                imageURL={dimensions[index + 3].imageURL} 
+                                onClick={()=>{
+                                    setSelectedRestaurant(result);
+                                    navigate("/SearchDetailPage")}}>
                                 <SubRactangle width={0} height={7} imageURL="">
                                 <RactTitle>{result.place_name}</RactTitle>
                                 <ReviewPoint>{dummyPlaces[2].reviewPoint}</ReviewPoint>
@@ -105,7 +116,11 @@ export const SearchPage = () => {
                     <RactangleBox>
                         <ColumnBox>
                             {searchResults.slice(5, 7).map((result, index) => (
-                            <RandomRactangle key={index} width={dimensions[index + 5].width} height={dimensions[index + 5].height} imageURL={dimensions[index + 5].imageURL}>
+                            <RandomRactangle key={index} width={dimensions[index + 5].width} height={dimensions[index + 5].height} 
+                                imageURL={dimensions[index + 5].imageURL}
+                                onClick={()=>{
+                                    setSelectedRestaurant(result);
+                                    navigate("/SearchDetailPage")}}>
                                 <SubRactangle width={0} height={7} imageURL="">
                                 <RactTitle>{result.place_name}</RactTitle>
                                 <ReviewPoint>{dummyPlaces[2].reviewPoint}</ReviewPoint>
@@ -115,7 +130,11 @@ export const SearchPage = () => {
                         </ColumnBox>
                         <ColumnBox>
                             {searchResults.slice(7, 9).map((result, index) => (
-                            <RandomRactangle key={index} width={dimensions[index + 7].width} height={dimensions[index + 7].height} imageURL={dimensions[index + 7].imageURL}>
+                            <RandomRactangle key={index} width={dimensions[index + 7].width} height={dimensions[index + 7].height} 
+                                imageURL={dimensions[index + 7].imageURL}
+                                onClick={()=>{
+                                    setSelectedRestaurant(result);
+                                    navigate("/SearchDetailPage")}}>
                                 <SubRactangle width={0} height={7} imageURL="">
                                 <RactTitle>{result.place_name}</RactTitle>
                                 <ReviewPoint>{dummyPlaces[2].reviewPoint}</ReviewPoint>
@@ -123,7 +142,11 @@ export const SearchPage = () => {
                             </RandomRactangle>
                             ))}
                         </ColumnBox>
-                        <RandomRactangle width={dimensions[9].width} height={dimensions[9].height} imageURL={dimensions[9].imageURL}>
+                        <RandomRactangle width={dimensions[9].width} height={dimensions[9].height} 
+                            imageURL={dimensions[9].imageURL}
+                            onClick={()=>{
+                                setSelectedRestaurant(searchResults[9]);
+                                navigate("/SearchDetailPage")}}>
                                 <SubRactangle width={0} height={7} imageURL="">
                                     <RactTitle>{searchResults[9]?.place_name}</RactTitle>
                                     <ReviewPoint>{dummyPlaces[2].reviewPoint}</ReviewPoint>
