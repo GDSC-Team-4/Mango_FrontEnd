@@ -26,3 +26,9 @@ export const searchStateTest = atom<SearchResult[]>({
     default: '',
     effects_UNSTABLE: [persistAtom],
   });
+  
+  export const selectedRestaurantState = atom<SearchResult | null>({
+    key: 'selectedRestaurantState',
+    default: null,
+    effects_UNSTABLE: [persistAtom]
+  });

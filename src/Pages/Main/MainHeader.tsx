@@ -1,5 +1,4 @@
-import {useState} from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import Rectangle3 from "../../img/Rectangle3.png";
 import { MainContainer,ImageBox, Box,
          TextBox, TitleText, SubText, 
@@ -7,13 +6,13 @@ import { MainContainer,ImageBox, Box,
          SearchBar, SearchButton } from "./MainHeaderStyle";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../Api/axios";
-import { searchDataState, searchState ,searchValueState , searchStateTest } from "../../Atom/Search";
+import { searchDataState ,searchValueState , searchStateTest } from "../../Atom/Search";
 
 export const MainHeader = () => {
   const navigation = useNavigate();
-  const [searchResults, setSearchResults] = useRecoilState(searchStateTest);
+  const setSearchResults = useSetRecoilState(searchStateTest);
   const [searchData, setSearchData] = useRecoilState(searchDataState);
-  const [searchValue, setSearchValue] = useRecoilState(searchValueState);
+  const setSearchValue = useSetRecoilState(searchValueState);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchData({
@@ -25,13 +24,21 @@ export const MainHeader = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault(); 
     try {
+      let searchQuery = searchData.SearchPrams;
+      if (!searchQuery.includes('맛집')) {
+        searchQuery += ' 맛집';
+      }
       setSearchValue(searchData.SearchPrams);
-      const response = await axiosInstance.get(`/map/search?query=${searchData.SearchPrams}`); 
+      const response = await axiosInstance.get(`/map/search`, {
+          params: { query: searchQuery }
+      });  
+      //const restaurantResults = response.data.data.documents.filter((doc: SearchResult) => doc.category_group_name === '음식점');
       setSearchResults(response.data.data.documents);
-      console.log(response.data.data.documents)
+      console.log(response.data.data.documents);
       navigation("/SearchPage");
     } catch (error) {
-      console.error('오류가 발생했습니다: ', error); 
+      console.error('오류가 발생했습니다: ', error);
+      alert('검색 중 오류가 발생했습니다. 다시 시도해 주세요.'); 
     }
   };
 

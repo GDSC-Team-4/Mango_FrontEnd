@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {AiOutlineSearch,} from "react-icons/ai";
 import {HiArrowRightCircle} from "react-icons/hi2";
-import SearchProps from "../../Interface/Search";
+import {SearchProps} from "../../Interface/Search";
 
 export const SearchContainer = styled.div`
     width: 100%;
@@ -15,12 +15,13 @@ export const SearchContainer = styled.div`
         padding-top:15rem; 
     }
 `;
+
 export const Box = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    
     @media (min-height: 768px) {
         margin-top:8vw;
     }
