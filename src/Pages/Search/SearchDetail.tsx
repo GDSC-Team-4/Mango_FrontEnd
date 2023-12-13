@@ -2,7 +2,7 @@ import React,{useRef, useEffect} from "react";
 import { useRecoilValue} from "recoil";
 import { selectedRestaurantState } from "../../Atom/Search";
 import { DetailContainer,Box,DetailText,DetailTitle,DetailView,
-        SubText, DetailImage,ClickLinkText,ReviewView,DetailImages,ImageBox} from "./DetailStyle";
+        SubText, DetailImage,ClickLinkText,ReviewView,DetailImages,ImageBox,ViewText} from "./DetailStyle";
 
 export const SearchDetailPage = () => {
     const selectedRestaurant = useRecoilValue(selectedRestaurantState);
@@ -42,7 +42,7 @@ export const SearchDetailPage = () => {
                   <SubText>주차 공간</SubText> 
                     {parking}
                   </DetailText>
-                  <ReviewView/>
+                  <ReviewView><ViewText>리뷰 쓰기</ViewText></ReviewView>
                   <ImageBox>
                     <DetailImages/><DetailImages/><DetailImages/><DetailImages/>
                   </ImageBox>
