@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {AiOutlineSearch,} from "react-icons/ai";
 import {HiArrowRightCircle} from "react-icons/hi2";
-import SearchProps from "../../Interface/Search";
+import {SearchProps} from "../../Interface/Search";
 
 export const SearchContainer = styled.div`
     width: 100%;
