@@ -27,6 +27,8 @@ export interface SearchResult {
     phone: string; 
     place_url: string; 
     road_address_name: string;
+    x:string;
+    y:string;
     // 기타 필요한 속성...
   }
   
