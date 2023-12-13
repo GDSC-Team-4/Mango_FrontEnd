@@ -105,6 +105,19 @@ export const ReviewView = styled.div`
     margin-top: 2.5vw;
 `;
 
+export const ViewText = styled.p`
+    width: 4.56vw;
+    height: 1.8vh;
+    flex-shrink: 0;
+    color: #FCFDF2;
+    text-align:right;
+    font-family: Epilogue;
+    font-size: 0.938rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 0.625rem;
+`;
+
 /* Rectangle 95 */
 export const DetailImage = styled.div`
     display: flex;
@@ -119,10 +132,11 @@ export const DetailImage = styled.div`
 export const ImageBox = styled.div`
     display:flex
 `;
+
 export const DetailImages = styled.div`
     display: flex;
     width: 19.5vw;  
-    height: 56vh;
+    height: 26.04vw;
     background-image: url(${() => images[Math.floor(Math.random() * images.length)]});
     background-size: cover;
     margin-left:1.5vw;
