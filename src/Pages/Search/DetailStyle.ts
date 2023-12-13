@@ -1,4 +1,10 @@
 import styled from "styled-components";
+import Rectangle96 from '../../img/Rectangle96.png';
+import Rectangle97 from '../../img/Rectangle97.png';
+import Rectangle98 from '../../img/Rectangle98.png';
+import Rectangle99 from '../../img/Rectangle99.png';
+
+const images = [Rectangle96, Rectangle97, Rectangle98, Rectangle99];
 
 export const DetailContainer = styled.div`
     width: 100%;
@@ -7,6 +13,7 @@ export const DetailContainer = styled.div`
     justify-content:left;
     align-items:center;
     background-color: #25252D;
+    padding-bottom: 3vw;
     @media (max-width: 768px) {
         height: 85vh; 
         padding-top:15rem; 
@@ -116,10 +123,8 @@ export const DetailImages = styled.div`
     display: flex;
     width: 19.5vw;  
     height: 56vh;
-    background-image: url(${require("../../img/Rectangle.png")});
+    background-image: url(${() => images[Math.floor(Math.random() * images.length)]});
     background-size: cover;
     margin-left:1.5vw;
     margin-top:8vw;
 `;
-
-
