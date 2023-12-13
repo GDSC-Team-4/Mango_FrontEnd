@@ -1,10 +1,8 @@
-interface SearchProps {
+export interface SearchProps {
     width: number | undefined;
     height: number | undefined;
     imageURL: string | undefined;
 }
-
-export default SearchProps
 
 export interface SearchDto {
     id: number;
