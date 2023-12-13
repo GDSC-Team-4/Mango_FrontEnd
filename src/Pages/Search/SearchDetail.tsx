@@ -1,9 +1,6 @@
 import React,{useRef, useEffect} from "react";
-import { useRecoilState,useRecoilValue} from "recoil";
-import { useNavigate } from "react-router-dom";
-import { dummyPlaces } from "./SearchDummy";
-import { selectedRestaurantState ,searchStateTest,searchValueState } from "../../Atom/Search";
-import axiosInstance from "../../Api/axios";
+import { useRecoilValue} from "recoil";
+import { selectedRestaurantState } from "../../Atom/Search";
 import { DetailContainer,Box,DetailText,DetailTitle,DetailView,
         SubText, DetailImage,ClickLinkText,ReviewView,DetailImages,ImageBox} from "./DetailStyle";
 
@@ -51,6 +48,7 @@ export const SearchDetailPage = () => {
                   </ImageBox>
               </Box>
               <DetailImage/>
+              
             </DetailContainer>
         </>
     );
