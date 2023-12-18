@@ -37,14 +37,12 @@ export const SearchPage = () => {
               ...searchData,
               SearchPrams: searchValue,
             });
-            let searchQuery = searchValue;
-            if (!searchQuery.includes('맛집')) {
-              searchQuery += ' 맛집';
-            }
-            const response = await axiosInstance.get(`map/search?query=${searchQuery}`);
+            const response = await axiosInstance.get(`/search`, {
+                params: { keyword: searchValue }
+            });  
             //const restaurantResults = response.data.data.documents.filter((doc: SearchResult) => doc.category_group_name === '음식점');  
-            setSearchResults(response.data.data.documents);
-            console.log(response.data.data.documents);
+            setSearchResults(response.data.data);
+            console.log(response.data.data);
             searchRef.current.value='';
           } catch (error) {
             console.error('오류가 발생했습니다: ', error); 
@@ -80,7 +78,7 @@ export const SearchPage = () => {
                                     setSelectedRestaurant(searchResults[0]);
                                     navigate("/SearchDetailPage")}}>
                             <SubRactangle width={0} height={7} imageURL="">
-                            <RactTitle>{searchResults[0]?.place_name}</RactTitle>
+                            <RactTitle>{searchResults[0]?.placeName}</RactTitle>
                             <ReviewPoint>{dummyPlaces[0].reviewPoint}</ReviewPoint>
                             </SubRactangle>
                         </RandomRactangle>
@@ -92,7 +90,7 @@ export const SearchPage = () => {
                                     setSelectedRestaurant(result);
                                     navigate("/SearchDetailPage")}}>
                                 <SubRactangle width={0} height={7} imageURL="">
-                                <RactTitle>{result.place_name}</RactTitle>
+                                <RactTitle>{result.placeName}</RactTitle>
                                 <ReviewPoint>{dummyPlaces[1].reviewPoint}</ReviewPoint>
                                 </SubRactangle>
                             </RandomRactangle>
@@ -106,7 +104,7 @@ export const SearchPage = () => {
                                     setSelectedRestaurant(result);
                                     navigate("/SearchDetailPage")}}>
                                 <SubRactangle width={0} height={7} imageURL="">
-                                <RactTitle>{result.place_name}</RactTitle>
+                                <RactTitle>{result.placeName}</RactTitle>
                                 <ReviewPoint>{dummyPlaces[2].reviewPoint}</ReviewPoint>
                                 </SubRactangle>
                             </RandomRactangle>
@@ -122,7 +120,7 @@ export const SearchPage = () => {
                                     setSelectedRestaurant(result);
                                     navigate("/SearchDetailPage")}}>
                                 <SubRactangle width={0} height={7} imageURL="">
-                                <RactTitle>{result.place_name}</RactTitle>
+                                <RactTitle>{result.placeName}</RactTitle>
                                 <ReviewPoint>{dummyPlaces[2].reviewPoint}</ReviewPoint>
                                 </SubRactangle>
                             </RandomRactangle>
@@ -136,7 +134,7 @@ export const SearchPage = () => {
                                     setSelectedRestaurant(result);
                                     navigate("/SearchDetailPage")}}>
                                 <SubRactangle width={0} height={7} imageURL="">
-                                <RactTitle>{result.place_name}</RactTitle>
+                                <RactTitle>{result.placeName}</RactTitle>
                                 <ReviewPoint>{dummyPlaces[2].reviewPoint}</ReviewPoint>
                                 </SubRactangle>
                             </RandomRactangle>
@@ -148,7 +146,7 @@ export const SearchPage = () => {
                                 setSelectedRestaurant(searchResults[9]);
                                 navigate("/SearchDetailPage")}}>
                                 <SubRactangle width={0} height={7} imageURL="">
-                                    <RactTitle>{searchResults[9]?.place_name}</RactTitle>
+                                    <RactTitle>{searchResults[9]?.placeName}</RactTitle>
                                     <ReviewPoint>{dummyPlaces[2].reviewPoint}</ReviewPoint>
                                 </SubRactangle>
                             </RandomRactangle>

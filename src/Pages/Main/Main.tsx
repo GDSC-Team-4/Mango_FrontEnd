@@ -12,8 +12,8 @@ export const MainPage = () => {
       {/* 배열인지 확인한 후 검색 결과 출력 */}
       {Array.isArray(searchResults) && searchResults.slice(0, 2).map((result) => (
         <div key={result.id}>
-          <p>{result.address_name}</p>
-          <p>{result.place_name}</p>
+          <p>{result.categoryName}</p>
+          <p>{result.placeName}</p>
         </div>
       ))}
     </>

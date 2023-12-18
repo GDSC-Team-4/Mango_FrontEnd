@@ -29,15 +29,12 @@ export const MainHeader = () => {
     }
     try {
       let searchQuery = searchData.SearchPrams;
-      if (!searchQuery.includes('맛집')) {
-        searchQuery += ' 맛집';
-      }
       setSearchValue(searchData.SearchPrams);
-      const response = await axiosInstance.get(`/map/search`, {
-          params: { query: searchQuery }
+      const response = await axiosInstance.get(`/search`, {
+          params: { keyword: searchQuery }
       });  
       //const restaurantResults = response.data.data.documents.filter((doc: SearchResult) => doc.category_group_name === '음식점');
-      setSearchResults(response.data.data.documents);
+      setSearchResults(response.data.data);
       navigation("/SearchPage");
     } catch (error) {
       console.error('오류가 발생했습니다: ', error);
