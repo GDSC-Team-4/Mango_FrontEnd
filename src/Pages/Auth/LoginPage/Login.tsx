@@ -17,7 +17,7 @@ import { LoginState } from "../../../Atom/Login";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { ILogin } from "../../../Interface/Login";
-import axios from "axios";
+import axiosInstance from "../../../Api/axios";
 import constant from "../ConstantAuth";
 import img from "../../../img/grape_background.png";
 import logo from "../../../img/logo.png";
@@ -39,8 +39,8 @@ export const LoginPage = () => {
       username: data.username,
       password: data.password,
     };
-    axios
-      .post("http://localhost:8080/api/auth/signin", formData.current)
+    axiosInstance
+      .post(`api/auth/signin`, formData.current)
       .then((response) => {
         //console.log(response);
         localStorage.setItem("accessToken", response.data.accessToken);
