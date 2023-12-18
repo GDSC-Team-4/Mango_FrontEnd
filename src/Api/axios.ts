@@ -1,8 +1,9 @@
 import axios from "axios";
-//import { SERVER } from "../config";
+import { SERVER,SERVER_1 } from "../config";
 
 const axiosInstance = axios.create({
-  baseURL: "서버 주소",
+  //baseURL: `${SERVER.SERVER}`,
+  baseURL: `${SERVER_1.SERVER}`,
   withCredentials: true,
 });
 

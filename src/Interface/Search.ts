@@ -1,14 +1,12 @@
-interface SearchProps {
+export interface SearchProps {
     width: number | undefined;
     height: number | undefined;
     imageURL: string | undefined;
 }
 
-export default SearchProps
-
 export interface SearchDto {
     id: number;
-    placeName: string; 
+    place_name: string; 
     roadAddressName: string;
     placeUrl: string;
     reviewPoint: number;
@@ -17,3 +15,20 @@ export interface SearchDto {
 export interface SearchData {
     SearchPrams: string;
 }
+
+export interface SearchResult {
+    id: number;
+    placeName: string;
+    imageURL: string;
+    addressName: string; 
+    categoryGroupCode: string; 
+    categoryGroupName: string; 
+    categoryName: string;
+    phone: string; 
+    placeUrl: string; 
+    roadAddressName: string;
+    x:string;
+    y:string;
+    // 기타 필요한 속성...
+  }
+  
