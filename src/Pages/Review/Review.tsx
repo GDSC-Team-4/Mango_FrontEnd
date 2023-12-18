@@ -3,6 +3,7 @@ import { constSelector, useRecoilState,useRecoilValue} from "recoil";
 import { useNavigate } from "react-router-dom";
 import { selectedRestaurantState } from "../../Atom/Search";
 import { starValueState,contentValueState } from "../../Atom/Review";
+import { LoginState } from "../../Atom/Login";
 import { Review } from "../../Interface/Review";
 import axiosInstance from "../../Api/axios";
 import { ReviewContainer, Box, PlaceTitle,SubText, 
@@ -27,13 +28,18 @@ export const ReviewPage = () => {
 
     const handleReviewSubmit = async () => {
         const review: Review = {
-          content: reviewContent,
+          content: 'reviewContent',
           star: starValue,
           images: [] // 이미지는 별도로 처리가 필요합니다.
         };
-
+        const token = localStorage.getItem('accessToken');
+        console.log(token);
         try {
-          const response = await axiosInstance.post(`/reviews/${selectedRestaurant.id}`, review);
+          const response = await axiosInstance.post(`/reviews/${selectedRestaurant.id}`, review,{
+            headers: {
+                Authorization: `Baser ${token}`
+            }
+          });
           console.log(response.data);
         } catch (error) {
           console.error(error);
