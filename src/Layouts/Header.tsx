@@ -27,11 +27,12 @@ export const Header = () => {
 
   switch (location.pathname) {
     case "/SearchPage":
-      color = "#3B3486";
-      backgroundColor = "rgba(245,235,255,0.4)";
-      border = "2px solid rgba(59, 52, 134, 0.7)";
-      boxShadow = "0px 2px 5px rgba(0, 0, 0, 0.25)";
-      break;
+    case "/ReviewPage":
+        color = "#3B3486";
+        backgroundColor = "rgba(245,235,255,0.4)";
+        border = "2px solid rgba(59, 52, 134, 0.7)";
+        boxShadow = "0px 2px 5px rgba(0, 0, 0, 0.25)";
+        break;
     case "/SearchDetailPage":
       color = "#FCFDF2";
       border = "2px solid rgba(252, 253, 242, 0.7)";
