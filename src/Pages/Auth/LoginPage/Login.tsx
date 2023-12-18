@@ -40,7 +40,7 @@ export const LoginPage = () => {
       password: data.password,
     };
     axios
-      .post("http://localhost:8080/api/auth/signin", formData.current)
+      .post("http://34.64.77.143:8080/api/auth/signin", formData.current)
       .then((response) => {
         //console.log(response);
         localStorage.setItem("accessToken", response.data.accessToken);
