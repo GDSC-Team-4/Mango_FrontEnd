@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ReviewPorps } from "../../Interface/Review";
+import { FaCamera } from "react-icons/fa6";
 
 export const ReviewContainer = styled.div`
     width: 100%;
@@ -36,12 +37,10 @@ export const Line = styled.div`
 `;
 
 export const PlaceTitle = styled.p`
-    width: 13.25rem;
-    height: 3rem;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 800;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     line-height: 3rem;
     color: #000000;
     text-align: left;
@@ -85,3 +84,69 @@ export const StarText = styled.p`
     text-align: center;
     color: #767676;
 `;
+export const InputBox = styled.textarea`
+    box-sizing: border-box;
+    width: 83.7vw;
+    height: 42.6vh;
+    border: 1px solid #767676;
+    filter: drop-shadow(0px 0.26vw 0.65vw rgba(0, 0, 0, 0.2));
+    border-radius: 0.65vw;
+    margin-top:2vw;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    color: #767676;
+    resize: none;
+    padding:1vw;
+`;
+
+export const PhotoBox = styled.button`
+    box-sizing: border-box;
+    width: 16.27vw;
+    height: 7.1vh;
+    border: 1px solid #3B3486;
+    filter: drop-shadow(0px 0.26vw 0.65vw rgba(0, 0, 0, 0.25));
+    border-radius: 0.65vw;
+    margin-top:2vw;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    text-align: center;
+    color: #3B3486;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+export const PhotoIcon = styled(FaCamera)`
+    width: 2.3vw;
+    height: 4.3vh;
+    justify-content: center;
+    color: #3B3486;
+    margin-right:0.5vw;
+`;
+
+export const SubmitBox = styled.button`
+    box-sizing: border-box;
+    width: 16.27vw;
+    height: 7.1vh;
+    background: #3B3486;
+    border: 1px solid #3B3486;
+    filter: drop-shadow(0px 0.26vw 0.65vw rgba(0, 0, 0, 0.25));
+    border-radius: 0.65vw;
+    margin-top:2vw;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
+`;
+
+
