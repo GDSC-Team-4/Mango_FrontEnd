@@ -47,7 +47,7 @@ export const RegisterPage = () => {
       };
 
       axios
-        .post("http://localhost:8080/api/auth/signup", formData.current)
+        .post("http://34.64.77.143:8080/api/auth/signup", formData.current)
         .then((response) => {
           alert(constant.SUCCESS.Register);
           navigate("/");
