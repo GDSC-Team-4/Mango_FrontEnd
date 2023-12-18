@@ -5,7 +5,9 @@ import { selectedRestaurantState } from "../../Atom/Search";
 import { starValueState,contentValueState } from "../../Atom/Review";
 import { Review } from "../../Interface/Review";
 import axiosInstance from "../../Api/axios";
-import { ReviewContainer, Box, PlaceTitle,SubText, StarPoint, StarText, TextBox, Line } from "./ReviewStyle";
+import { ReviewContainer, Box, PlaceTitle,SubText, 
+        StarPoint, StarText, TextBox, Line, 
+        InputBox, PhotoBox, SubmitBox, PhotoIcon } from "./ReviewStyle";
 import { starRatings } from "./ReviewValue";
 
 export const ReviewPage = () => {
@@ -58,6 +60,11 @@ export const ReviewPage = () => {
                         </StarPoint>
                     ))}
                     </Line>
+                <InputBox placeholder="자세한 리뷰를 작성해주세요. 식당의 분위기와 서비스도 궁금해요!">
+
+                </InputBox>
+                <PhotoBox><PhotoIcon/>사진 첨부하기</PhotoBox>
+                <SubmitBox onClick={handleReviewSubmit}>리뷰 등록하기</SubmitBox>
                 </TextBox>
                 </Box>
             </ReviewContainer>
