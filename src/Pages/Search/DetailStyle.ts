@@ -3,6 +3,7 @@ import Rectangle96 from '../../img/Rectangle96.png';
 import Rectangle97 from '../../img/Rectangle97.png';
 import Rectangle98 from '../../img/Rectangle98.png';
 import Rectangle99 from '../../img/Rectangle99.png';
+import { IoDocumentTextOutline } from "react-icons/io5";
 
 const images = [Rectangle96, Rectangle97, Rectangle98, Rectangle99];
 
@@ -94,8 +95,9 @@ export const DetailView = styled.div`
 `;
 
 export const ReviewView = styled.div`
+    display:flex;
     width:15vw;
-    height:2vw;;
+    height:2vw;
     box-sizing: border-box;
     border: 1px solid #FCFDF2;
     filter: drop-shadow(0px 0.26vw 0.65vw rgba(255, 255, 255, 0.25));
@@ -103,6 +105,28 @@ export const ReviewView = styled.div`
     border-radius: 6.5vw;
     margin-left:-0.1vw;
     margin-top: 2.5vw;
+`;
+
+export const ViewText = styled.p`
+    width: 4.26vw;
+    height: 2vw;
+    flex-shrink: 0;
+    color: #FCFDF2;
+    text-align:right;
+    font-family: Epilogue;
+    font-size: 0.938rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 0.625rem;
+`;
+
+export const ReviewIcon = styled(IoDocumentTextOutline)`
+    justify-content: center;
+    item-align:center;
+    height:2.84vh;
+    width:1.3vw;
+    margin-top:0.3vw;
+    margin-left:1vw;
 `;
 
 /* Rectangle 95 */
@@ -119,10 +143,11 @@ export const DetailImage = styled.div`
 export const ImageBox = styled.div`
     display:flex
 `;
+
 export const DetailImages = styled.div`
     display: flex;
     width: 19.5vw;  
-    height: 56vh;
+    height: 26.04vw;
     background-image: url(${() => images[Math.floor(Math.random() * images.length)]});
     background-size: cover;
     margin-left:1.5vw;

@@ -23,6 +23,10 @@ export const MainHeader = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault(); 
+    if (!searchData.SearchPrams.trim()) {
+      alert('검색어를 입력해주세요.');
+      return;
+    }
     try {
       let searchQuery = searchData.SearchPrams;
       if (!searchQuery.includes('맛집')) {
@@ -34,7 +38,6 @@ export const MainHeader = () => {
       });  
       //const restaurantResults = response.data.data.documents.filter((doc: SearchResult) => doc.category_group_name === '음식점');
       setSearchResults(response.data.data.documents);
-      console.log(response.data.data.documents);
       navigation("/SearchPage");
     } catch (error) {
       console.error('오류가 발생했습니다: ', error);
@@ -61,7 +64,7 @@ export const MainHeader = () => {
         </SearchContainer>
       </Box>
       <ImageBox>
-        <img src={Rectangle3} />
+        <img src={Rectangle3} alt="서브 이미지"/>
       </ImageBox>
     </MainContainer>
   );
