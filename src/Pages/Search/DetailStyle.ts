@@ -111,6 +111,7 @@ export const ViewText = styled.p`
     width: 4.26vw;
     height: 2vw;
     flex-shrink: 0;
+    cursor:pointer;
     color: #FCFDF2;
     text-align:right;
     font-family: Epilogue;
