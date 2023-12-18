@@ -18,15 +18,15 @@ export interface SearchData {
 
 export interface SearchResult {
     id: number;
-    place_name: string;
+    placeName: string;
     imageURL: string;
-    address_name: string; 
-    category_group_code: string; 
-    category_group_name: string; 
-    category_name: string;
+    addressName: string; 
+    categoryGroupCode: string; 
+    categoryGroupName: string; 
+    categoryName: string;
     phone: string; 
-    place_url: string; 
-    road_address_name: string;
+    placeUrl: string; 
+    roadAddressName: string;
     x:string;
     y:string;
     // 기타 필요한 속성...

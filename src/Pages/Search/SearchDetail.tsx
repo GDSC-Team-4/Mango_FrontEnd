@@ -18,10 +18,10 @@ export const SearchDetailPage = () => {
             <DetailContainer>
               <Box>
                   <DetailTitle>
-                    {selectedRestaurant?.place_name}
+                    {selectedRestaurant?.placeName}
                   </DetailTitle>
                   <DetailText>
-                    {selectedRestaurant?.address_name}
+                    {selectedRestaurant?.addressName}
                   </DetailText>
                   <DetailView/>
                   <DetailText>
@@ -30,15 +30,15 @@ export const SearchDetailPage = () => {
                   </DetailText>
                   <DetailText>
                   <SubText>카테 고리</SubText> 
-                    {selectedRestaurant?.category_group_name}
+                    {selectedRestaurant?.categoryGroupName}
                   </DetailText>
                   <DetailText>
                   <SubText>가게 종류</SubText> 
-                    {selectedRestaurant?.category_name}
+                    {selectedRestaurant?.categoryName}
                   </DetailText>
                   <DetailText>
                     <SubText>가게 링크</SubText> 
-                    <ClickLinkText onClick={()=>window.open(selectedRestaurant?.place_url,"_blank")}>{selectedRestaurant?.place_url}</ClickLinkText>
+                    <ClickLinkText onClick={()=>window.open(selectedRestaurant?.placeUrl,"_blank")}>{selectedRestaurant?.placeUrl}</ClickLinkText>
                   </DetailText>
                   <DetailText>
                   <SubText>주차 공간</SubText> 
