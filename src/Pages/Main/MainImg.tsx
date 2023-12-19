@@ -3,11 +3,11 @@ function rand(min: number, max: number) {
 }
 
 export const randomImg = [
-  { imageURL: "https://loremflickr.com/350/400/food" },
-  { imageURL: "https://loremflickr.com/350/400/dish" },
-  { imageURL: "https://loremflickr.com/350/400/cuisine" },
-  { imageURL: "https://loremflickr.com/350/400/cook" },
-  { imageURL: "https://loremflickr.com/350/400/meal" },
-  { imageURL: "https://loremflickr.com/350/400/taste" },
-  { imageURL: "https://loremflickr.com/350/400/delicious" },
+  { imageURL: "https://loremflickr.com/500/500/food" },
+  { imageURL: "https://loremflickr.com/500/500/dish" },
+  { imageURL: "https://loremflickr.com/500/500/cuisine" },
+  { imageURL: "https://loremflickr.com/500/500/cook" },
+  { imageURL: "https://loremflickr.com/500/500/meal" },
+  { imageURL: "https://loremflickr.com/500/500/taste" },
+  { imageURL: "https://loremflickr.com/500/500/delicious" },
 ];
