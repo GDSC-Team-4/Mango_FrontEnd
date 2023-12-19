@@ -33,19 +33,18 @@ export const ReviewPage = () => {
           images: [] // 이미지는 별도로 처리가 필요합니다.
         };
         const token = localStorage.getItem('accessToken');
-        console.log(token);
         try {
-          const response = await axiosInstance.post(`/reviews/${selectedRestaurant.id}`, review,{
+          const response = await axiosInstance.post(`/review/${selectedRestaurant.id}`, review,{
             headers: {
-                Authorization: `Baser ${token}`
+                Authorization: `Bearer ${token}`
             }
           });
+          navigate("/");
           console.log(response.data);
         } catch (error) {
           console.error(error);
         }
       };
-        console.log(starValue);
     return (
         <>
             <ReviewContainer>
