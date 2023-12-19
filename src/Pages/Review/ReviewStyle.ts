@@ -47,7 +47,6 @@ export const PlaceTitle = styled.p`
 `;
 
 export const SubText = styled.p`
-    width: 20vw;
     height:1.5rem;
     font-family: 'Inter';
     font-style: normal;
