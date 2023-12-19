@@ -47,7 +47,6 @@ export const PlaceTitle = styled.p`
 `;
 
 export const SubText = styled.p`
-    width: 20vw;
     height:1.5rem;
     font-family: 'Inter';
     font-style: normal;
@@ -102,7 +101,7 @@ export const InputBox = styled.textarea`
     padding:1vw;
 `;
 
-export const PhotoBox = styled.button`
+export const PhotoBox = styled.label`
     box-sizing: border-box;
     width: 16.27vw;
     height: 7.1vh;

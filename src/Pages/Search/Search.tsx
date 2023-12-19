@@ -23,7 +23,7 @@ export const SearchPage = () => {
         window.scrollTo(0, 0);  // 페이지 상단으로 스크롤 이동
       }, []);
 
-    const searchButtonClick = async (event: React.MouseEvent) => {
+    const searchButtonClick = async (event: React.FormEvent) => {
         event.stopPropagation();
         if(searchRef.current) {
           const searchValue = searchRef.current.value;
@@ -31,7 +31,7 @@ export const SearchPage = () => {
             alert('검색어를 입력해주세요.');
             return;
           }
-          setSearchValue(searchValue);
+
           try {
             setSearchData({
               ...searchData,
@@ -42,8 +42,9 @@ export const SearchPage = () => {
             });  
             //const restaurantResults = response.data.data.documents.filter((doc: SearchResult) => doc.category_group_name === '음식점');  
             setSearchResults(response.data.data);
-            console.log(response.data.data);
             searchRef.current.value='';
+            window.location.reload();
+            setSearchValue(searchValue);
           } catch (error) {
             console.error('오류가 발생했습니다: ', error); 
           }
@@ -65,7 +66,12 @@ export const SearchPage = () => {
                     </TextBox>
                     <SearchBox onClick={handleSearchClick}>
                         <SearchIcon/>
-                        <SearchBar type="text" placeholder="지역, 식당 또는 음식" ref={searchRef}/>
+                        <SearchBar 
+                            type="text" 
+                            placeholder="지역, 식당 또는 음식" 
+                            ref={searchRef}
+                            onKeyDown={(event) => { if (event.key==="Enter") searchButtonClick(event)}}
+                        />
                         <SearchButton onClick={searchButtonClick}>검색</SearchButton>
                     </SearchBox>
                     <SubTitle>
