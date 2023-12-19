@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { selectedRestaurantState } from "../../Atom/Search";
 import { DetailContainer,Box,DetailText,DetailTitle,DetailView,
         SubText, DetailImage,ClickLinkText,ReviewView,DetailImages,ImageBox,ViewText,ReviewIcon} from "./DetailStyle";
+import { LoginState } from "../../Atom/Login";
 
 export const SearchDetailPage = () => {
     const selectedRestaurant = useRecoilValue(selectedRestaurantState);
     const navigate = useNavigate();
+    const isLoggedIn = useRecoilValue(LoginState);
     const parking = Math.random() < 0.5 ? '주차공간 없음' : '주차공간 있음';
     console.log(selectedRestaurant);
     useEffect(() => {
@@ -44,7 +46,9 @@ export const SearchDetailPage = () => {
                   <SubText>주차 공간</SubText> 
                     {parking}
                   </DetailText>
+                  {isLoggedIn && (
                   <ReviewView><ReviewIcon/><ViewText onClick={()=>navigate('/ReviewPage')}>리뷰 쓰기</ViewText></ReviewView>
+                  )}
                   <ImageBox>
                     <DetailImages/><DetailImages/><DetailImages/><DetailImages/>
                   </ImageBox>
