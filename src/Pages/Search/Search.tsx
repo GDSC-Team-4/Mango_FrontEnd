@@ -70,7 +70,7 @@ export const SearchPage = () => {
                             type="text" 
                             placeholder="지역, 식당 또는 음식" 
                             ref={searchRef}
-                            onKeyDown={(event) => { if (event.key==="Enter") searchButtonClick(event)}}
+                            onKeyDown={(event:any) => { if (event.key==="Enter") searchButtonClick(event)}}
                         />
                         <SearchButton onClick={searchButtonClick}>검색</SearchButton>
                     </SearchBox>
