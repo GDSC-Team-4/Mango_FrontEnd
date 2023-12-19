@@ -34,22 +34,13 @@ export const MainPage = () => {
       </Wrapper>
 
       {/* 배열인지 확인한 후 검색 결과 출력 */}
-<<<<<<< HEAD
-      {/* {Array.isArray(searchResults) &&
+      {Array.isArray(searchResults) &&
         searchResults.slice(0, 2).map((result) => (
           <div key={result.id}>
-            <p>{result.address_name}</p>
-            <p>{result.place_name}</p>
+            <p>{result.categoryName}</p>
+            <p>{result.placeName}</p>
           </div>
-        ))} */}
-=======
-      {Array.isArray(searchResults) && searchResults.slice(0, 2).map((result) => (
-        <div key={result.id}>
-          <p>{result.categoryName}</p>
-          <p>{result.placeName}</p>
-        </div>
-      ))}
->>>>>>> a2da14ea4ff2fbb8317b3f006f341b8674c13a49
+        ))}
     </>
   );
 };

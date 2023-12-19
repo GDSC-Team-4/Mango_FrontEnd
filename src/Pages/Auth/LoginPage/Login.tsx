@@ -39,13 +39,8 @@ export const LoginPage = () => {
       username: data.username,
       password: data.password,
     };
-<<<<<<< HEAD
-    axios
-      .post("http://34.64.77.143:8080/api/auth/signin", formData.current)
-=======
     axiosInstance
       .post(`api/auth/signin`, formData.current)
->>>>>>> a2da14ea4ff2fbb8317b3f006f341b8674c13a49
       .then((response) => {
         //console.log(response);
         localStorage.setItem("accessToken", response.data.accessToken);
