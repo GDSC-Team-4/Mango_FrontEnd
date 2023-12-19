@@ -5,9 +5,9 @@ import styled from "styled-components";
 import { randomImg } from "./MainImg";
 
 const text1 = `별점과 리뷰를 바탕으로 선정한\n 믿고 보는 맛집 리스트\n\n포도플레이트가 꼽은\n 특별한 맛집을 만나보세요.`;
-const text2 = `얼큰 칼국수 맛집 베스트 20\n`;
+export const text2 = `얼큰 칼국수 맛집 베스트 20\n`;
 
-const Container = styled.div`
+export const Container = styled.div`
   margin-top: 10vh;
   align-items: center;
   margin-left: 20vw;
@@ -16,7 +16,7 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const TextBox = styled.div`
+export const TextBox = styled.div`
   width: 750px;
   height: 400px;
   display: flex;
@@ -24,16 +24,16 @@ const TextBox = styled.div`
   gap: 4vh;
 `;
 
-const Title = styled.span`
+export const Title = styled.span`
   font-size: 25px;
   font-weight: 600;
 `;
 
-const Text = styled.span`
+export const Text = styled.span`
   font-size: 18px;
 `;
 
-const Store = styled.div<{ imageURL: string }>`
+export const Store = styled.div<{ imageURL: string }>`
   background-image: url(${(props) => props.imageURL});
   width: 350px;
   height: 400px;
@@ -42,7 +42,7 @@ const Store = styled.div<{ imageURL: string }>`
   position: relative;
 `;
 
-const StoreTextBox = styled.div`
+export const StoreTextBox = styled.div`
   background-color: #25252d;
   color: #fff;
   width: 100%;
@@ -51,19 +51,19 @@ const StoreTextBox = styled.div`
   bottom: 0;
 `;
 
-const StoreTitle = styled.span`
+export const StoreTitle = styled.span`
   font-size: 16px;
   position: absolute;
   top: 25px;
   left: 25px;
 `;
 
-const StoreText = styled(StoreTitle)`
+export const StoreText = styled(StoreTitle)`
   font-size: 14px;
   top: 50px;
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   width: 148px;
   height: 47px;
   border-radius: 100px;
@@ -73,7 +73,7 @@ const Button = styled.button`
   border: none;
 `;
 
-const StyledSlider = styled(Slider)`
+export const StyledSlider = styled(Slider)`
   height: 400px; //슬라이드 컨테이너 영역
   overflow: hidden;
 
