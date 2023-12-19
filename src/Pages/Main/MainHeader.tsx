@@ -54,7 +54,12 @@ export const MainHeader = () => {
         </TextBox>
         <SearchContainer>
           <SearchIcon />
-          <SearchBar type="text" placeholder="지역, 식당 또는 음식" onChange={handleInputChange}/>
+          <SearchBar 
+            type="text" 
+            placeholder="지역, 식당 또는 음식" 
+            onChange={handleInputChange} 
+            onKeyDown={(event) => { if (event.key==="Enter") handleSubmit(event)}}
+          />
           <SearchButton type="submit" onClick={handleSubmit}>
             검색
           </SearchButton>
