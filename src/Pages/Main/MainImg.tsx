@@ -3,11 +3,11 @@ function rand(min: number, max: number) {
 }
 
 export const randomImg = [
-  { imageURL: `https://picsum.photos/id/${rand(1, 1000)}/350/400` },
-  { imageURL: `https://picsum.photos/id/${rand(1, 1000)}/350/400` },
-  { imageURL: `https://picsum.photos/id/${rand(1, 1000)}/350/400` },
-  { imageURL: `https://picsum.photos/id/${rand(1, 1000)}/350/400` },
-  { imageURL: `https://picsum.photos/id/${rand(1, 1000)}/350/400` },
-  { imageURL: `https://picsum.photos/id/${rand(1, 1000)}/350/400` },
-  { imageURL: `https://picsum.photos/id/${rand(1, 1000)}/350/400` },
+  { imageURL: "https://loremflickr.com/350/400/food" },
+  { imageURL: "https://loremflickr.com/350/400/dish" },
+  { imageURL: "https://loremflickr.com/350/400/cuisine" },
+  { imageURL: "https://loremflickr.com/350/400/cook" },
+  { imageURL: "https://loremflickr.com/350/400/meal" },
+  { imageURL: "https://loremflickr.com/350/400/taste" },
+  { imageURL: "https://loremflickr.com/350/400/delicious" },
 ];
