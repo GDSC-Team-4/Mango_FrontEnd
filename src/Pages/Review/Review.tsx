@@ -1,22 +1,21 @@
-import {useEffect} from "react";
-import { constSelector, useRecoilState,useRecoilValue} from "recoil";
+import React, {useEffect,useState} from "react";
+import { useRecoilState,useRecoilValue} from "recoil";
 import { useNavigate } from "react-router-dom";
 import { selectedRestaurantState } from "../../Atom/Search";
-import { starValueState,contentValueState } from "../../Atom/Review";
-import { LoginState } from "../../Atom/Login";
-import { Review } from "../../Interface/Review";
+import { ReviewState} from "../../Atom/Review";
 import axiosInstance from "../../Api/axios";
 import { ReviewContainer, Box, PlaceTitle,SubText, 
         StarPoint, StarText, TextBox, Line, 
-        InputBox, PhotoBox, SubmitBox, PhotoIcon } from "./ReviewStyle";
+        InputBox, SubmitBox } from "./ReviewStyle";
 import { starRatings } from "./ReviewValue";
+import { ImageUpload } from "./ImageUpload";
 
 export const ReviewPage = () => {
     const navigate = useNavigate();
     const selectedRestaurant = useRecoilValue(selectedRestaurantState || null);
-    const [starValue, setStarValue] = useRecoilState(starValueState);
-    const [reviewContent, setReviewContent] = useRecoilState(contentValueState);
-
+    const [review, setReview] = useRecoilState(ReviewState);
+    const [imageFile, setImageFile] = useState<File | null>(null);
+    
     useEffect(() => {
         window.scrollTo(0, 0);  // 페이지 상단으로 스크롤 이동
       }, []);
@@ -26,25 +25,39 @@ export const ReviewPage = () => {
     }
 
 
-    const handleReviewSubmit = async () => {
-        const review: Review = {
-          content: 'reviewContent',
-          star: starValue,
-          images: [] // 이미지는 별도로 처리가 필요합니다.
-        };
-        const token = localStorage.getItem('accessToken');
-        try {
-          const response = await axiosInstance.post(`/review/${selectedRestaurant.id}`, review,{
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-          });
-          navigate("/");
-          console.log(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      };
+    const handleReviewSubmit = async (event: React.FormEvent) => {
+      event.preventDefault();
+  
+      const token = localStorage.getItem('accessToken');
+  
+      const formData = new FormData();
+      if (imageFile) {
+        formData.append('images', imageFile);
+      }
+      formData.append('content', review.content);
+      formData.append('star', review.star.toString());
+
+      try {
+        const response = await axiosInstance.post(`review/${selectedRestaurant.id}`, formData, {
+          headers: {
+            Authorization: `Bearer ${token}`//,
+            //"Content-Type": "multipart/form-data",
+          }
+        });
+        navigate("/");
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setReview(prevReview => ({
+        ...prevReview,
+        content: event.target.value
+      }));
+    }
+
     return (
         <>
             <ReviewContainer>
@@ -58,17 +71,22 @@ export const ReviewPage = () => {
                     {starRatings.map(rating => (
                         <StarPoint
                             key={rating.value}
-                            selected={starValue === rating.value}
-                            onClick={() => setStarValue(rating.value)}
+                            selected={review.star === rating.value}
+                            onClick={() => setReview(prevReview => ({
+                              ...prevReview,
+                              star: rating.value
+                            }))}
                         >
                             <StarText>{rating.text}</StarText>
                         </StarPoint>
                     ))}
                     </Line>
-                <InputBox placeholder="자세한 리뷰를 작성해주세요. 식당의 분위기와 서비스도 궁금해요!">
-
-                </InputBox>
-                <PhotoBox><PhotoIcon/>사진 첨부하기</PhotoBox>
+                <InputBox 
+                  placeholder="자세한 리뷰를 작성해주세요. 식당의 분위기와 서비스도 궁금해요!" 
+                  value={review.content}
+                  onChange={handleInputChange}
+                />
+                <ImageUpload setImageFile={setImageFile} />
                 <SubmitBox onClick={handleReviewSubmit}>리뷰 등록하기</SubmitBox>
                 </TextBox>
                 </Box>
