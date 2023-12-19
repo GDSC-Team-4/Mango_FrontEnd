@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 import { searchStateTest } from "../../Atom/Search";
 import { MainHeader } from "./MainHeader";
-import { SimpleSlider } from "./Slider";
+import { StoreListSlider } from "./StoreListSlider";
 import styled from "styled-components";
 import axiosInstance from "../../Api/axios";
 
@@ -31,7 +31,7 @@ export const MainPage = () => {
     <>
       <MainHeader />
       <Wrapper>
-        <SimpleSlider />
+        <StoreListSlider />
       </Wrapper>
 
       {/* 배열인지 확인한 후 검색 결과 출력 */}

@@ -88,7 +88,7 @@ const StyledSlider = styled(Slider)`
   }
 `;
 
-export const SimpleSlider = () => {
+export const StoreListSlider = () => {
   const settings = {
     dots: false,
     infinite: false,
