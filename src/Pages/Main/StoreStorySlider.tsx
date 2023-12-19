@@ -8,8 +8,6 @@ import {
   StoreTextBox,
   StoreTitle,
   StyledSlider,
-  Text,
-  TextBox,
   Title,
   text2,
 } from "./StoreListSlider";
