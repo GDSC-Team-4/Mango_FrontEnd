@@ -78,3 +78,18 @@ export const ClickIcon = styled(BsPersonCircle)`
   cursor: pointer;
   margin-left: 3vw;
 `;
+
+export const SignOut = styled.div`
+  width: 5vw;
+  height: 2vw;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.2vw;
+  line-height: 1.4vw;
+  display: flex;
+  justify-content: center;
+  color: ${(props) => props.color};
+  cursor: pointer;
+  margin-left: 3vw;
+`;
