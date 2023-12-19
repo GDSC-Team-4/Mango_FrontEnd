@@ -24,4 +24,11 @@ export const searchStateTest = atom<SearchResult[]>({
   export const searchValueState = atom({
     key: 'searchValueState',
     default: '',
+    effects_UNSTABLE: [persistAtom],
+  });
+  
+  export const selectedRestaurantState = atom<SearchResult | null>({
+    key: 'selectedRestaurantState',
+    default: null,
+    effects_UNSTABLE: [persistAtom]
   });
