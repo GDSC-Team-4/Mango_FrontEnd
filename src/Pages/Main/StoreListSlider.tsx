@@ -14,6 +14,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+  height: 350px;
 `;
 
 export const TextBox = styled.div`
