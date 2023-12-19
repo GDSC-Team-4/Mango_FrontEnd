@@ -58,11 +58,14 @@ export const RegisterPage = () => {
         });
     }
   };
+  const onClick = () => {
+    navigate("/");
+  };
 
   return (
     <Wrapper image={img}>
       <LogoContainer>
-        <Logo src={logo} />
+        <Logo src={logo} onClick={onClick} />
         <span>포도 플레이트</span>
       </LogoContainer>
       <Container>
