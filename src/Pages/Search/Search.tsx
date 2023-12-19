@@ -37,7 +37,7 @@ export const SearchPage = () => {
               ...searchData,
               SearchPrams: searchValue,
             });
-            const response = await axiosInstance.get(`/search`, {
+            const response = await axiosInstance.get(`/api/search`, {
                 params: { keyword: searchValue }
             });  
             //const restaurantResults = response.data.data.documents.filter((doc: SearchResult) => doc.category_group_name === '음식점');  
