@@ -5,6 +5,7 @@ import { StoreListSlider } from "./StoreListSlider";
 import { StoreStorySlider } from "./StoreStorySlider";
 import styled from "styled-components";
 import axiosInstance from "../../Api/axios";
+import { StoreEditorSlider } from "./StoreEditorSlider";
 
 const Wrapper = styled.div`
   height: 100%;
@@ -20,20 +21,21 @@ const Wrapper = styled.div`
 
 export const MainPage = () => {
   const searchResults = useRecoilValue(searchStateTest);
-  axiosInstance
-    .get(`\main`)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  // axiosInstance
+  //   .get(`\main`)
+  //   .then((response) => {
+  //     console.log(response);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
   return (
     <>
       <MainHeader />
       <Wrapper>
         <StoreListSlider />
         <StoreStorySlider />
+        <StoreEditorSlider />
       </Wrapper>
 
       {/* 배열인지 확인한 후 검색 결과 출력 */}

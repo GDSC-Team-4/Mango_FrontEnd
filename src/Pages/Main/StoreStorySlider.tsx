@@ -38,7 +38,7 @@ const StoryButton = styled(Button)`
   margin-left: 70px;
 `;
 
-const StorySlider = styled(StyledSlider)`
+export const StorySlider = styled(StyledSlider)`
   margin-top: 15px;
   overflow: visible;
 `;
@@ -48,7 +48,7 @@ export const StoreStorySlider = () => {
     dots: false,
     infinite: false,
     speed: 1000,
-    slidesToShow: 5,
+    slidesToShow: 4,
     slidesToScroll: 1,
   };
   return (
