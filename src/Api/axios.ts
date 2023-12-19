@@ -1,11 +1,15 @@
 import axios from "axios";
 import { SERVER_1 } from "../config";
 
+const host = window.location.hostname === "localhost" 
+  ? `${SERVER_1.SERVER}`
+  : "/api";
+
 const axiosInstance = axios.create({
-  //baseURL: `${SERVER.SERVER}`,
-  baseURL: `${SERVER_1.SERVER}`,
+  baseURL: host,
   withCredentials: true,
 });
+
 
 //session으로 할거면 안씀
 axiosInstance.interceptors.request.use(
