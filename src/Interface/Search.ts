@@ -19,7 +19,6 @@ export interface SearchData {
 export interface SearchResult {
     id: number;
     placeName: string;
-    imageURL: string;
     addressName: string; 
     categoryGroupCode: string; 
     categoryGroupName: string; 
@@ -27,6 +26,7 @@ export interface SearchResult {
     phone: string; 
     placeUrl: string; 
     roadAddressName: string;
+    imageUrl: string;
     x:string;
     y:string;
     // 기타 필요한 속성...

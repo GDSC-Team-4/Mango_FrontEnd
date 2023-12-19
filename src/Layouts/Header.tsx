@@ -1,8 +1,12 @@
 import { useNavigate, useLocation } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { LoginState } from "../Atom/Login";
+import axiosInstance from "../Api/axios";
 import { HeaderContainer,LogoPosition, 
-        TextPosition, TextPosition1, ClickIcon } from "./HeaderStyle";
+        TextPosition, TextPosition1, ClickIcon, SignOut } from "./HeaderStyle";
 
 export const Header = () => {
+  const [loggedIn, setLoggedIn] = useRecoilState(LoginState);
   const navigation = useNavigate();
   const location = useLocation();
   let color;
@@ -10,6 +14,14 @@ export const Header = () => {
   let border;
   let boxShadow;
 
+  const handleLogout = async () => {
+    setLoggedIn(false);
+    navigation("/LoginPage");
+    //localStorage.removeItem("recoil-persist");
+    //localStorage.clear();
+    const res = await axiosInstance.post("/api/auth/signout");
+    window.location.reload();
+  };
   const onRegister = () => {
     navigation("/LoginPage");
   }; // 나중에 로그인 여부 확인해서 mypage로 보내줄 지 회원가입 , 로그인 페이지로 보내줄 지 판단하는 코드 넣을 것임
@@ -57,7 +69,13 @@ export const Header = () => {
         </LogoPosition>
         <TextPosition color={color}>Hot list</TextPosition>
         <TextPosition1 color={color}>Story</TextPosition1>
-        <ClickIcon color={color} onClick={onRegister} />
+        {loggedIn ? ( 
+          <SignOut color={color} onClick={handleLogout}>
+            SignOut
+          </SignOut>
+        ) : (
+          <ClickIcon color={color} onClick={onRegister} />
+        )}
       </HeaderContainer>
     </>
   );
