@@ -1,13 +1,11 @@
 import axios from "axios";
-import { SERVER_1 } from "../config";
 
 const axiosInstance = axios.create({
-  //baseURL: `${SERVER.SERVER}`,
-  baseURL: `${SERVER_1.SERVER}`,
+  baseURL: process.env.REACT_APP_SERVER,
   withCredentials: true,
 });
 
-//session으로 할거면 안씀
+// 세션으로 할거면 안씀
 axiosInstance.interceptors.request.use(
   (config) => {
     return config;
