@@ -2,11 +2,12 @@ import { useRecoilValue } from "recoil";
 import { searchStateTest } from "../../Atom/Search";
 import { MainHeader } from "./MainHeader";
 import { StoreListSlider } from "./StoreListSlider";
+import { StoreStorySlider } from "./StoreStorySlider";
 import styled from "styled-components";
 import axiosInstance from "../../Api/axios";
 
 const Wrapper = styled.div`
-  height: 95vh;
+  height: 100%;
   width: 100%
   justify-content: center;
   display: flex;
@@ -32,6 +33,7 @@ export const MainPage = () => {
       <MainHeader />
       <Wrapper>
         <StoreListSlider />
+        <StoreStorySlider />
       </Wrapper>
 
       {/* 배열인지 확인한 후 검색 결과 출력 */}
