@@ -3,7 +3,8 @@
     SERVER:"http://35.216.0.111:8080/"
     }
 */
+
 export const SERVER_1 = {
-    SERVER_API:"",
-    SERVER:""
-}
+    SERVER_API: process.env.REACT_APP_SERVER_API,
+    SERVER: process.env.REACT_APP_SERVER,
+};
