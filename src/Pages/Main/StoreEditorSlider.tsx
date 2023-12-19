@@ -10,7 +10,6 @@ import {
   SubRactangle,
 } from "../Search/SearchStyle";
 import { StorySlider } from "./StoreStorySlider";
-import { StyledSlider } from "./StoreListSlider";
 
 const Container = styled.div`
   display: flex;

@@ -6,7 +6,6 @@ import constant from "../ConstantAuth";
 import img from "../../../img/grape_background.png";
 import logo from "../../../img/logo.png";
 import axiosInstance from "../../../Api/axios";
-import axios from "axios";
 import {
   Container,
   ErrorMessage,

@@ -1,6 +1,4 @@
-import React,{useRef} from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
 export const Footer = () => {
 
