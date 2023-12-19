@@ -2,24 +2,25 @@ import { useRecoilValue } from "recoil";
 import { searchStateTest } from "../../Atom/Search";
 import { MainHeader } from "./MainHeader";
 import { SimpleSlider } from "./Slider";
-import axios from "axios";
 import styled from "styled-components";
+import axiosInstance from "../../Api/axios";
 
 const Wrapper = styled.div`
   height: 95vh;
+  width: 100%
   justify-content: center;
   display: flex;
   flex-direction: column;
-  max-width: 400px;
   margin: 0 auto;
   gap: 50px;
   white-space: pre;
+  overflow:hidden;
 `;
 
 export const MainPage = () => {
   const searchResults = useRecoilValue(searchStateTest);
-  axios
-    .get("http://34.64.77.143:8080/main")
+  axiosInstance
+    .get(`\main`)
     .then((response) => {
       console.log(response);
     })
