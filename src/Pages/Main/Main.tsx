@@ -4,7 +4,6 @@ import { MainHeader } from "./MainHeader";
 import { StoreListSlider } from "./StoreListSlider";
 import { StoreStorySlider } from "./StoreStorySlider";
 import styled from "styled-components";
-import axiosInstance from "../../Api/axios";
 import { StoreEditorSlider } from "./StoreEditorSlider";
 
 const Wrapper = styled.div`

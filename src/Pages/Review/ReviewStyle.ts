@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ReviewPorps } from "../../Interface/Review";
 import { FaCamera } from "react-icons/fa6";
 
 export const ReviewContainer = styled.div`

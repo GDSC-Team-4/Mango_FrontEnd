@@ -1,6 +1,6 @@
-import { atom, selector } from "recoil";
+import { atom } from "recoil";
 import { Review } from "../Interface/Review";
-import { recoilPersist } from "recoil-persist";
+
 
 export const ReviewState = atom<Review>({
   key: 'ReviewState',
