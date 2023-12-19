@@ -101,7 +101,7 @@ export const InputBox = styled.textarea`
     padding:1vw;
 `;
 
-export const PhotoBox = styled.button`
+export const PhotoBox = styled.label`
     box-sizing: border-box;
     width: 16.27vw;
     height: 7.1vh;
