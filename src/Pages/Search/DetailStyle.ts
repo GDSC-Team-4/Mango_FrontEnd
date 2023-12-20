@@ -30,6 +30,9 @@ export const Box = styled.div`
     @media (min-height: 768px) {
         margin-top:8vw;
     }
+    @media (max-height: 1024px) {
+        margin-top:8vw;
+    }
 `;
 
 
@@ -46,6 +49,7 @@ export const DetailTitle = styled.p`
     letter-spacing: -0.08em;
     
     margin-bottom:0;
+    
 `;
 
 export const DetailText = styled.p`
@@ -147,10 +151,20 @@ export const ImageBox = styled.div`
 
 export const DetailImages = styled.div`
     display: flex;
-    width: 19.5vw;  
-    height: 26.04vw;
+    width: 15.5vw;  
+    height: 23.04vw;
     background-image: url(${() => images[Math.floor(Math.random() * images.length)]});
     background-size: cover;
     margin-left:1.5vw;
-    margin-top:8vw;
+    margin-top:10vw;
+    @media (min-height: 768px) {
+        width: 19.5vw;  
+        height: 26.04vw;
+        margin-top:8vw;
+    }
+    @media (max-height: 1024px) {
+        width: 19.5vw;  
+        height: 26.04vw;
+        margin-top:8vw;
+    }
 `;

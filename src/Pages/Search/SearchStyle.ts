@@ -25,6 +25,9 @@ export const Box = styled.div`
     @media (min-height: 768px) {
         margin-top:8vw;
     }
+    @media (max-height: 1024px) {
+        margin-top:8vw;
+    }
 `;
 
 export const TextBox = styled.p`
