@@ -31,7 +31,7 @@ export const LogoPosition = styled.div`
   height: 8vh;
   cursor: pointer;
   @media (min-width: 768px) {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 
   @media (min-width: 1024px) {
