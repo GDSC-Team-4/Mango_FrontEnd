@@ -3,6 +3,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
 import { randomImg } from "./MainImg";
+import { useRecoilValue } from "recoil";
+import { MainDataState } from "../../Atom/Main";
+import { useEffect, useState } from "react";
 
 const text1 = `별점과 리뷰를 바탕으로 선정한\n 믿고 보는 맛집 리스트\n\n포도플레이트가 꼽은\n 특별한 맛집을 만나보세요.`;
 export const text2 = `얼큰 칼국수 맛집 베스트 20\n`;
@@ -34,8 +37,8 @@ export const Text = styled.span`
   font-size: 18px;
 `;
 
-export const Store = styled.div<{ imageURL: string }>`
-  background-image: url(${(props) => props.imageURL});
+export const Store = styled.div<{ imageurl: string }>`
+  background-image: url(${(props) => props.imageurl});
   width: 350px;
   height: 400px;
   border-radius: 10px;
@@ -89,7 +92,31 @@ export const StyledSlider = styled(Slider)`
   }
 `;
 
+function isValidImage(url: string) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = url;
+  });
+}
+
 export const StoreListSlider = () => {
+  const mainData = useRecoilValue(MainDataState);
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
+
+  useEffect(() => {
+    // 이미지 URL 유효성 검사를 비동기로 처리
+    Promise.all(
+      mainData.map(async (item, index) => {
+        const isValid = await isValidImage(item.imageUrl);
+        return isValid ? item.imageUrl : randomImg[index].imageurl;
+      })
+    ).then((urls) => {
+      setImageUrls(urls); // 검사된 URL들을 상태에 저장
+    });
+  }, [mainData]);
+
   const settings = {
     dots: true,
     infinite: false,
@@ -97,19 +124,24 @@ export const StoreListSlider = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
   };
+
   return (
     <Container>
       <TextBox>
-        <Title>믿고 보는 맛집 리스트</Title>
+        <Title>믿고 보는 강남 맛집</Title>
         <Text>{text1}</Text>
         <Button>전체보기</Button>
       </TextBox>
+
       <StyledSlider {...settings}>
-        {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-          <Store key={i} imageURL={randomImg[i].imageURL}>
+        {mainData.map((item, index) => (
+          <Store
+            key={index}
+            imageurl={imageUrls[index]} // 상태에서 이미지 URL 사용
+          >
             <StoreTextBox>
-              <StoreTitle>{text2}</StoreTitle>
-              <StoreText>한국인 맞춤 얼큰칼칼 칼국수 다모여!</StoreText>
+              <StoreTitle>{item.placeName}</StoreTitle>
+              <StoreText>{item.roadAddressName}</StoreText>
             </StoreTextBox>
           </Store>
         ))}
