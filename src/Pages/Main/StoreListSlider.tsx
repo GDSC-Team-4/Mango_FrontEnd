@@ -3,9 +3,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
 import { randomImg } from "./MainImg";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { ListDataState } from "../../Atom/Main";
 import { useEffect, useState } from "react";
+import {
+  searchDataState,
+  searchStateTest,
+  searchValueState,
+} from "../../Atom/Search";
+import axiosInstance from "../../Api/axios";
+import { useNavigate } from "react-router-dom";
 
 const text1 = `별점과 리뷰를 바탕으로 선정한\n 믿고 보는 맛집 리스트\n\n포도플레이트가 꼽은\n 특별한 맛집을 만나보세요.`;
 export const text2 = `얼큰 칼국수 맛집 베스트 20\n`;
@@ -104,8 +111,11 @@ export function isValidImage(url: string) {
 
 export const StoreListSlider = () => {
   const listData = useRecoilValue(ListDataState);
+  const navigation = useNavigate();
   const [imageUrls, setImageUrls] = useState<string[]>([]);
-
+  const setSearchResults = useSetRecoilState(searchStateTest);
+  const [searchData, setSearchData] = useRecoilState(searchDataState);
+  const setSearchValue = useSetRecoilState(searchValueState);
   useEffect(() => {
     // 이미지 URL 유효성 검사를 비동기로 처리
     Promise.all(
@@ -117,6 +127,40 @@ export const StoreListSlider = () => {
       setImageUrls(urls); // 검사된 URL들을 상태에 저장
     });
   }, [listData]);
+
+  // const handleSubmit = async (event: React.FormEvent) => {
+  //   event.preventDefault();
+  //   if (!searchData.SearchPrams.trim()) {
+  //     alert('검색어를 입력해주세요.');
+  //     return;
+  //   }
+  //   try {
+  //     let searchQuery = searchData.SearchPrams;
+  //     setSearchValue(searchData.SearchPrams);
+  //     const response = await axiosInstance.get(`/search`, {
+  //         params: { keyword: searchQuery }
+  //     });
+  //     //const restaurantResults = response.data.data.documents.filter((doc: SearchResult) => doc.category_group_name === '음식점');
+  //     setSearchResults(response.data.data);
+  //     navigation("/SearchPage");
+  //   } catch (error) {
+  //     console.error('오류가 발생했습니다: ', error);
+  //     alert('검색 중 오류가 발생했습니다. 다시 시도해 주세요.');
+  //   }
+  // };
+
+  const onClick = async () => {
+    try {
+      setSearchValue("강남");
+      const response = await axiosInstance.get(`/search`, {
+        params: { keyword: "강남" },
+      });
+      setSearchResults(response.data.data);
+      navigation("/SearchPage");
+    } catch (error) {
+      alert("오류가 발생했습니다");
+    }
+  };
 
   const settings = {
     dots: true,
@@ -131,7 +175,7 @@ export const StoreListSlider = () => {
       <TextBox>
         <Title>믿고 보는 강남 맛집</Title>
         <Text>{text1}</Text>
-        <Button>전체보기</Button>
+        <Button onClick={onClick}>전체보기</Button>
       </TextBox>
 
       <StyledSlider {...settings}>
