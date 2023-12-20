@@ -17,5 +17,5 @@ export interface ReviewUser  {
     restaurantId:string,
     content: string;
     star: number;
-    images: string[] | undefined;
+    imageUrls: string[] | undefined;
 }
