@@ -22,6 +22,9 @@ export const Box = styled.div`
     @media (min-height: 768px) {
         margin-top:8vw;
     }
+    @media (max-height: 1024px) {
+        margin-top:8vw;
+    }
 `;
 
 export const TextBox = styled.div`
@@ -81,6 +84,12 @@ export const StarText = styled.p`
     line-height: 0.7rem;
     text-align: center;
     color: #767676;
+    @media (min-height: 768px) {
+        font-size: 1rem;
+    }
+    @media (max-height: 1024px) {
+        font-size: 1rem;
+    }
 `;
 export const InputBox = styled.textarea`
     box-sizing: border-box;

@@ -31,15 +31,13 @@ export const LogoPosition = styled.div`
   height: 8vh;
   cursor: pointer;
   @media (min-width: 768px) {
-    font-size: 2rem;
-    top: 1.5rem;
-    left: 2.5rem;
+    font-size: 1.5rem;
+    line-height: 1.9rem;
   }
 
-  @media (min-width: 1024px) {
-    font-size: 2.5rem;
-    top: 2rem;
-    left: 3rem;
+  @media (max-width: 1024px) {
+    font-size: 1.5rem;
+    line-height: 1.9rem;
   }
 `;
 
