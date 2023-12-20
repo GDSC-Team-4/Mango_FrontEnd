@@ -2,6 +2,7 @@ import React,{useRef, useEffect} from "react";
 import { useRecoilValue} from "recoil";
 import { useNavigate } from "react-router-dom";
 import { selectedRestaurantState } from "../../Atom/Search";
+import axiosInstance from "../../Api/axios";
 import { DetailContainer,Box,DetailText,DetailTitle,DetailView,
         SubText, DetailImage,ClickLinkText,ReviewView,DetailImages,ImageBox,ViewText,ReviewIcon} from "./DetailStyle";
 import { LoginState } from "../../Atom/Login";
@@ -11,6 +12,22 @@ export const SearchDetailPage = () => {
     const navigate = useNavigate();
     const isLoggedIn = useRecoilValue(LoginState);
     const parking = Math.random() < 0.5 ? '주차공간 없음' : '주차공간 있음';
+
+    useEffect(() => {
+      const fetchReviews = async () => {
+        try {
+          const response = await axiosInstance.get(`review/${selectedRestaurant?.id}`);
+          console.log(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+    
+      if (selectedRestaurant?.id) {
+        fetchReviews();
+      }
+    }, [selectedRestaurant?.id]);
+    
     console.log(selectedRestaurant);
     useEffect(() => {
       window.scrollTo(0, 0); 
