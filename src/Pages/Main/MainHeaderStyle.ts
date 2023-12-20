@@ -52,6 +52,14 @@ export const TitleText = styled.h1`
   height: 2.5em;
   line-height: 3em;
   color: #fcfdf2;
+  @media (max-width: 1024px) {
+    font-size: 2.5em;
+    line-height: 2.5em;
+  }
+  @media (max-width: 768px) {
+    font-size: 2em;
+    line-height: 2em;
+  }
 `;
 
 export const SubText = styled.p`
