@@ -3,6 +3,7 @@ export interface MainDto {
     placeName: string;
     categoryName: string;
     categoryGroupCode: string;
+    categoryGroupName:string;
     phone: string;
     addressName: string
     roadAddressName: string;
