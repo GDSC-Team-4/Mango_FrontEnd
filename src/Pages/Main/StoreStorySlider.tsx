@@ -14,7 +14,10 @@ import {
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { StoryDataState } from "../../Atom/Main";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import axiosInstance from "../../Api/axios";
+import { useNavigate } from "react-router-dom";
+import { searchStateTest, searchValueState } from "../../Atom/Search";
 
 const StoryContainer = styled(Container)`
   flex-direction: column;
@@ -39,6 +42,7 @@ const StoryTitle = styled(Title)`
 const StoryButton = styled(Button)`
   margin-top: 38px;
   margin-left: 70px;
+  cursor: pointer;
 `;
 
 export const StorySlider = styled(StyledSlider)`
@@ -49,7 +53,23 @@ export const StorySlider = styled(StyledSlider)`
 export const StoreStorySlider = () => {
   const storyData = useRecoilValue(StoryDataState);
   const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const navigation = useNavigate();
+  const setSearchResults = useSetRecoilState(searchStateTest);
+  const setSearchValue = useSetRecoilState(searchValueState);
 
+  const searchQuery = "홍대입구";
+  const onClick = async () => {
+    try {
+      setSearchValue(searchQuery);
+      const response = await axiosInstance.get(`/search`, {
+        params: { keyword: searchQuery },
+      });
+      setSearchResults(response.data.data);
+      navigation("/SearchPage");
+    } catch (error) {
+      alert("오류가 발생했습니다");
+    }
+  };
   useEffect(() => {
     // 이미지 URL 유효성 검사를 비동기로 처리
     Promise.all(
@@ -72,7 +92,7 @@ export const StoreStorySlider = () => {
     <StoryContainer>
       <StoryTextBox>
         <StoryTitle>홍대입구 맛집 스토리</StoryTitle>
-        <StoryButton>전체보기</StoryButton>
+        <StoryButton onClick={onClick}>전체보기</StoryButton>
       </StoryTextBox>
       <StorySlider {...settings}>
         {storyData.map((item, index) => (
