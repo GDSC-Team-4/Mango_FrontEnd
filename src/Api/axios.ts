@@ -5,7 +5,6 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
-// 세션으로 할거면 안씀
 axiosInstance.interceptors.request.use(
   (config) => {
     return config;
