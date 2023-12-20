@@ -128,26 +128,6 @@ export const StoreListSlider = () => {
     });
   }, [listData]);
 
-  // const handleSubmit = async (event: React.FormEvent) => {
-  //   event.preventDefault();
-  //   if (!searchData.SearchPrams.trim()) {
-  //     alert('검색어를 입력해주세요.');
-  //     return;
-  //   }
-  //   try {
-  //     let searchQuery = searchData.SearchPrams;
-  //     setSearchValue(searchData.SearchPrams);
-  //     const response = await axiosInstance.get(`/search`, {
-  //         params: { keyword: searchQuery }
-  //     });
-  //     //const restaurantResults = response.data.data.documents.filter((doc: SearchResult) => doc.category_group_name === '음식점');
-  //     setSearchResults(response.data.data);
-  //     navigation("/SearchPage");
-  //   } catch (error) {
-  //     console.error('오류가 발생했습니다: ', error);
-  //     alert('검색 중 오류가 발생했습니다. 다시 시도해 주세요.');
-  //   }
-  // };
   const searchQuery = "강남";
   const onClick = async () => {
     try {
