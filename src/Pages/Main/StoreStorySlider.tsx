@@ -9,9 +9,12 @@ import {
   StoreTitle,
   StyledSlider,
   Title,
-  text2,
+  isValidImage,
 } from "./StoreListSlider";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
+import { StoryDataState } from "../../Atom/Main";
+import { useRecoilValue } from "recoil";
 
 const StoryContainer = styled(Container)`
   flex-direction: column;
@@ -44,6 +47,20 @@ export const StorySlider = styled(StyledSlider)`
 `;
 
 export const StoreStorySlider = () => {
+  const storyData = useRecoilValue(StoryDataState);
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
+
+  useEffect(() => {
+    // 이미지 URL 유효성 검사를 비동기로 처리
+    Promise.all(
+      storyData.map(async (item, index) => {
+        const isValid = await isValidImage(item.imageUrl);
+        return isValid ? item.imageUrl : randomImg[index].imageurl;
+      })
+    ).then((urls) => {
+      setImageUrls(urls); // 검사된 URL들을 상태에 저장
+    });
+  }, [storyData]);
   const settings = {
     dots: false,
     infinite: false,
@@ -54,15 +71,15 @@ export const StoreStorySlider = () => {
   return (
     <StoryContainer>
       <StoryTextBox>
-        <StoryTitle>포도플레이트 맛집 스토리</StoryTitle>
+        <StoryTitle>홍대입구 맛집 스토리</StoryTitle>
         <StoryButton>전체보기</StoryButton>
       </StoryTextBox>
       <StorySlider {...settings}>
-        {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-          <Store key={i} imageURL={randomImg[i].imageURL}>
+        {storyData.map((item, index) => (
+          <Store key={index} imageurl={imageUrls[index]}>
             <StoreTextBox>
-              <StoreTitle>{text2}</StoreTitle>
-              <StoreText>한국인 맞춤 얼큰칼칼 칼국수 다모여!</StoreText>
+              <StoreTitle>{item.placeName}</StoreTitle>
+              <StoreText>{item.roadAddressName}</StoreText>
             </StoreTextBox>
           </Store>
         ))}
