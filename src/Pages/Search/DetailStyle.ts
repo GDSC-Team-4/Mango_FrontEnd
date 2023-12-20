@@ -79,8 +79,8 @@ export const SubText = styled.span`
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
     color: rgba(252, 253, 242, 0.6);
     padding-right:5vw;
 `;
@@ -101,7 +101,7 @@ export const DetailView = styled.div`
 export const ReviewView = styled.div`
     display:flex;
     width:15vw;
-    height:2vw;
+    height:2.4vw;
     box-sizing: border-box;
     border: 1px solid #FCFDF2;
     filter: drop-shadow(0px 0.26vw 0.65vw rgba(255, 255, 255, 0.25));
@@ -112,8 +112,6 @@ export const ReviewView = styled.div`
 `;
 
 export const ViewText = styled.p`
-    width: 4.26vw;
-    height: 2vw;
     flex-shrink: 0;
     cursor:pointer;
     color: #FCFDF2;
@@ -130,8 +128,9 @@ export const ReviewIcon = styled(IoDocumentTextOutline)`
     item-align:center;
     height:2.84vh;
     width:1.3vw;
-    margin-top:0.3vw;
+    margin-top:0.5vw;
     margin-left:1vw;
+    margin-right:1vw;
 `;
 
 /* Rectangle 95 */
@@ -141,14 +140,16 @@ export const DetailImage = styled.div`
     height: 50.7vh;
     background-image: url(${require("../../img/Rectangle95.png")});
     background-size: cover;
-    margin-left:-42vw;
-    margin-top:-20vw;
+    margin-top:9vw;
+    margin-left:0.9vw;
 `;
 
 export const ImageBox = styled.div`
-    display:flex
+    display:flex;
 `;
-
+export const TotalBox = styled.div`
+    
+`;
 export const DetailImages = styled.div`
     display: flex;
     width: 15.5vw;  
@@ -157,14 +158,81 @@ export const DetailImages = styled.div`
     background-size: cover;
     margin-left:1.5vw;
     margin-top:10vw;
+    margin-bottom:5vw;
     @media (min-height: 768px) {
         width: 19.5vw;  
         height: 26.04vw;
         margin-top:8vw;
+        margin-bottom:5vw;
     }
     @media (max-height: 1024px) {
         width: 19.5vw;  
         height: 26.04vw;
         margin-top:8vw;
+        margin-bottom:5vw;
     }
 `;
+
+/* Review */
+export const GetReviewTitle = styled.div`
+    width: 42.5vw;
+    height: 6.83vh;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2.5rem;
+    line-height: 3rem;
+    color: rgba(252, 253, 242, 0.8);
+`;
+export const ReviewBox = styled.div`
+    width: 80vw;
+    height: 50vh;
+    background: rgba(252, 253, 242, 0.1);
+    margin-top:3vw;
+`;
+
+export const TextBox = styled.div`
+    margin-left:3vw;
+    margin-top:2vw;
+    display: flex;
+    flex-direction: column;
+`;
+
+export const GetReviewContent = styled.span`
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    color: rgba(252, 253, 242, 0.6);
+    margin-right:2vw;
+    padding-bottom:1vw;
+    @media (max-height: 800px) {
+        padding-bottom:0.5vw;
+    }
+`;
+
+export const GetReviewText = styled.span`
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: rgba(252, 253, 242, 0.6);
+    margin-right:2vw;
+    padding-bottom:1vw;
+    @media (max-height: 800px) {
+        padding-bottom:0.5vw;
+    }
+`;
+
+export const ReviewImg = styled.img`
+    display: column;
+    margin-top:0.5vw;
+    width:16rem;
+    height:12rem;
+    
+    @media (max-height: 900px) {
+        width:9rem;
+        height:7rem;
+    }
+`;
+
