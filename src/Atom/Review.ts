@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { Review } from "../Interface/Review";
+import { Review,ReviewUser } from "../Interface/Review";
 
 
 export const ReviewState = atom<Review>({
@@ -16,7 +16,7 @@ export const imageFileState = atom<File | null>({
   default: null,
 });
 
-export const GetReviewState = atom<Review[]>({
+export const GetReviewState = atom<ReviewUser[]>({
   key: 'GetReviewState',
   default: [],
 });
