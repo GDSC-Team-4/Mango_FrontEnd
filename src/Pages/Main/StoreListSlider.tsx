@@ -83,6 +83,7 @@ export const Button = styled.button`
   backdrop-filter: blur(5px);
   font-size: 16px;
   border: none;
+  cursor: pointer;
 `;
 
 export const StyledSlider = styled(Slider)`
@@ -114,7 +115,6 @@ export const StoreListSlider = () => {
   const navigation = useNavigate();
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const setSearchResults = useSetRecoilState(searchStateTest);
-  const [searchData, setSearchData] = useRecoilState(searchDataState);
   const setSearchValue = useSetRecoilState(searchValueState);
   useEffect(() => {
     // 이미지 URL 유효성 검사를 비동기로 처리
@@ -148,12 +148,12 @@ export const StoreListSlider = () => {
   //     alert('검색 중 오류가 발생했습니다. 다시 시도해 주세요.');
   //   }
   // };
-
+  const searchQuery = "강남";
   const onClick = async () => {
     try {
-      setSearchValue("강남");
+      setSearchValue(searchQuery);
       const response = await axiosInstance.get(`/search`, {
-        params: { keyword: "강남" },
+        params: { keyword: searchQuery },
       });
       setSearchResults(response.data.data);
       navigation("/SearchPage");
