@@ -101,7 +101,7 @@ export const DetailView = styled.div`
 export const ReviewView = styled.div`
     display:flex;
     width:15vw;
-    height:2vw;
+    height:2.4vw;
     box-sizing: border-box;
     border: 1px solid #FCFDF2;
     filter: drop-shadow(0px 0.26vw 0.65vw rgba(255, 255, 255, 0.25));
@@ -112,8 +112,6 @@ export const ReviewView = styled.div`
 `;
 
 export const ViewText = styled.p`
-    width: 4.26vw;
-    height: 2vw;
     flex-shrink: 0;
     cursor:pointer;
     color: #FCFDF2;
@@ -130,8 +128,9 @@ export const ReviewIcon = styled(IoDocumentTextOutline)`
     item-align:center;
     height:2.84vh;
     width:1.3vw;
-    margin-top:0.3vw;
+    margin-top:0.5vw;
     margin-left:1vw;
+    margin-right:1vw;
 `;
 
 /* Rectangle 95 */
