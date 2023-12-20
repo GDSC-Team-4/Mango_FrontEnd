@@ -1,10 +1,15 @@
-import { useRecoilValue } from "recoil";
-import { searchStateTest } from "../../Atom/Search";
+import { useRecoilState } from "recoil";
 import { MainHeader } from "./MainHeader";
 import { StoreListSlider } from "./StoreListSlider";
 import { StoreStorySlider } from "./StoreStorySlider";
 import styled from "styled-components";
 import { StoreEditorSlider } from "./StoreEditorSlider";
+import axiosInstance from "../../Api/axios";
+import {
+  EditorDataState,
+  ListDataState,
+  StoryDataState,
+} from "../../Atom/Main";
 
 const Wrapper = styled.div`
   height: 100%;
@@ -19,15 +24,24 @@ const Wrapper = styled.div`
 `;
 
 export const MainPage = () => {
-  const searchResults = useRecoilValue(searchStateTest);
-  // axiosInstance
-  //   .get(`\main`)
-  //   .then((response) => {
-  //     console.log(response);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
+  const [listData, setListData] = useRecoilState(ListDataState);
+  const [storyData, setStoryData] = useRecoilState(StoryDataState);
+  const [editorData, setEditorData] = useRecoilState(EditorDataState);
+
+  if (listData.length === 0) {
+    axiosInstance
+      .get(`\main`)
+      .then((response) => {
+        setListData(response.data[0].data);
+        setStoryData(response.data[1].data);
+        setEditorData(response.data[2].data);
+        //console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <>
       <MainHeader />
