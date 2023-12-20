@@ -1,11 +1,17 @@
 import axios from "axios";
+import { SERVER_1 } from "../config";
+
+const host = window.location.hostname === "localhost" 
+  ? `${SERVER_1.SERVER}`
+  : "/api";
 
 const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_SERVER,
+  baseURL: host,
   withCredentials: true,
 });
 
-// 세션으로 할거면 안씀
+
+//session으로 할거면 안씀
 axiosInstance.interceptors.request.use(
   (config) => {
     return config;
@@ -42,3 +48,4 @@ axiosInstance.interceptors.response.use(
 );
 
 export default axiosInstance;
+
