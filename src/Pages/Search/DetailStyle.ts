@@ -236,3 +236,13 @@ export const ReviewImg = styled.img`
     }
 `;
 
+export const EditButton = styled.button`
+    background-color: rgba(252, 243, 242, 0.15);
+    width:7rem;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+`;
