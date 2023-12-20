@@ -116,18 +116,6 @@ export const StoreListSlider = () => {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const setSearchResults = useSetRecoilState(searchStateTest);
   const setSearchValue = useSetRecoilState(searchValueState);
-  useEffect(() => {
-    // 이미지 URL 유효성 검사를 비동기로 처리
-    Promise.all(
-      listData.map(async (item, index) => {
-        const isValid = await isValidImage(item.imageUrl);
-        return isValid ? item.imageUrl : randomImg[index].imageurl;
-      })
-    ).then((urls) => {
-      setImageUrls(urls); // 검사된 URL들을 상태에 저장
-    });
-  }, [listData]);
-
   const searchQuery = "강남";
   const onClick = async () => {
     try {
@@ -141,6 +129,18 @@ export const StoreListSlider = () => {
       alert("오류가 발생했습니다");
     }
   };
+
+  useEffect(() => {
+    // 이미지 URL 유효성 검사를 비동기로 처리
+    Promise.all(
+      listData.map(async (item, index) => {
+        const isValid = await isValidImage(item.imageUrl);
+        return isValid ? item.imageUrl : randomImg[index].imageurl;
+      })
+    ).then((urls) => {
+      setImageUrls(urls); // 검사된 URL들을 상태에 저장
+    });
+  }, [listData]);
 
   const settings = {
     dots: true,
