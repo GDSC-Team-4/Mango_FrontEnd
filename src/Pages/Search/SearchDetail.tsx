@@ -1,14 +1,16 @@
 import React,{useRef, useEffect} from "react";
-import { useRecoilValue} from "recoil";
+import { useRecoilValue,useRecoilState} from "recoil";
 import { useNavigate } from "react-router-dom";
 import { selectedRestaurantState } from "../../Atom/Search";
 import axiosInstance from "../../Api/axios";
 import { DetailContainer,Box,DetailText,DetailTitle,DetailView,
         SubText, DetailImage,ClickLinkText,ReviewView,DetailImages,ImageBox,ViewText,ReviewIcon} from "./DetailStyle";
 import { LoginState } from "../../Atom/Login";
+import { GetReviewState } from "../../Atom/Review";
 
 export const SearchDetailPage = () => {
     const selectedRestaurant = useRecoilValue(selectedRestaurantState);
+    const [review,setReview] = useRecoilState(GetReviewState);
     const navigate = useNavigate();
     const isLoggedIn = useRecoilValue(LoginState);
     const parking = Math.random() < 0.5 ? '주차공간 없음' : '주차공간 있음';
@@ -18,6 +20,7 @@ export const SearchDetailPage = () => {
         try {
           const response = await axiosInstance.get(`review/${selectedRestaurant?.id}`);
           console.log(response.data);
+          setReview(response.data);
         } catch (error) {
           console.error(error);
         }
@@ -27,7 +30,7 @@ export const SearchDetailPage = () => {
         fetchReviews();
       }
     }, [selectedRestaurant?.id]);
-    
+
     console.log(selectedRestaurant);
     useEffect(() => {
       window.scrollTo(0, 0); 
@@ -69,6 +72,7 @@ export const SearchDetailPage = () => {
                   <ImageBox>
                     <DetailImages/><DetailImages/><DetailImages/><DetailImages/>
                   </ImageBox>
+                  <label placeholder="">{review[0]?.content}</label>
               </Box>
               <DetailImage/>
               
