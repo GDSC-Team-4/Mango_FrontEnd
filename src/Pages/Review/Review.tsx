@@ -40,8 +40,8 @@ export const ReviewPage = () => {
       try {
         const response = await axiosInstance.post(`review/${selectedRestaurant.id}`, formData, {
           headers: {
-            Authorization: `Bearer ${token}`//,
-            //"Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
           }
         });
         navigate("/");
@@ -85,6 +85,7 @@ export const ReviewPage = () => {
                   placeholder="자세한 리뷰를 작성해주세요. 식당의 분위기와 서비스도 궁금해요!" 
                   value={review.content}
                   onChange={handleInputChange}
+                  maxLength={500}
                 />
                 <ImageUpload setImageFile={setImageFile} />
                 <SubmitBox onClick={handleReviewSubmit}>리뷰 등록하기</SubmitBox>
