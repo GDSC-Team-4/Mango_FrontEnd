@@ -57,8 +57,8 @@ export const TitleText = styled.h1`
     line-height: 2.5em;
   }
   @media (max-width: 768px) {
-    font-size: 2em;
-    line-height: 2em;
+    font-size: 1.5em;
+    line-height: 1.5em;
   }
 `;
 
@@ -69,8 +69,9 @@ export const SubText = styled.p`
   font-size: 1.3em;
   line-height: 1.5em;
   color: #fcfdf2;
-  @media (min-height: 1024px) {
-    font-size: 1.6em;
+  @media (max-width: 768px) {
+    font-size: 0.8em;
+    line-height: 0.5em;
   }
 `;
 
