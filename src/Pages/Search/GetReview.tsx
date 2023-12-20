@@ -3,7 +3,7 @@ import { useRecoilValue,useRecoilState} from "recoil";
 import { selectedRestaurantState } from "../../Atom/Search";
 import axiosInstance from "../../Api/axios";
 import { GetReviewState } from "../../Atom/Review";
-import { GetReviewText, GetReviewTitle,TextBox, ImageBox, ReviewBox } from "./DetailStyle";
+import { GetReviewText, GetReviewTitle,TextBox, ImageBox, ReviewBox, ReviewImg, GetReviewContent } from "./DetailStyle";
 
 export const GetReview = () => {
     const selectedRestaurant = useRecoilValue(selectedRestaurantState);
@@ -42,9 +42,11 @@ export const GetReview = () => {
                     <GetReviewText>등록일: {item?.createdDate?.slice(0, 10)}</GetReviewText>
                 </ImageBox>
                 <TextBox>
-                    <GetReviewText>{item?.content}</GetReviewText>
+                    <GetReviewContent>{item?.content}</GetReviewContent>
+                    {item?.imageUrls?.map((imageUrl, imageIndex) => (
+                        <ReviewImg key={imageIndex} src={imageUrl} alt="Review" />
+                    ))}
                 </TextBox>
-                <p>{item?.images}</p>
                 </TextBox>
             </ReviewBox>
         ))}

@@ -186,27 +186,53 @@ export const GetReviewTitle = styled.div`
 `;
 export const ReviewBox = styled.div`
     width: 80vw;
-    height: 40vh;
+    height: 50vh;
     background: rgba(252, 253, 242, 0.1);
     margin-top:3vw;
 `;
 
 export const TextBox = styled.div`
     margin-left:3vw;
-    margin-top:3vw;
+    margin-top:2vw;
     display: flex;
     flex-direction: column;
 `;
 
+export const GetReviewContent = styled.span`
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    color: rgba(252, 253, 242, 0.6);
+    margin-right:2vw;
+    padding-bottom:1vw;
+    @media (max-height: 800px) {
+        padding-bottom:0.5vw;
+    }
+`;
+
 export const GetReviewText = styled.span`
-    height: 1.5rem;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 1.25rem;
-    line-height: 1.5rem;
     color: rgba(252, 253, 242, 0.6);
     margin-right:2vw;
+    padding-bottom:1vw;
+    @media (max-height: 800px) {
+        padding-bottom:0.5vw;
+    }
 `;
 
+export const ReviewImg = styled.img`
+    display: column;
+    margin-top:0.5vw;
+    width:16rem;
+    height:12rem;
+    
+    @media (max-height: 900px) {
+        width:9rem;
+        height:7rem;
+    }
+`;
 
