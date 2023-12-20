@@ -30,7 +30,7 @@ export const MainHeader = () => {
     try {
       let searchQuery = searchData.SearchPrams;
       setSearchValue(searchData.SearchPrams);
-      const response = await axiosInstance.get(`/api/search`, {
+      const response = await axiosInstance.get(`/search`, {
           params: { keyword: searchQuery }
       });  
       //const restaurantResults = response.data.data.documents.filter((doc: SearchResult) => doc.category_group_name === '음식점');
