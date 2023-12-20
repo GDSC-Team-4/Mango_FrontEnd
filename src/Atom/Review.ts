@@ -15,3 +15,8 @@ export const imageFileState = atom<File | null>({
   key: "imageFileState",
   default: null,
 });
+
+export const GetReviewState = atom<Review[]>({
+  key: 'GetReviewState',
+  default: [],
+});
