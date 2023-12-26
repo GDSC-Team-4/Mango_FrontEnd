@@ -61,6 +61,7 @@ export const GetReview = () => {
                         <GetReviewText>별점: {item?.star}</GetReviewText>
                         <GetReviewText>등록일: {item?.createdDate?.slice(0, 10)}</GetReviewText>
                         <EditButton onClick={() => deleteClick(item?.id)}>리뷰 삭제</EditButton>
+                        <EditButton onClick={() => navigate(`/ReviewUpdatePage`, { state: item })}>리뷰 수정</EditButton>
                     </ImageBox>
                     <TextBox>
                         <GetReviewContent>{item?.content}</GetReviewContent>
