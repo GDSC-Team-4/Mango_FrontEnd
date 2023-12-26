@@ -245,4 +245,5 @@ export const EditButton = styled.button`
     text-decoration: none;
     font-size: 1rem;
     cursor: pointer;
+    margin-left:0.8vw;
 `;

@@ -20,3 +20,18 @@ export const GetReviewState = atom<ReviewUser[]>({
   key: 'GetReviewState',
   default: [],
 });
+
+export const UpdateReviewState = atom<ReviewUser>({
+  key: 'UpdateReviewState',
+  default: {
+    id: 0,
+    username: '',
+    createdDate: '',
+    updatedDate: '',
+    userId: '',
+    restaurantId:'',
+    content: '',
+    star: 0,
+    imageUrls: [],
+  }}
+);
