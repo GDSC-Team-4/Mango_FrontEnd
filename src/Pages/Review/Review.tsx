@@ -16,8 +16,11 @@ export const ReviewPage = () => {
     const [review, setReview] = useRecoilState(ReviewState);
     const [imageFile, setImageFile] = useState<File | null>(null);
     
+
+
     useEffect(() => {
         window.scrollTo(0, 0);  // 페이지 상단으로 스크롤 이동
+        window.location.reload();
       }, []);
 
     if (!selectedRestaurant) {
