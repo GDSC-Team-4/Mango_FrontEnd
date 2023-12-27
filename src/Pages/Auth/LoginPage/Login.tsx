@@ -47,7 +47,7 @@ export const LoginPage = () => {
         localStorage.setItem("username", response.data.username);
         setIsLoggedIn(true);
         alert(constant.SUCCESS.Login);
-        navigate("/");
+        navigate(-1);
       })
       .catch(({ response }) => {
         //console.log(response.data.error);
