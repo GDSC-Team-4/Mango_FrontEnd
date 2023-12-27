@@ -11,6 +11,15 @@ export const ReviewState = atom<Review>({
   },
 });
 
+export const ReviewChangeState = atom<Review>({
+  key: 'ReviewChangeState',
+  default: {
+    content: '',
+    star: 0,
+    images: [],
+  },
+});
+
 export const imageFileState = atom<File | null>({
   key: "imageFileState",
   default: null,

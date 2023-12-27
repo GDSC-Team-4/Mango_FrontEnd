@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from "react";
 import { useRecoilState,useRecoilValue } from "recoil";
 import { useNavigate,useLocation  } from "react-router-dom";
-import { ReviewState} from "../../Atom/Review";
+import { ReviewChangeState} from "../../Atom/Review";
 import { selectedRestaurantState } from "../../Atom/Search";
 import axiosInstance from "../../Api/axios";
 import { ReviewContainer, Box, PlaceTitle,SubText, 
@@ -14,11 +14,10 @@ export const ReviewUpdatePage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const selectedRestaurant = useRecoilValue(selectedRestaurantState);
-    const [review, setReview] = useRecoilState(ReviewState);
+    const [review, setReview] = useRecoilState(ReviewChangeState);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const reviewToUpdate = location.state;
-    window.location.reload();
-    
+
     useEffect(() => {
         // 이전 페이지에서 전달받은 review data를 Recoil state에 저장
         setReview(reviewToUpdate);
