@@ -34,6 +34,10 @@ export const Header = () => {
     navigation("/");
   };
 
+  const onMyReview = () => {
+    navigation("/GetMyReview");
+  };
+
   const handleClick = async (event: React.FormEvent) => {
     event.preventDefault(); 
     try {
@@ -89,7 +93,7 @@ export const Header = () => {
           &nbsp;PLATE
         </LogoPosition>
         <TextPosition color={color} onClick={handleClick}>Hot list</TextPosition>
-        <TextPosition1 color={color}>Story</TextPosition1>
+        <TextPosition1 color={color} onClick={onMyReview}>Story</TextPosition1>
         {loggedIn ? ( 
           <SignOut color={color} onClick={handleLogout}>
             SignOut
