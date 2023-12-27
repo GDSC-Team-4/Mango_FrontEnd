@@ -27,18 +27,17 @@ const Title = styled.span`
 `;
 
 const StoreTitle = styled(RactTitle)`
-  margin-left: 0;
+  display: flex;
   justify-content: center;
 `;
 
 const EditorBox = styled(RandomRactangle)`
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
   position: relative;
   border-radius: 20px;
+  background-size: cover;
 `;
 
 const SubEditorBox = styled(SubRactangle)`
@@ -47,7 +46,8 @@ const SubEditorBox = styled(SubRactangle)`
   left: 50%;
   transform: translate(-50%, -50%);
   height: ${(props) => props.height}px;
-  align-self: center;
+  text-align: center;
+  justify-content: center;
 `;
 
 export const EditorSlider = styled(StorySlider)``;
