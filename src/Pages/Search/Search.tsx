@@ -84,7 +84,7 @@ export const SearchPage = () => {
                                     setSelectedRestaurant(searchResults[0]);
                                     navigate("/SearchDetailPage")}}>
                             <SubRactangle width={0} height={7} imageURL="">
-                            <RactTitle>{searchResults[0]?.placeName}</RactTitle>
+                            <RactTitle>{searchResults[0]?.placeName.slice(0, 11)}</RactTitle>
                             <ReviewPoint>{dummyPlaces[0].reviewPoint}</ReviewPoint>
                             </SubRactangle>
                         </RandomRactangle>
@@ -96,7 +96,7 @@ export const SearchPage = () => {
                                     setSelectedRestaurant(result);
                                     navigate("/SearchDetailPage")}}>
                                 <SubRactangle width={0} height={7} imageURL="">
-                                <RactTitle>{result.placeName}</RactTitle>
+                                <RactTitle>{result.placeName.slice(0, 11)}</RactTitle>
                                 <ReviewPoint>{dummyPlaces[1].reviewPoint}</ReviewPoint>
                                 </SubRactangle>
                             </RandomRactangle>
@@ -110,7 +110,7 @@ export const SearchPage = () => {
                                     setSelectedRestaurant(result);
                                     navigate("/SearchDetailPage")}}>
                                 <SubRactangle width={0} height={7} imageURL="">
-                                <RactTitle>{result.placeName}</RactTitle>
+                                <RactTitle>{result.placeName.slice(0, 11)}</RactTitle>
                                 <ReviewPoint>{dummyPlaces[2].reviewPoint}</ReviewPoint>
                                 </SubRactangle>
                             </RandomRactangle>
@@ -126,7 +126,7 @@ export const SearchPage = () => {
                                     setSelectedRestaurant(result);
                                     navigate("/SearchDetailPage")}}>
                                 <SubRactangle width={0} height={7} imageURL="">
-                                <RactTitle>{result.placeName}</RactTitle>
+                                <RactTitle>{result.placeName.slice(0, 11)}</RactTitle>
                                 <ReviewPoint>{dummyPlaces[2].reviewPoint}</ReviewPoint>
                                 </SubRactangle>
                             </RandomRactangle>
@@ -140,7 +140,7 @@ export const SearchPage = () => {
                                     setSelectedRestaurant(result);
                                     navigate("/SearchDetailPage")}}>
                                 <SubRactangle width={0} height={7} imageURL="">
-                                <RactTitle>{result.placeName}</RactTitle>
+                                <RactTitle>{result.placeName.slice(0, 11)}</RactTitle>
                                 <ReviewPoint>{dummyPlaces[2].reviewPoint}</ReviewPoint>
                                 </SubRactangle>
                             </RandomRactangle>
@@ -152,7 +152,7 @@ export const SearchPage = () => {
                                 setSelectedRestaurant(searchResults[9]);
                                 navigate("/SearchDetailPage")}}>
                                 <SubRactangle width={0} height={7} imageURL="">
-                                    <RactTitle>{searchResults[9]?.placeName}</RactTitle>
+                                    <RactTitle>{searchResults[9]?.placeName.slice(0, 11)}</RactTitle>
                                     <ReviewPoint>{dummyPlaces[2].reviewPoint}</ReviewPoint>
                                 </SubRactangle>
                             </RandomRactangle>
