@@ -17,7 +17,11 @@ import { StoryDataState } from "../../Atom/Main";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import axiosInstance from "../../Api/axios";
 import { useNavigate } from "react-router-dom";
-import { searchStateTest, searchValueState } from "../../Atom/Search";
+import {
+  searchStateTest,
+  searchValueState,
+  selectedRestaurantState,
+} from "../../Atom/Search";
 
 const StoryContainer = styled(Container)`
   flex-direction: column;
@@ -56,6 +60,7 @@ export const StoreStorySlider = () => {
   const navigation = useNavigate();
   const setSearchResults = useSetRecoilState(searchStateTest);
   const setSearchValue = useSetRecoilState(searchValueState);
+  const setSelectedRestaurant = useSetRecoilState(selectedRestaurantState);
 
   const searchQuery = "홍대입구";
   const onClick = async () => {
@@ -96,7 +101,14 @@ export const StoreStorySlider = () => {
       </StoryTextBox>
       <StorySlider {...settings}>
         {storyData.map((item, index) => (
-          <Store key={index} imageurl={imageUrls[index]}>
+          <Store
+            key={index}
+            imageurl={imageUrls[index]}
+            onClick={() => {
+              setSelectedRestaurant(item);
+              navigation("/SearchDetailPage");
+            }}
+          >
             <StoreTextBox>
               <StoreTitle>{item.placeName}</StoreTitle>
               <StoreText>{item.roadAddressName}</StoreText>

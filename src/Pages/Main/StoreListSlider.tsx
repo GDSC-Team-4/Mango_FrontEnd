@@ -3,13 +3,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
 import { randomImg } from "./MainImg";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { ListDataState } from "../../Atom/Main";
 import { useEffect, useState } from "react";
 import {
-  searchDataState,
   searchStateTest,
   searchValueState,
+  selectedRestaurantState,
 } from "../../Atom/Search";
 import axiosInstance from "../../Api/axios";
 import { useNavigate } from "react-router-dom";
@@ -117,6 +117,7 @@ export const StoreListSlider = () => {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const setSearchResults = useSetRecoilState(searchStateTest);
   const setSearchValue = useSetRecoilState(searchValueState);
+  const setSelectedRestaurant = useSetRecoilState(selectedRestaurantState);
   const searchQuery = "강남";
   const onClick = async () => {
     try {
@@ -164,6 +165,10 @@ export const StoreListSlider = () => {
           <Store
             key={index}
             imageurl={imageUrls[index]} // 상태에서 이미지 URL 사용
+            onClick={() => {
+              setSelectedRestaurant(item);
+              navigation("/SearchDetailPage");
+            }}
           >
             <StoreTextBox>
               <StoreTitle>{item.placeName}</StoreTitle>

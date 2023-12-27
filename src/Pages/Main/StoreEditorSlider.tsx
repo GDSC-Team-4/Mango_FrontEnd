@@ -9,10 +9,12 @@ import {
   SubRactangle,
 } from "../Search/SearchStyle";
 import { StorySlider } from "./StoreStorySlider";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { EditorDataState } from "../../Atom/Main";
 import { useEffect, useState } from "react";
 import { isValidImage } from "./StoreListSlider";
+import { selectedRestaurantState } from "../../Atom/Search";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -54,6 +56,8 @@ export const EditorSlider = styled(StorySlider)``;
 
 export const StoreEditorSlider = () => {
   const editorData = useRecoilValue(EditorDataState);
+  const setSelectedRestaurant = useSetRecoilState(selectedRestaurantState);
+  const navigation = useNavigate();
   const [imageUrls, setImageUrls] = useState<string[]>([]);
 
   useEffect(() => {
@@ -88,6 +92,10 @@ export const StoreEditorSlider = () => {
               height={200}
               key={index}
               imageURL={imageUrls[index]}
+              onClick={() => {
+                setSelectedRestaurant(item);
+                navigation("/SearchDetailPage");
+              }}
             >
               <SubEditorBox width={0} height={50} imageURL="">
                 <StoreTitle>{item.placeName}</StoreTitle>
