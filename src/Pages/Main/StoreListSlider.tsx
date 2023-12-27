@@ -47,6 +47,7 @@ export const Text = styled.span`
 
 export const Store = styled.div<{ imageurl: string }>`
   background-image: url(${(props) => props.imageurl});
+  background-size: cover;
   width: 350px;
   height: 400px;
   border-radius: 10px;

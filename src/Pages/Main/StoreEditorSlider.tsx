@@ -78,7 +78,7 @@ export const StoreEditorSlider = () => {
   return (
     <>
       <Container>
-        <Title>에디터가 선정한 역곡식당</Title>
+        <Title>에디터가 선정한 역곡 식당</Title>
       </Container>
       <ColumnBox>
         <EditorSlider {...settings}>
