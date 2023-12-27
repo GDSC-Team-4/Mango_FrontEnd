@@ -17,11 +17,11 @@ export const ReviewUpdatePage = () => {
     const [review, setReview] = useRecoilState(ReviewState);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const reviewToUpdate = location.state;
-
+    window.location.reload();
+    
     useEffect(() => {
         // 이전 페이지에서 전달받은 review data를 Recoil state에 저장
         setReview(reviewToUpdate);
-        window.location.reload();
     }, [reviewToUpdate]);
 
     const handleReviewUpdate = async (event: React.FormEvent) => {
