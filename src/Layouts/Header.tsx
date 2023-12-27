@@ -1,12 +1,16 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState,useSetRecoilState } from "recoil";
 import { LoginState } from "../Atom/Login";
+import { searchStateTest,searchDataState,searchValueState } from "../Atom/Search";
 import axiosInstance from "../Api/axios";
 import { HeaderContainer,LogoPosition, 
         TextPosition, TextPosition1, ClickIcon, SignOut } from "./HeaderStyle";
 
 export const Header = () => {
   const [loggedIn, setLoggedIn] = useRecoilState(LoginState);
+  const [searchData, setSearchData] = useRecoilState(searchDataState);
+  const setSearchResults = useSetRecoilState(searchStateTest);
+  const setSearchValue = useSetRecoilState(searchValueState);
   const navigation = useNavigate();
   const location = useLocation();
   let color;
@@ -28,6 +32,27 @@ export const Header = () => {
 
   const onMain = () => {
     navigation("/");
+  };
+
+  const onMyReview = () => {
+    navigation("/GetMyReview");
+  };
+
+  const handleClick = async (event: React.FormEvent) => {
+    event.preventDefault(); 
+    try {
+      setSearchValue('맛집');
+      const response = await axiosInstance.get(`/search`, {
+          params: { keyword: '맛집' }
+      });  
+      //const restaurantResults = response.data.data.documents.filter((doc: SearchResult) => doc.category_group_name === '음식점');
+      setSearchResults(response.data.data);
+      navigation("/SearchPage");
+      window.location.reload();
+    } catch (error) {
+      console.error('오류가 발생했습니다: ', error);
+      alert('검색 중 오류가 발생했습니다. 다시 시도해 주세요.'); 
+    }
   };
 
   if (
@@ -67,8 +92,8 @@ export const Header = () => {
           <br />
           &nbsp;PLATE
         </LogoPosition>
-        <TextPosition color={color}>Hot list</TextPosition>
-        <TextPosition1 color={color}>Story</TextPosition1>
+        <TextPosition color={color} onClick={handleClick}>Hot list</TextPosition>
+        <TextPosition1 color={color} onClick={onMyReview}>Story</TextPosition1>
         {loggedIn ? ( 
           <SignOut color={color} onClick={handleLogout}>
             SignOut
