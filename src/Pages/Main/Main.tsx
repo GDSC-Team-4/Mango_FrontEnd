@@ -1,4 +1,4 @@
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { MainHeader } from "./MainHeader";
 import { StoreListSlider } from "./StoreListSlider";
 import { StoreStorySlider } from "./StoreStorySlider";
@@ -25,8 +25,8 @@ const Wrapper = styled.div`
 
 export const MainPage = () => {
   const [listData, setListData] = useRecoilState(ListDataState);
-  const [storyData, setStoryData] = useRecoilState(StoryDataState);
-  const [editorData, setEditorData] = useRecoilState(EditorDataState);
+  const setStoryData = useSetRecoilState(StoryDataState);
+  const setEditorData = useSetRecoilState(EditorDataState);
 
   if (listData.length === 0) {
     axiosInstance

@@ -9,10 +9,12 @@ import {
   SubRactangle,
 } from "../Search/SearchStyle";
 import { StorySlider } from "./StoreStorySlider";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { EditorDataState } from "../../Atom/Main";
 import { useEffect, useState } from "react";
 import { isValidImage } from "./StoreListSlider";
+import { selectedRestaurantState } from "../../Atom/Search";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -27,18 +29,17 @@ const Title = styled.span`
 `;
 
 const StoreTitle = styled(RactTitle)`
-  margin-left: 0;
+  display: flex;
   justify-content: center;
 `;
 
 const EditorBox = styled(RandomRactangle)`
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
   position: relative;
   border-radius: 20px;
+  background-size: cover;
 `;
 
 const SubEditorBox = styled(SubRactangle)`
@@ -47,13 +48,16 @@ const SubEditorBox = styled(SubRactangle)`
   left: 50%;
   transform: translate(-50%, -50%);
   height: ${(props) => props.height}px;
-  align-self: center;
+  text-align: center;
+  justify-content: center;
 `;
 
 export const EditorSlider = styled(StorySlider)``;
 
 export const StoreEditorSlider = () => {
   const editorData = useRecoilValue(EditorDataState);
+  const setSelectedRestaurant = useSetRecoilState(selectedRestaurantState);
+  const navigation = useNavigate();
   const [imageUrls, setImageUrls] = useState<string[]>([]);
 
   useEffect(() => {
@@ -78,7 +82,7 @@ export const StoreEditorSlider = () => {
   return (
     <>
       <Container>
-        <Title>에디터가 선정한 역곡식당</Title>
+        <Title>에디터가 선정한 역곡 식당</Title>
       </Container>
       <ColumnBox>
         <EditorSlider {...settings}>
@@ -88,6 +92,10 @@ export const StoreEditorSlider = () => {
               height={200}
               key={index}
               imageURL={imageUrls[index]}
+              onClick={() => {
+                setSelectedRestaurant(item);
+                navigation("/SearchDetailPage");
+              }}
             >
               <SubEditorBox width={0} height={50} imageURL="">
                 <StoreTitle>{item.placeName}</StoreTitle>
