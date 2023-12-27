@@ -44,7 +44,7 @@ export const ReviewPage = () => {
             "Content-Type": "multipart/form-data",
           }
         });
-        navigate("/");
+        navigate(-1);
         console.log(response.data);
       } catch (error) {
         console.error(error);
