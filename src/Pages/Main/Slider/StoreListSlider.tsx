@@ -2,16 +2,16 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
-import { randomImg } from "./MainImg";
+import { randomImg } from "../MainImg";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { ListDataState } from "../../Atom/Main";
+import { ListDataState } from "../../../Atom/Main";
 import { useEffect, useState } from "react";
 import {
   searchStateTest,
   searchValueState,
   selectedRestaurantState,
-} from "../../Atom/Search";
-import axiosInstance from "../../Api/axios";
+} from "../../../Atom/Search";
+import axiosInstance from "../../../Api/axios";
 import { useNavigate } from "react-router-dom";
 
 const text1 = `별점과 리뷰를 바탕으로 선정한\n 믿고 보는 맛집 리스트\n\n포도플레이트가 꼽은\n 특별한 맛집을 만나보세요.`;

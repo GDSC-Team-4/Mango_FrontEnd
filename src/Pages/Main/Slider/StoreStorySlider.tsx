@@ -1,5 +1,5 @@
-import { randomImg } from "./MainImg";
-import bgImg from "../../img/MainBg.jpg";
+import { randomImg } from "../MainImg";
+import bgImg from "../../../img/MainBg.jpg";
 import {
   Button,
   Container,
@@ -13,15 +13,15 @@ import {
 } from "./StoreListSlider";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { StoryDataState } from "../../Atom/Main";
+import { StoryDataState } from "../../../Atom/Main";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import axiosInstance from "../../Api/axios";
+import axiosInstance from "../../../Api/axios";
 import { useNavigate } from "react-router-dom";
 import {
   searchStateTest,
   searchValueState,
   selectedRestaurantState,
-} from "../../Atom/Search";
+} from "../../../Atom/Search";
 
 const StoryContainer = styled(Container)`
   flex-direction: column;

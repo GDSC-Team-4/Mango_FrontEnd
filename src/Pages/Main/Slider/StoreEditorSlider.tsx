@@ -1,19 +1,19 @@
 import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { randomImg } from "./MainImg";
+import { randomImg } from "../MainImg";
 import {
   ColumnBox,
   RactTitle,
   RandomRactangle,
   SubRactangle,
-} from "../Search/SearchStyle";
+} from "../../Search/SearchStyle";
 import { StorySlider } from "./StoreStorySlider";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { EditorDataState } from "../../Atom/Main";
+import { EditorDataState } from "../../../Atom/Main";
 import { useEffect, useState } from "react";
 import { isValidImage } from "./StoreListSlider";
-import { selectedRestaurantState } from "../../Atom/Search";
+import { selectedRestaurantState } from "../../../Atom/Search";
 import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
