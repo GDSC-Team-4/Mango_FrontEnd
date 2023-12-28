@@ -71,9 +71,11 @@ export const GetReview = () => {
                               </ImageBox>
                     <TextBox>
                         <GetReviewContent>{item?.content}</GetReviewContent>
+                        <ImageBox>
                         {item?.imageUrls?.map((imageUrl, imageIndex) => (
                             <ReviewImg key={imageIndex} src={imageUrl} alt="Review" />
                         ))}
+                        </ImageBox>
                     </TextBox>
                 </TextBox>
                 
