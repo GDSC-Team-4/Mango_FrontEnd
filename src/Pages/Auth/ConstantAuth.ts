@@ -20,12 +20,24 @@ const EMAIL = {
 };
 
 const SUCCESS = {
-  Register: "회원가입이 완료되었습니다.",
-  Login: "환영합니다!",
+  REGISTER: "회원가입이 완료되었습니다.",
+  LOGIN: "환영합니다!",
 };
 
 const FAIL = {
-  Login: "아이디와 비밀번호를 확인해주세요.",
+  LOGIN: "아이디와 비밀번호를 확인해주세요.",
 };
 
-export default { USERNAME, PASSWORD, EMAIL, SUCCESS, FAIL };
+const TEXT = {
+  TITLE: "포도 플레이트",
+  SIGN_IN: "Sign in",
+  USER_ID: "User ID",
+  EMAIL: "Email",
+  USER_PASSWORD: "User Password",
+  CHECK_PASSWORD: "Check Password",
+  PASSWORD: "Password",
+  LOGIN_BTN: "G0 TO GRAPE PLATE",
+  REGISTER_BTN: "Create New Account",
+};
+
+export default { USERNAME, PASSWORD, EMAIL, SUCCESS, FAIL, TEXT };
