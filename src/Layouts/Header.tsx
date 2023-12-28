@@ -19,11 +19,11 @@ export const Header = () => {
   let boxShadow;
 
   const handleLogout = async () => {
+    const res = await axiosInstance.post("/api/auth/signout");
     setLoggedIn(false);
     navigation("/LoginPage");
-    //localStorage.removeItem("recoil-persist");
+    localStorage.removeItem("recoil-persist");
     //localStorage.clear();
-    const res = await axiosInstance.post("/api/auth/signout");
     window.location.reload();
   };
 
