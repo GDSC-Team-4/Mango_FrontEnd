@@ -12,12 +12,11 @@ export const GetReview = () => {
     const [review,setReview] = useRecoilState(GetReviewState);
     const navigate = useNavigate();
     const isLoggedIn = useRecoilValue(LoginState);
-
+    
     useEffect(() => {
       const fetchReviews = async () => {
         try {
           const response = await axiosInstance.get(`review/${selectedRestaurant?.id}`);
-          console.log(response.data);
           setReview(response.data);
         } catch (error) {
           console.error(error);
@@ -29,11 +28,10 @@ export const GetReview = () => {
       }
     }, [selectedRestaurant?.id]);
 
-    console.log(selectedRestaurant);
     useEffect(() => {
       window.scrollTo(0, 0); 
     }, []);
-
+    
     const deleteClick = async (id:number) => {
       const token = localStorage.getItem('accessToken');
       try {
@@ -45,13 +43,12 @@ export const GetReview = () => {
           
           // 리뷰 삭제 후, 다시 리뷰 목록을 불러옵니다.
           const response = await axiosInstance.get(`review/${selectedRestaurant?.id}`);
-          console.log(response.data);
           setReview(response.data);
       } catch (error) {
           console.error(error);
       }
     }
-
+    
     return (
         <>
         <GetReviewTitle>Review</GetReviewTitle>
@@ -64,8 +61,14 @@ export const GetReview = () => {
                         <GetReviewText>등록일: {item?.createdDate?.slice(0, 10)}</GetReviewText>
                         {isLoggedIn && (
                           <>
-                          <EditButton onClick={() => deleteClick(item?.id)}>리뷰 삭제</EditButton>
-                          <EditButton onClick={() => navigate(`/ReviewUpdatePage`, { state: item })}>리뷰 수정</EditButton>  
+                            <EditButton onClick={() => (localStorage.getItem('username') === item?.username) ? (
+                              deleteClick(item?.id)) : (alert("본인의 리뷰가 아닙니다."))}>
+                                리뷰 삭제
+                            </EditButton>
+                            <EditButton onClick={() => (localStorage.getItem('username') === item?.username) ? (
+                              navigate(`/ReviewUpdatePage`, { state: item })) : (alert("본인의 리뷰가 아닙니다."))}>
+                                리뷰 수정
+                            </EditButton>  
                           </>
                         )}
                               </ImageBox>
