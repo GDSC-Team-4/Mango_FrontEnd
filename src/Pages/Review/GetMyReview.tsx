@@ -22,7 +22,6 @@ export const GetMyReview = () => {
                 Authorization: `Bearer ${token}`,
             }
           })
-          console.log(response.data);
           setReview(response.data);
         } catch (error) {
           console.error(error);
@@ -34,7 +33,6 @@ export const GetMyReview = () => {
       }
     }, [selectedRestaurant?.id]);
 
-    console.log(selectedRestaurant);
     useEffect(() => {
       window.scrollTo(0, 0); 
     }, []);
@@ -48,9 +46,7 @@ export const GetMyReview = () => {
             }
           })
           
-          // 리뷰 삭제 후, 다시 리뷰 목록을 불러옵니다.
           const response = await axiosInstance.get(`review/${selectedRestaurant?.id}`);
-          console.log(response.data);
           setReview(response.data);
       } catch (error) {
           console.error(error);
