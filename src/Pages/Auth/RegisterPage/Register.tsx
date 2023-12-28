@@ -1,11 +1,3 @@
-import { useForm } from "react-hook-form";
-import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { IForm, ISubmit } from "../../../Interface/Register";
-import constant from "../ConstantAuth";
-import img from "../../../img/grape_background.png";
-import logo from "../../../img/logo.png";
-import axiosInstance from "../../../Api/axios";
 import {
   Container,
   ErrorMessage,
@@ -20,6 +12,17 @@ import {
   Title,
   Wrapper,
 } from "./StyledRegister";
+import img from "../../../img/grape_background.png";
+import logo from "../../../img/logo.png";
+import constant from "../ConstantAuth";
+
+import { useRef } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
+import { IForm, ISubmit } from "../../../Interface/Register";
+
+import axiosInstance from "../../../Api/axios";
 
 export const RegisterPage = () => {
   const {
@@ -49,7 +52,7 @@ export const RegisterPage = () => {
       axiosInstance
         .post(`/api/auth/signup`, formData.current)
         .then((response) => {
-          alert(constant.SUCCESS.Register);
+          alert(constant.SUCCESS.REGISTER);
           navigate("/");
         })
         .catch(({ response }) => {
@@ -65,15 +68,15 @@ export const RegisterPage = () => {
     <Wrapper image={img}>
       <LogoContainer>
         <Logo src={logo} onClick={onClick} />
-        <span>포도 플레이트</span>
+        <span>{constant.TEXT.TITLE}</span>
       </LogoContainer>
       <Container>
         <Title>
-          <span>Create New Account</span>
+          <span>{constant.TEXT.REGISTER_BTN}</span>
         </Title>
         <Form onSubmit={handleSubmit(onValid)}>
           <LabelContainer>
-            <Label>User ID</Label>
+            <Label>{constant.TEXT.USER_ID}</Label>
             <Input
               {...register("username", {
                 required: constant.USERNAME.REQUIRED_MESSAGE,
@@ -86,12 +89,12 @@ export const RegisterPage = () => {
                   message: constant.USERNAME.LENGTH_MESSAGE,
                 },
               })}
-              placeholder="User ID"
+              placeholder={constant.TEXT.USER_ID}
             />
             <ErrorMessage>{errors?.username?.message}</ErrorMessage>
           </LabelContainer>
           <LabelContainer>
-            <Label>Password</Label>
+            <Label>{constant.TEXT.PASSWORD}</Label>
             <PasswordInput
               {...register("password", {
                 required: constant.PASSWORD.REQUIRED_MESSAGE,
@@ -105,21 +108,21 @@ export const RegisterPage = () => {
                 },
               })}
               type="password"
-              placeholder="User Password"
+              placeholder={constant.TEXT.USER_PASSWORD}
             />
             <ErrorMessage>{errors?.password?.message}</ErrorMessage>
           </LabelContainer>
           <LabelContainer>
-            <Label>Check Password</Label>
+            <Label>{constant.TEXT.CHECK_PASSWORD}</Label>
             <PasswordInput
               {...register("checkpassword")}
-              placeholder="Check Password"
+              placeholder={constant.TEXT.CHECK_PASSWORD}
               type="password"
             />
             <ErrorMessage>{errors?.checkpassword?.message}</ErrorMessage>
           </LabelContainer>
           <LabelContainer>
-            <Label>Email</Label>
+            <Label>{constant.TEXT.EMAIL}</Label>
             <Input
               {...register("email", {
                 required: constant.EMAIL.REQUIRED_MESSAGE,
@@ -128,11 +131,11 @@ export const RegisterPage = () => {
                   message: constant.EMAIL.CHECK_MESSAGE,
                 },
               })}
-              placeholder="Email"
+              placeholder={constant.TEXT.EMAIL}
             />
             <ErrorMessage>{errors?.email?.message}</ErrorMessage>
           </LabelContainer>
-          <Submit type="submit" value="Create New Account" />
+          <Submit type="submit" value={constant.TEXT.REGISTER_BTN} />
         </Form>
       </Container>
     </Wrapper>
