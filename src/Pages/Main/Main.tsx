@@ -1,10 +1,10 @@
-import { useRecoilState, useSetRecoilState } from "recoil";
+import styled from "styled-components";
 import { MainHeader } from "./MainHeader";
 import { StoreListSlider } from "./Slider/StoreListSlider";
 import { StoreStorySlider } from "./Slider/StoreStorySlider";
-import styled from "styled-components";
 import { StoreEditorSlider } from "./Slider/StoreEditorSlider";
 import axiosInstance from "../../Api/axios";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import {
   EditorDataState,
   ListDataState,
