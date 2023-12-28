@@ -1,58 +1,27 @@
-import { randomImg } from "../MainImg";
-import bgImg from "../../../img/MainBg.jpg";
 import {
-  Button,
-  Container,
   Store,
   StoreText,
   StoreTextBox,
   StoreTitle,
-  StyledSlider,
-  Title,
-  isValidImage,
-} from "./StoreListSlider";
-import styled from "styled-components";
+  StoryButton,
+  StoryContainer,
+  StorySlider,
+  StoryTextBox,
+  StoryTitle,
+} from "./StyledSlider";
+import { randomImg } from "../MainImg";
+import bgImg from "../../../img/MainBg.jpg";
 import { useEffect, useState } from "react";
-import { StoryDataState } from "../../../Atom/Main";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import axiosInstance from "../../../Api/axios";
 import { useNavigate } from "react-router-dom";
 import {
   searchStateTest,
   searchValueState,
   selectedRestaurantState,
 } from "../../../Atom/Search";
-
-const StoryContainer = styled(Container)`
-  flex-direction: column;
-  align-items: normal;
-  background-image: url(${bgImg});
-  background-size: cover;
-  height: 500px;
-  margin-left: 0;
-`;
-
-const StoryTextBox = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const StoryTitle = styled(Title)`
-  margin-top: 38px;
-  margin-left: 70px;
-`;
-
-const StoryButton = styled(Button)`
-  margin-top: 38px;
-  margin-left: 70px;
-  cursor: pointer;
-`;
-
-export const StorySlider = styled(StyledSlider)`
-  margin-top: 15px;
-  overflow: visible;
-`;
+import { StoryDataState } from "../../../Atom/Main";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import axiosInstance from "../../../Api/axios";
+import { isValidImage } from "./StoreListSlider";
 
 export const StoreStorySlider = () => {
   const storyData = useRecoilValue(StoryDataState);
@@ -94,7 +63,7 @@ export const StoreStorySlider = () => {
     slidesToScroll: 1,
   };
   return (
-    <StoryContainer>
+    <StoryContainer bgImg={bgImg}>
       <StoryTextBox>
         <StoryTitle>홍대입구 맛집 스토리</StoryTitle>
         <StoryButton onClick={onClick}>전체보기</StoryButton>
