@@ -1,16 +1,16 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useRecoilState,useSetRecoilState } from "recoil";
 import { LoginState } from "../Atom/Login";
-import { searchStateTest,searchDataState,searchValueState } from "../Atom/Search";
+import { searchStateTest,searchValueState } from "../Atom/Search";
 import axiosInstance from "../Api/axios";
 import { HeaderContainer,LogoPosition, 
         TextPosition, TextPosition1, ClickIcon, SignOut } from "./HeaderStyle";
 
 export const Header = () => {
   const [loggedIn, setLoggedIn] = useRecoilState(LoginState);
-  const [searchData, setSearchData] = useRecoilState(searchDataState);
   const setSearchResults = useSetRecoilState(searchStateTest);
   const setSearchValue = useSetRecoilState(searchValueState);
+  //const isLoggedIn = useRecoilValue(LoginState);
   const navigation = useNavigate();
   const location = useLocation();
   let color;
@@ -35,7 +35,11 @@ export const Header = () => {
   };
 
   const onMyReview = () => {
-    navigation("/GetMyReview");
+    loggedIn ? ( 
+      navigation("/GetMyReview")
+    ) : (
+      alert("로그인이 필요한 서비스 입니다.")
+    )
   };
 
   const handleClick = async (event: React.FormEvent) => {
@@ -71,6 +75,7 @@ export const Header = () => {
         boxShadow = "0px 2px 5px rgba(0, 0, 0, 0.25)";
         break;
     case "/SearchDetailPage":
+    case "/GetMyReview":
       color = "#FCFDF2";
       border = "2px solid rgba(252, 253, 242, 0.7)";
       boxShadow = "0px 2px 5px rgba(0, 0, 0, 0.25)";
