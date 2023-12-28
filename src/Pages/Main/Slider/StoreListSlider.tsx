@@ -22,6 +22,7 @@ import { ListDataState } from "../../../Atom/Main";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import axiosInstance from "../../../Api/axios";
 import constant from "../ConstantMain";
+import { SearchResult } from "../../../Interface/Search";
 
 export function isValidImage(url: string) {
   return new Promise((resolve) => {
@@ -40,7 +41,7 @@ export const StoreListSlider = () => {
 
   const navigation = useNavigate();
   const [imageUrls, setImageUrls] = useState<string[]>([]);
-
+  const [isDragging, setIsDragging] = useState(false);
   const searchQuery = constant.KEYWORDS.LIST_KEYWORD;
 
   const onClick = async () => {
@@ -54,6 +55,20 @@ export const StoreListSlider = () => {
     } catch (error) {
       alert(constant.TEXT.ERROR);
     }
+  };
+
+  const handleMouseDown = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = () => {
+    setIsDragging(true);
+  };
+
+  const handleMouseUp = (item: SearchResult) => {
+    if (isDragging) return; // 드래그 중이면 클릭 이벤트를 리턴(방지)함
+    setSelectedRestaurant(item);
+    navigation("/SearchDetailPage");
   };
 
   useEffect(() => {
@@ -88,11 +103,10 @@ export const StoreListSlider = () => {
         {listData.map((item, index) => (
           <Store
             key={index}
-            imageurl={imageUrls[index]} // 상태에서 이미지 URL 사용
-            onClick={() => {
-              setSelectedRestaurant(item);
-              navigation("/SearchDetailPage");
-            }}
+            imageurl={imageUrls[index]}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={() => handleMouseUp(item)}
           >
             <StoreTextBox>
               <StoreTitle>{item.placeName}</StoreTitle>
