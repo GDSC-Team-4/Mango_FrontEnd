@@ -26,12 +26,14 @@ export const Header = () => {
     const res = await axiosInstance.post("/api/auth/signout");
     window.location.reload();
   };
+
   const onRegister = () => {
     navigation("/LoginPage");
-  }; // 나중에 로그인 여부 확인해서 mypage로 보내줄 지 회원가입 , 로그인 페이지로 보내줄 지 판단하는 코드 넣을 것임
+  };
 
   const onMain = () => {
     navigation("/");
+    window.location.reload();
   };
 
   const onMyReview = () => {
@@ -98,7 +100,7 @@ export const Header = () => {
           &nbsp;PLATE
         </LogoPosition>
         <TextPosition color={color} onClick={handleClick}>Hot list</TextPosition>
-        <TextPosition1 color={color} onClick={onMyReview}>Story</TextPosition1>
+        <TextPosition1 color={color} onClick={onMyReview}>My Story</TextPosition1>
         {loggedIn ? ( 
           <SignOut color={color} onClick={handleLogout}>
             SignOut
