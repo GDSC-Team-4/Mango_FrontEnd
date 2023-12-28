@@ -10,7 +10,7 @@ import {
   TextBox,
   Title,
 } from "./StyledSlider";
-import { randomImg } from "../MainImg";
+import { randomImg } from "./MainImg";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -21,9 +21,7 @@ import {
 import { ListDataState } from "../../../Atom/Main";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import axiosInstance from "../../../Api/axios";
-
-const text1 = `별점과 리뷰를 바탕으로 선정한\n 믿고 보는 맛집 리스트\n\n포도플레이트가 꼽은\n 특별한 맛집을 만나보세요.`;
-export const text2 = `얼큰 칼국수 맛집 베스트 20\n`;
+import constant from "../ConstantMain";
 
 export function isValidImage(url: string) {
   return new Promise((resolve) => {
@@ -43,7 +41,7 @@ export const StoreListSlider = () => {
   const navigation = useNavigate();
   const [imageUrls, setImageUrls] = useState<string[]>([]);
 
-  const searchQuery = "강남";
+  const searchQuery = constant.KEYWORDS.LIST_KEYWORD;
 
   const onClick = async () => {
     try {
@@ -54,7 +52,7 @@ export const StoreListSlider = () => {
       setSearchResults(response.data.data);
       navigation("/SearchPage");
     } catch (error) {
-      alert("오류가 발생했습니다");
+      alert(constant.TEXT.ERROR);
     }
   };
 
@@ -81,9 +79,9 @@ export const StoreListSlider = () => {
   return (
     <Container>
       <TextBox>
-        <Title>믿고 보는 강남 맛집</Title>
-        <Text>{text1}</Text>
-        <Button onClick={onClick}>전체보기</Button>
+        <Title>{constant.TEXT.GANGNAM}</Title>
+        <Text>{constant.TEXT.EXPLAIN}</Text>
+        <Button onClick={onClick}>{constant.TEXT.BTN}</Button>
       </TextBox>
 
       <StyledSlider {...settings}>

@@ -9,7 +9,7 @@ import {
   StoryTextBox,
   StoryTitle,
 } from "./StyledSlider";
-import { randomImg } from "../MainImg";
+import { randomImg } from "./MainImg";
 import bgImg from "../../../img/MainBg.jpg";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +22,7 @@ import { StoryDataState } from "../../../Atom/Main";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import axiosInstance from "../../../Api/axios";
 import { isValidImage } from "./StoreListSlider";
+import constant from "../ConstantMain";
 
 export const StoreStorySlider = () => {
   const storyData = useRecoilValue(StoryDataState);
@@ -31,7 +32,7 @@ export const StoreStorySlider = () => {
   const setSearchValue = useSetRecoilState(searchValueState);
   const setSelectedRestaurant = useSetRecoilState(selectedRestaurantState);
 
-  const searchQuery = "홍대입구";
+  const searchQuery = constant.KEYWORDS.STORY_KEYWORD;
   const onClick = async () => {
     try {
       setSearchValue(searchQuery);
@@ -41,7 +42,7 @@ export const StoreStorySlider = () => {
       setSearchResults(response.data.data);
       navigation("/SearchPage");
     } catch (error) {
-      alert("오류가 발생했습니다");
+      alert(constant.TEXT.ERROR);
     }
   };
   useEffect(() => {
@@ -65,8 +66,8 @@ export const StoreStorySlider = () => {
   return (
     <StoryContainer bgImg={bgImg}>
       <StoryTextBox>
-        <StoryTitle>홍대입구 맛집 스토리</StoryTitle>
-        <StoryButton onClick={onClick}>전체보기</StoryButton>
+        <StoryTitle>{constant.TEXT.HONGDAE}</StoryTitle>
+        <StoryButton onClick={onClick}>{constant.TEXT.BTN}</StoryButton>
       </StoryTextBox>
       <StorySlider {...settings}>
         {storyData.map((item, index) => (

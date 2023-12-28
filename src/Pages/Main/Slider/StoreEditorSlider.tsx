@@ -6,7 +6,7 @@ import {
   EditorTitle,
   SubEditorBox,
 } from "./StyledSlider";
-import { randomImg } from "../MainImg";
+import { randomImg } from "./MainImg";
 import { ColumnBox } from "../../Search/SearchStyle";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,7 @@ import { EditorDataState } from "../../../Atom/Main";
 import { selectedRestaurantState } from "../../../Atom/Search";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { isValidImage } from "./StoreListSlider";
+import constant from "../ConstantMain";
 
 export const StoreEditorSlider = () => {
   const editorData = useRecoilValue(EditorDataState);
@@ -45,7 +46,7 @@ export const StoreEditorSlider = () => {
   return (
     <>
       <EditorContainer>
-        <EditorTitle>에디터가 선정한 역곡 식당</EditorTitle>
+        <EditorTitle>{constant.TEXT.YEOKGOK}</EditorTitle>
       </EditorContainer>
       <ColumnBox>
         <EditorSlider {...settings}>
