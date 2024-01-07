@@ -11,22 +11,22 @@ import {
   ErrorMessage,
 } from "../RegisterPage/StyledRegister";
 import { HomeBtn, LoginContainer, RegisterBtn } from "./StyledLogin";
-import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { LoginState } from "../../../Atom/Login";
-import { useRef } from "react";
-import { useForm } from "react-hook-form";
-import { ILogin } from "../../../Interface/Login";
-import axiosInstance from "../../../Api/axios";
-import constant from "../ConstantAuth";
 import img from "../../../img/grape_background.png";
 import logo from "../../../img/logo.png";
+import constant from "../ConstantAuth";
+
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useRef } from "react";
+
+import { useSetRecoilState } from "recoil";
+import { LoginState } from "../../../Atom/Login";
+import axiosInstance from "../../../Api/axios";
+
+import { ILogin } from "../../../Interface/Login";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
-  const goRegisterPage = () => {
-    navigate("/RegisterPage");
-  };
   const setIsLoggedIn = useSetRecoilState(LoginState);
   const formData = useRef<ILogin>();
   const {
@@ -34,6 +34,7 @@ export const LoginPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<ILogin>();
+
   const onValid = (data: ILogin) => {
     formData.current = {
       username: data.username,
@@ -42,17 +43,20 @@ export const LoginPage = () => {
     axiosInstance
       .post(`api/auth/signin`, formData.current)
       .then((response) => {
-        //console.log(response);
         localStorage.setItem("accessToken", response.data.accessToken);
         localStorage.setItem("username", response.data.username);
         setIsLoggedIn(true);
-        alert(constant.SUCCESS.Login);
-        navigate("/");
+        alert(constant.SUCCESS.LOGIN);
+        navigate(-1);
       })
       .catch(({ response }) => {
-        //console.log(response.data.error);
-        alert(constant.FAIL.Login);
+        console.log(response.data.error);
+        alert(constant.FAIL.LOGIN);
       });
+  };
+
+  const goRegisterPage = () => {
+    navigate("/RegisterPage");
   };
   const onClick = () => {
     navigate("/");
@@ -62,36 +66,36 @@ export const LoginPage = () => {
       <Wrapper image={img}>
         <LogoContainer>
           <Logo src={logo} onClick={onClick} />
-          <span>포도 플레이트</span>
+          <span>{constant.TEXT.TITLE}</span>
         </LogoContainer>
         <Container>
-          <Title>Sign in</Title>
+          <Title>{constant.TEXT.SIGN_IN}</Title>
           <Form onSubmit={handleSubmit(onValid)}>
             <LoginContainer>
-              <Label>User ID</Label>
+              <Label>{constant.TEXT.USER_ID}</Label>
               <Input
                 {...register("username", {
                   required: constant.USERNAME.REQUIRED_MESSAGE,
                 })}
-                placeholder="User ID"
+                placeholder={constant.TEXT.USER_ID}
               />
               <ErrorMessage>{errors?.username?.message}</ErrorMessage>
             </LoginContainer>
             <LoginContainer>
-              <Label>Password</Label>
+              <Label>{constant.TEXT.PASSWORD}</Label>
               <PasswordInput
                 {...register("password", {
                   required: constant.PASSWORD.REQUIRED_MESSAGE,
                 })}
-                placeholder="Password"
+                placeholder={constant.TEXT.PASSWORD}
               />
               <ErrorMessage>{errors?.password?.message}</ErrorMessage>
             </LoginContainer>
-            <HomeBtn type="submit" value="G0 TO GRAPE PLATE" />
+            <HomeBtn type="submit" value={constant.TEXT.LOGIN_BTN} />
             <RegisterBtn
               onClick={goRegisterPage}
               type="submit"
-              value="Create New Account"
+              value={constant.TEXT.REGISTER_BTN}
             />
           </Form>
         </Container>

@@ -225,8 +225,8 @@ export const GetReviewText = styled.span`
 `;
 
 export const ReviewImg = styled.img`
-    display: column;
     margin-top:0.5vw;
+    margin-left:0.4vw;
     width:16rem;
     height:12rem;
     
@@ -245,4 +245,5 @@ export const EditButton = styled.button`
     text-decoration: none;
     font-size: 1rem;
     cursor: pointer;
+    margin-left:0.8vw;
 `;

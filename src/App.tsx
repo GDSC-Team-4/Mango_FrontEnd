@@ -12,6 +12,8 @@ import { RegisterPage } from './Pages/Auth/RegisterPage/Register';
 import { SearchPage } from './Pages/Search/Search';
 import { SearchDetailPage } from './Pages/Search/SearchDetail';
 import { ReviewPage } from './Pages/Review/Review';
+import { GetMyReview } from './Pages/Review/GetMyReview';
+import { ReviewUpdatePage } from './Pages/Review/ReviewChange';
 const App  = () => {
   return (
     <>
@@ -20,9 +22,11 @@ const App  = () => {
           <Header />
           <Routes>
             <Route path="/" element={<MainPage />} />
+            <Route path="/GetMyReview" element={<GetMyReview/>}/>
             <Route path="/SearchPage" element={<SearchPage/>} />
             <Route path="/SearchDetailPage" element={<SearchDetailPage/>} />
             <Route path="/ReviewPage" element={<ReviewPage/>} />
+            <Route path="/ReviewUpdatePage" element={<ReviewUpdatePage/>} />
             <Route path="/RegisterPage" element={<RegisterPage/>}/>
             <Route path="/LoginPage" element={<LoginPage/>}/>
           </Routes>
