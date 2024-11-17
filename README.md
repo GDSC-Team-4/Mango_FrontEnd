@@ -11,6 +11,9 @@
   <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> 
 </div>
 
+## 코드 리뷰
+https://www.notion.so/e7d2fada37fa4dc88f11aeface38c092
+
 ## 커밋 컨벤션
 
 ### Branch
